@@ -1,5 +1,5 @@
 {
-  "name": "teste",
+  "name": "web_diary",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -9,6 +9,8 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "5.0.0",
+    "slate": "^0.72.3",
+    "slate-react": "^0.72.1",
     "web-vitals": "^2.1.0"
   },
   "scripts": {

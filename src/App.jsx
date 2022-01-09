@@ -47,10 +47,9 @@ const App = () => {
         }}
         placeholder="Digit your text here..."
         onKeyDown={(event) => {
-          if (!event.ctrlKey) return;
-
-          switch (event.key) {
-            case "p": {
+          for (const hotKey in HOTKEYS) {
+            if (isHotkey(hotKey, event)) {
+              // NOTE It'll check if the command we pressed is in the HOTKEYS object.
               event.preventDefault();
 
               const [match] = Editor.nodes(editor, {

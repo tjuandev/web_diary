@@ -43,7 +43,7 @@ const App = () => {
     <Slate editor={editor} value={value} onChange={(value) => setValue(value)}>
       <Editable
         style={{
-          border: '1px solid black',
+          border: "1px solid black",
         }}
         placeholder="Digit your text here..."
         onKeyDown={(event) => {
@@ -51,51 +51,8 @@ const App = () => {
             if (isHotkey(hotKey, event)) {
               // NOTE It'll check if the command we pressed is in the HOTKEYS object.
               event.preventDefault();
-
-              const [match] = Editor.nodes(editor, {
-                match: (n) => n.type === "code",
-              });
-
-              Transforms.setNodes(
-                editor,
-                { type: match ? "default" : "code" },
-                { match: (n) => Editor.isBlock(editor, n) }
-              );
-
-              break;
-            }
-            case "b": {
-              event.preventDefault();
-
-              const [match] = Editor.nodes(editor, {
-                match: (n) => n.bold,
-              });
-
-              Transforms.setNodes(
-                editor,
-                { bold: match ? false : true },
-                { match: (n) => Text.isText(n), split: true }
-              );
-
-              break;
-            }
-            case "i": {
-              event.preventDefault();
-
-              const [match] = Editor.nodes(editor, {
-                match: (n) => n.italic,
-              });
-
-              Transforms.setNodes(
-                editor,
-                { italic: match ? false : true },
-                { match: (n) => Text.isText(n), split: true }
-              );
-
-              break;
-            }
-            default: {
-              return;
+              const mark = HOTKEYS[hotKey]; // NOTE It'll return the value of hotkey;
+              toggleMark(editor, mark);
             }
           }
         }}
@@ -106,9 +63,15 @@ const App = () => {
   );
 };
 
-/* const HeaderElement = ({ children, attributes }) => {
-  return <h1 {...attributes}>{children}</h1>;
-}; */
+const toggleMark = (editor, format) => {
+  const isActive = isMarkActive(editor, format); // NOTE Checks if we already opened a mark.
+
+  if (isActive) {
+    Editor.removeMark(editor, format); // NOTE if we did created, it will close.
+  } else {
+    Editor.addMark(editor, format, true); // NOTE Basically, the addMark, set properties to the text selected, and if has not a text, it set to the next text that the use gonna type
+  }
+};
 
 const Leaf = ({ children, attributes, ...props }) => {
   return (

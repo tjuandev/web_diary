@@ -1,6 +1,8 @@
 import { useCallback, useRef, useState } from "react";
+import isHotkey from "is-hotkey";
+
 import { createEditor, Editor, Text, Transforms } from "slate";
-import { Slate, Editable, withReact  } from "slate-react";
+import { Slate, Editable, withReact } from "slate-react";
 
 const App = () => {
   const editorRef = useRef(); // Lib triggers an error if you use useMemo
@@ -13,6 +15,14 @@ const App = () => {
       children: [{ text: "A line of text in a paragraph." }],
     },
   ]);
+
+  const HOTKEYS = {
+    // Mod means ctrl or cmd
+    "mod+b": "bold",
+    "mod+i": "italic",
+    "mod+u": "underline",
+    "mod+`": "code",
+  };
 
   const renderElement = useCallback((props) => {
     switch (props.element.type) {

@@ -1,4 +1,5 @@
 import { useCallback, useRef, useState } from "react";
+
 import isHotkey from "is-hotkey";
 
 import { createEditor, Editor, Text, Transforms } from "slate";
@@ -71,6 +72,11 @@ const toggleMark = (editor, format) => {
   } else {
     Editor.addMark(editor, format, true); // NOTE Basically, the addMark, set properties to the text selected, and if has not a text, it set to the next text that the use gonna type
   }
+};
+
+const isMarkActive = (editor, format) => {
+  const marks = Editor.marks(editor);
+  return marks ? marks[format] === true : false;
 };
 
 const Leaf = ({ children, attributes, ...props }) => {

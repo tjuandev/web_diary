@@ -1,9 +1,9 @@
 import { useCallback, useRef, useState } from "react";
 import { createEditor, Editor, Text, Transforms } from "slate";
-import { Slate, Editable, withReact } from "slate-react";
+import { Slate, Editable, withReact  } from "slate-react";
 
 const App = () => {
-  const editorRef = useRef();
+  const editorRef = useRef(); // Lib triggers an error if you use useMemo
   if (!editorRef.current) editorRef.current = withReact(createEditor());
   const editor = editorRef.current;
 
@@ -32,6 +32,10 @@ const App = () => {
   return (
     <Slate editor={editor} value={value} onChange={(value) => setValue(value)}>
       <Editable
+        style={{
+          border: '1px solid black',
+        }}
+        placeholder="Digit your text here..."
         onKeyDown={(event) => {
           if (!event.ctrlKey) return;
 

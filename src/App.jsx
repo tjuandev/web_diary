@@ -127,6 +127,20 @@ const CodeElement = ({ children, attributes }) => {
   );
 };
 
+const Undo = ({ format }) => {
+  const editor = useSlate();
+  return (
+    <button
+      onMouseDown={(event) => {
+        event.preventDefault();
+        editor.undo();
+      }}
+    >
+      undo
+    </button>
+  );
+};
+
 const MarkButton = ({ format }) => {
   const editor = useSlate();
   return (

@@ -2,12 +2,12 @@ import { useCallback, useRef, useState } from "react";
 
 import isHotkey from "is-hotkey";
 
-import { createEditor, Editor, Text, Transforms } from "slate";
-import { Slate, Editable, withReact } from "slate-react";
+import { withHistory } from "slate-history";
 
 const App = () => {
   const editorRef = useRef(); // Lib triggers an error if you use useMemo
-  if (!editorRef.current) editorRef.current = withReact(createEditor());
+  if (!editorRef.current)
+    editorRef.current = withReact(withHistory(createEditor()));
   const editor = editorRef.current;
 
   const [value, setValue] = useState([

@@ -127,6 +127,35 @@ const CodeElement = ({ children, attributes }) => {
   );
 };
 
+const MarkButton = ({ format }) => {
+  const editor = useSlate();
+  return (
+    <button
+      active={isMarkActive(editor, format)}
+      onMouseDown={(event) => {
+        event.preventDefault();
+        toggleMark(editor, format);
+      }}
+    >
+      {format}
+    </button>
+  );
+};
+
+const BlockButton = ({ format }) => {
+  const editor = useSlate();
+  return (
+    <button
+      active={isMarkActive(editor, format)}
+      onMouseDown={(event) => {
+        event.preventDefault();
+        toggleBlock(editor, format);
+      }}
+    >
+      {format}
+    </button>
+  );
+};
 const DefaultElement = ({ children, attributes }) => {
   return <p {...attributes}>{children}</p>;
 };

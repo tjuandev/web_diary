@@ -2,6 +2,8 @@ import { useCallback, useRef, useState } from "react";
 
 import isHotkey from "is-hotkey";
 
+import { createEditor, Editor, Transforms } from "slate";
+import { Slate, Editable, withReact, useSlate } from "slate-react";
 import { withHistory } from "slate-history";
 
 const App = () => {
@@ -42,6 +44,11 @@ const App = () => {
 
   return (
     <Slate editor={editor} value={value} onChange={(value) => setValue(value)}>
+      <MarkButton format="bold" />
+      <MarkButton format="italic" />
+      <MarkButton format="padding" />
+      <BlockButton format="code" />
+      <Undo />
       <Editable
         style={{
           border: "1px solid black",
@@ -112,6 +119,8 @@ const Leaf = ({ children, attributes, ...props }) => {
       style={{
         fontWeight: props.leaf.bold ? "bold" : "normal",
         fontStyle: props.leaf.italic ? "italic" : "normal",
+        paddingLeft: props.leaf.padding ? "16px" : "0px",
+        width: "100vw",
       }}
     >
       {children}
@@ -170,6 +179,7 @@ const BlockButton = ({ format }) => {
     </button>
   );
 };
+
 const DefaultElement = ({ children, attributes }) => {
   return <p {...attributes}>{children}</p>;
 };

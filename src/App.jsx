@@ -64,6 +64,24 @@ const App = () => {
   );
 };
 
+const toggleBlock = (editor, format) => {
+  const match = isBlockActive(editor, format);
+
+  if (match) {
+    Transforms.setNodes(
+      editor,
+      { type: "default" },
+      { match: (n) => Editor.isBlock(editor, n), split: true }
+    );
+  } else {
+    Transforms.setNodes(
+      editor,
+      { type: format },
+      { match: (n) => Editor.isBlock(editor, n), split: true }
+    );
+  }
+};
+
 const toggleMark = (editor, format) => {
   const isActive = isMarkActive(editor, format); // NOTE Checks if we already opened a mark.
 

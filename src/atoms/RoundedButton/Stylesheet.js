@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const RoundedButton = styled.button`
+export const RoundedButton = styled.button.attrs((props) => ({ ...props }))`
   display: flex;
   justify-content: center;
   align-items: center;

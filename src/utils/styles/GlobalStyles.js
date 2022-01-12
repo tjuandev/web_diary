@@ -12,6 +12,10 @@ const GlobalStyles = createGlobalStyle`
     min-width: 100vw;
     min-height: 100vh;
   }
+
+  button {
+    cursor: pointer;
+  }
   
   button, input {
     border: none;

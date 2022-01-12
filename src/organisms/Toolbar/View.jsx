@@ -3,7 +3,7 @@ import { editorToolbar } from "utils/constants";
 import { BarContainer } from "./Stylesheet";
 
 import { useSlate } from "slate-react";
-import { isMarkActive, toggleMark } from "utils/services/CustomToolbar";
+import { isMarkActive, toggleMark } from "utils/services/CustomEditor";
 
 const MarkButton = ({ format, value }) => {
   /* const editor = useSlate(); */

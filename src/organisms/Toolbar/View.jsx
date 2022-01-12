@@ -6,8 +6,7 @@ import { useSlate } from "slate-react";
 import { isMarkActive, toggleMark } from "utils/services/CustomEditor";
 
 const MarkButton = ({ format, value }) => {
-  /* const editor = useSlate(); */
-  const editor = {};
+  const editor = useSlate();
 
   return (
     <RoundedButton

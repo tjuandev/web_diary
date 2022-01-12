@@ -9,7 +9,7 @@ import {
   faOutdent,
 } from "@fortawesome/free-solid-svg-icons";
 
-const TextConfigs = {
+const MarkButtons = {
   bold: <FontAwesomeIcon icon={faBold} />,
   italic: <FontAwesomeIcon icon={faItalic} />,
   link: <FontAwesomeIcon icon={faLink} />,
@@ -19,4 +19,8 @@ const TextConfigs = {
   outdent: <FontAwesomeIcon icon={faOutdent} />,
 };
 
-export default TextConfigs;
+const editorToolbar = {
+  MarkButtons
+};
+
+export default editorToolbar;

@@ -14,7 +14,7 @@ const MarkButtons = {
   italic: <FontAwesomeIcon icon={faItalic} />,
   link: <FontAwesomeIcon icon={faLink} />,
   underline: <FontAwesomeIcon icon={faUnderline} />,
-  strikethrough: <FontAwesomeIcon icon={faStrikethrough} />,
+  "line-through": <FontAwesomeIcon icon={faStrikethrough} />,
   indent: <FontAwesomeIcon icon={faIndent} />,
   outdent: <FontAwesomeIcon icon={faOutdent} />,
 };

@@ -26,7 +26,7 @@ const useRenderNodes = () => {
         style={{
           fontWeight: leafFlag("bold"),
           fontStyle: leafFlag("italic"),
-          textDecoration: leafFlag("line-through")
+          textDecoration: `${leafFlag("line-through")} ${leafFlag("underline")}`
         }}
       >
         {children}

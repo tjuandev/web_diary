@@ -10,6 +10,9 @@ const useRenderNodes = () => {
       case "code": {
         return <CodeElement {...props} />;
       }
+      case "link": {
+        return <LinkElement {...props} />;
+      }
       default: {
         return <DefaultElement {...props} />;
       }
@@ -26,11 +29,26 @@ const useRenderNodes = () => {
         style={{
           fontWeight: leafFlag("bold"),
           fontStyle: leafFlag("italic"),
-          textDecoration: `${leafFlag("line-through")} ${leafFlag("underline")}`
+          textDecoration: `${leafFlag("line-through")} ${leafFlag(
+            "underline"
+          )}`,
         }}
       >
         {children}
       </span>
+    );
+  };
+
+  const LinkElement = ({ children, attributes, element }) => {
+    return (
+      <p
+        onClick={() => {
+          window.open(element.href, "_blank");
+        }}
+        {...attributes}
+      >
+        {children}
+      </p>
     );
   };
 

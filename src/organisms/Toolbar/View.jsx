@@ -3,7 +3,12 @@ import { editorToolbar } from "utils/constants";
 import { BarContainer } from "./Stylesheet";
 
 import { useSlate } from "slate-react";
-import { isMarkActive, toggleMark } from "utils/services/CustomEditor";
+import {
+  isBlockActive,
+  isMarkActive,
+  toggleBlock,
+  toggleMark,
+} from "utils/services/CustomEditor";
 
 const BaseButton = ({ format, value, isActive, toggleNode }) => {
   const editor = useSlate();
@@ -37,6 +42,15 @@ const View = () => {
           />
         );
       })}
+      {Object.entries(editorToolbar.BlockButtons).map(([key, value]) => {
+        return (
+          <BaseButton
+            format={key}
+            value={value}
+            isActive={isBlockActive}
+            toggleNode={toggleBlock}
+          />
+        );
       })}
     </BarContainer>
   );

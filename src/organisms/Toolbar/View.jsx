@@ -5,19 +5,18 @@ import { BarContainer } from "./Stylesheet";
 import { useSlate } from "slate-react";
 import { isMarkActive, toggleMark } from "utils/services/CustomEditor";
 
-const MarkButton = ({ format, value }) => {
+const BaseButton = ({ format, value, isActive, toggleNode }) => {
   const editor = useSlate();
 
   return (
     <RoundedButton
       id={format}
       key={format}
-      format={format}
       style={{ margin: "0.5rem" }}
-      active={isMarkActive(editor, format)}
+      active={isActive(editor, format)}
       onMouseDown={(event) => {
         event.preventDefault();
-        toggleMark(editor, format);
+        toggleNode(editor, format);
       }}
     >
       {value}
@@ -29,7 +28,15 @@ const View = () => {
   return (
     <BarContainer>
       {Object.entries(editorToolbar.MarkButtons).map(([key, value]) => {
-        return <MarkButton format={key} value={value} />;
+        return (
+          <BaseButton
+            format={key}
+            value={value}
+            isActive={isMarkActive}
+            toggleNode={toggleMark}
+          />
+        );
+      })}
       })}
     </BarContainer>
   );

@@ -24,8 +24,8 @@ const useRenderNodes = () => {
       leaf[format] ? format : defaultValue;
 
     const style = {
-          fontWeight: leafFlag("bold"),
-          fontStyle: leafFlag("italic"),
+      fontWeight: leafFlag("bold"),
+      fontStyle: leafFlag("italic"),
       textDecoration: `${leafFlag("line-through")} ${leafFlag("underline")}`,
     };
 

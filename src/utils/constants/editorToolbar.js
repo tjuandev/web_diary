@@ -9,14 +9,22 @@ import {
   faOutdent,
 } from "@fortawesome/free-solid-svg-icons";
 
-const TextConfigs = {
+const MarkButtons = {
   bold: <FontAwesomeIcon icon={faBold} />,
   italic: <FontAwesomeIcon icon={faItalic} />,
-  link: <FontAwesomeIcon icon={faLink} />,
   underline: <FontAwesomeIcon icon={faUnderline} />,
-  strikethrough: <FontAwesomeIcon icon={faStrikethrough} />,
+  "line-through": <FontAwesomeIcon icon={faStrikethrough} />,
+  link: <FontAwesomeIcon icon={faLink} />,
+};
+
+const BlockButtons = {
   indent: <FontAwesomeIcon icon={faIndent} />,
   outdent: <FontAwesomeIcon icon={faOutdent} />,
 };
 
-export default TextConfigs;
+const editorToolbar = {
+  MarkButtons,
+  BlockButtons,
+};
+
+export default editorToolbar;

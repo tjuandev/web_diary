@@ -1,4 +1,5 @@
-const { useCallback, useState } = require("react");
+import { useCallback } from "react";
+import { removePartOfString } from "utils/lib/String";
 
 const useRenderNodes = () => {
   const renderLeaf = useCallback((props) => {
@@ -10,30 +11,30 @@ const useRenderNodes = () => {
       case "code": {
         return <CodeElement {...props} />;
       }
-      case "link": {
-        return <LinkElement {...props} />;
-      }
       default: {
         return <DefaultElement {...props} />;
       }
     }
   }, []);
 
-  const Leaf = ({ children, attributes, leaf }) => {
+  const Leaf = (props) => {
+    const { children, attributes, leaf } = props;
+
     const leafFlag = (format, defaultValue = "") =>
       leaf[format] ? format : defaultValue;
 
-    return (
-      <span
-        {...attributes}
-        style={{
+    const style = {
           fontWeight: leafFlag("bold"),
           fontStyle: leafFlag("italic"),
-          textDecoration: `${leafFlag("line-through")} ${leafFlag(
-            "underline"
-          )}`,
-        }}
-      >
+      textDecoration: `${leafFlag("line-through")} ${leafFlag("underline")}`,
+    };
+
+    if (leaf.link) {
+      return <LinkLeaf style={style} url={leaf.url} {...props} />;
+    }
+
+    return (
+      <span {...attributes} style={style}>
         {children}
       </span>
     );

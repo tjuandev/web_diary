@@ -14,17 +14,17 @@ const MarkButtons = {
   italic: <FontAwesomeIcon icon={faItalic} />,
   underline: <FontAwesomeIcon icon={faUnderline} />,
   "line-through": <FontAwesomeIcon icon={faStrikethrough} />,
+  link: <FontAwesomeIcon icon={faLink} />,
 };
 
 const BlockButtons = {
-  link: <FontAwesomeIcon icon={faLink} />,
   indent: <FontAwesomeIcon icon={faIndent} />,
   outdent: <FontAwesomeIcon icon={faOutdent} />,
 };
 
 const editorToolbar = {
   MarkButtons,
-  BlockButtons
+  BlockButtons,
 };
 
 export default editorToolbar;

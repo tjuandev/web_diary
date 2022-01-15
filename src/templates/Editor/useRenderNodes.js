@@ -39,16 +39,24 @@ const useRenderNodes = () => {
     );
   };
 
-  const LinkElement = ({ children, attributes, element }) => {
+  const LinkLeaf = ({ children, attributes, style, url }) => {
+    const textDecoration = style.textDecoration;
+    const hasUnderline = textDecoration.includes("underline");
+
     return (
-      <p
-        onClick={() => {
-          window.open(element.href, "_blank");
-        }}
+      <span
         {...attributes}
+        onMouseDown={() => window.open(url, "_blank")}
+        style={{
+          ...style,
+          color: "blue",
+          textDecoration: hasUnderline
+            ? removePartOfString(textDecoration, "")
+            : textDecoration + " underline",
+        }}
       >
         {children}
-      </p>
+      </span>
     );
   };
 

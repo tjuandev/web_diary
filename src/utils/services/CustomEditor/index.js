@@ -1,4 +1,4 @@
-import { Editor, Element, Transforms } from "slate";
+import { Editor, Element, Text, Transforms } from "slate";
 
 export const isMarkActive = (editor, format) => {
   const marks = Editor.marks(editor);
@@ -11,6 +11,20 @@ export const toggleMark = (editor, format) => {
   if (isActive) {
     Editor.removeMark(editor, format);
   } else {
+    if (format === "link") {
+      const url = prompt("url:");
+
+      if (!url) {
+        return;
+      }
+
+      Transforms.setNodes(
+        editor,
+        { link: true, url },
+        { match: (n) => Text.isText(n), split: true }
+      );
+    }
+
     Editor.addMark(editor, format, true);
   }
 };
@@ -27,7 +41,7 @@ export const isBlockActive = (editor, format) => {
     })
   );
 
-  return match;
+  return !!match;
 };
 
 export const getLinkUrl = () => {
@@ -46,6 +60,5 @@ export const toggleBlock = (editor, format) => {
 
   Transforms.setNodes(editor, newProperties, {
     match: (n) => Editor.isBlock(editor, n),
-    split: true,
   });
 };

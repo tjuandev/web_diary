@@ -44,6 +44,16 @@ const LinkLeaf = ({ children, attributes, style, url }) => {
   );
 };
 
+export const Heading1 = ({ children, attributes }) => (
+  <h1 {...attributes}>{children}</h1>
+);
+export const Heading2 = ({ children, attributes }) => (
+  <h2 {...attributes}>{children}</h2>
+);
+export const Heading3 = ({ children, attributes }) => (
+  <h3 {...attributes}>{children}</h3>
+);
+
 const CodeElement = ({ children, attributes }) => {
   return (
     <pre {...attributes}>

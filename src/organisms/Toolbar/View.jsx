@@ -35,6 +35,7 @@ const View = () => {
       {Object.entries(editorToolbar.MarkButtons).map(([key, value]) => {
         return (
           <BaseButton
+            key={key}
             format={key}
             value={value}
             isActive={isMarkActive}
@@ -45,6 +46,7 @@ const View = () => {
       {Object.entries(editorToolbar.BlockButtons).map(([key, value]) => {
         return (
           <BaseButton
+            key={key}
             format={key}
             value={value}
             isActive={isBlockActive}

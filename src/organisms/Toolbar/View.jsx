@@ -4,7 +4,6 @@ import { BarContainer } from "./Stylesheet";
 
 import { useSlate } from "slate-react";
 import {
-  isBlockActive,
   isMarkActive,
   toggleBlock,
   toggleMark,
@@ -36,6 +35,7 @@ const View = () => {
         onChange={(e) => {
           return toggleBlock(editor, e.target.value);
         }}
+        value={editor.getFragment()[0]?.type}
       >
         {Object.entries(editorToolbar.TypographyOptions).map(
           ([value, name]) => {

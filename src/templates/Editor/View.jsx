@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { createEditor } from "slate";
+import { createEditor, Transforms } from "slate";
 import { withHistory } from "slate-history";
 import { Slate, Editable, withReact } from "slate-react";
 
@@ -25,6 +25,13 @@ const View = () => {
         placeholder="Digite alguma coisa..."
         renderElement={renderElement}
         renderLeaf={renderLeaf}
+        onKeyDown={(event) => {
+          if (event.key === "Enter" && !event.shiftKey) {
+            setTimeout(() => {
+              Transforms.setNodes(editor, { type: "paragraph" });
+            }, 0);
+          }
+        }}
       />
     </Slate>
   );

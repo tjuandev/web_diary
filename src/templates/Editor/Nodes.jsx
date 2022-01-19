@@ -10,6 +10,7 @@ const Leaf = (props) => {
     fontWeight: leafFlag("bold"),
     fontStyle: leafFlag("italic"),
     textDecoration: `${leafFlag("line-through")} ${leafFlag("underline")}`,
+    color: leaf.color ? leaf.colorValue : "#000",
   };
 
   if (leaf.link) {

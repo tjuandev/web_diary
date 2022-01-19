@@ -26,9 +26,19 @@ const TypographyOptions = {
   h3: "Heading 3",
 };
 
+const ColorsOptions = {
+  black: "#000",
+  green: "#00ff7a",
+  purple: "#7a00ff",
+  yellow: "#fffa00",
+  red: "#ff0006",
+  blue: "#0085ff",
+};
+
 const editorToolbar = {
   MarkButtons,
   TypographyOptions,
+  ColorsOptions
 };
 
 export default editorToolbar;

@@ -73,6 +73,22 @@ const View = () => {
           );
         })}
       </select>
+      <select
+        onChange={(e) => {
+          return toggleMark(editor, "bgColor", e.target.value);
+        }}
+        value={editor.getFragment()[0]?.children[0]?.bgColorValue || ""}
+      >
+        {Object.entries(editorToolbar.BackgroundColorsOptions).map(
+          ([key, color]) => {
+            return (
+              <option value={color} key={key}>
+                {color}
+              </option>
+            );
+          }
+        )}
+      </select>
     </BarContainer>
   );
 };

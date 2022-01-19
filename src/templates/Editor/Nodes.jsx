@@ -14,7 +14,9 @@ const Leaf = (props) => {
   };
 
   if (leaf.link) {
-    return <LinkLeaf style={style} url={leaf.url} {...props} />;
+    return (
+      <LinkLeaf style={style} url={leaf.url} color={leaf.colorValue} {...props} />
+    );
   }
 
   return (
@@ -24,7 +26,7 @@ const Leaf = (props) => {
   );
 };
 
-const LinkLeaf = ({ children, attributes, style, url }) => {
+const LinkLeaf = ({ children, attributes, style, url, color }) => {
   const textDecoration = style.textDecoration;
   const hasUnderline = textDecoration.includes("underline");
 
@@ -34,7 +36,7 @@ const LinkLeaf = ({ children, attributes, style, url }) => {
       onMouseDown={() => window.open(url, "_blank")}
       style={{
         ...style,
-        color: "blue",
+        color: color ? color : "blue",
         textDecoration: hasUnderline
           ? removePartOfString(textDecoration, "")
           : textDecoration + " underline",

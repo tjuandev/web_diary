@@ -51,18 +51,11 @@ export const isBlockActive = (editor, format) => {
   return !!match;
 };
 
-export const getLinkUrl = () => {
-  const url = prompt("Please, type your URL:");
-
-  return url;
-};
-
 export const toggleBlock = (editor, format) => {
   const isActive = isBlockActive(editor, format);
 
   const newProperties = {
     type: isActive ? "default" : format,
-    href: isActive ? undefined : format === "link" ? getLinkUrl() : "#",
   };
 
   Transforms.setNodes(editor, newProperties, {

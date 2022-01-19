@@ -35,10 +35,21 @@ const ColorsOptions = {
   blue: "#0085ff",
 };
 
+const BackgroundColorsOptions = {
+  transparent: "Transparent",
+  lightGrey: "#7f7f7f",
+  lightGreen: "#ccffe4",
+  lightPurple: "#e4ccff",
+  lightYellow: "#fffecc",
+  lightRed: "#ffcccd",
+  lightBlue: "#cce6ff",
+};
+
 const editorToolbar = {
   MarkButtons,
   TypographyOptions,
-  ColorsOptions
+  ColorsOptions,
+  BackgroundColorsOptions,
 };
 
 export default editorToolbar;

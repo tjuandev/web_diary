@@ -63,6 +63,7 @@ const View = () => {
         onChange={(e) => {
           return toggleMark(editor, "color", e.target.value);
         }}
+        value={editor.getFragment()[0]?.children[0]?.colorValue || "#000"}
       >
         {Object.entries(editorToolbar.ColorsOptions).map(([key, color]) => {
           return (

@@ -59,6 +59,19 @@ const View = () => {
           />
         );
       })}
+      <select
+        onChange={(e) => {
+          return toggleMark(editor, "color", e.target.value);
+        }}
+      >
+        {Object.entries(editorToolbar.ColorsOptions).map(([key, color]) => {
+          return (
+            <option value={color} key={key}>
+              {color}
+            </option>
+          );
+        })}
+      </select>
     </BarContainer>
   );
 };

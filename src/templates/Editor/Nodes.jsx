@@ -11,11 +11,17 @@ const Leaf = (props) => {
     fontStyle: leafFlag("italic"),
     textDecoration: `${leafFlag("line-through")} ${leafFlag("underline")}`,
     color: leaf.color ? leaf.colorValue : "#000",
+    backgroundColor: leaf.bgColorValue ? leaf.bgColorValue : "",
   };
 
   if (leaf.link) {
     return (
-      <LinkLeaf style={style} url={leaf.url} color={leaf.colorValue} {...props} />
+      <LinkLeaf
+        style={style}
+        url={leaf.url}
+        color={leaf.colorValue}
+        {...props}
+      />
     );
   }
 

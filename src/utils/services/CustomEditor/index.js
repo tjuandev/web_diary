@@ -5,8 +5,16 @@ export const isMarkActive = (editor, format) => {
   return marks ? marks[format] === true : false;
 };
 
-export const toggleMark = (editor, format) => {
+export const toggleMark = (editor, format, color) => {
   const isActive = isMarkActive(editor, format);
+
+  if (format === "color") {
+    return Transforms.setNodes(
+      editor,
+      { color: true, colorValue: color },
+      { match: (n) => Text.isText(n), split: true, hanging: true }
+    );
+  }
 
   if (isActive) {
     Editor.removeMark(editor, format);
@@ -17,8 +25,7 @@ export const toggleMark = (editor, format) => {
       if (!url) {
         return;
       }
-
-      Transforms.setNodes(
+      return Transforms.setNodes(
         editor,
         { link: true, url },
         { match: (n) => Text.isText(n), split: true }

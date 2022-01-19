@@ -5,32 +5,37 @@ export const isMarkActive = (editor, format) => {
   return marks ? marks[format] === true : false;
 };
 
+const toggleColorLeaf = (editor, format, color) => {
+  const type = format === "bgColor" ? { bgColor: true } : { color: true };
+
+  return Transforms.setNodes(
+    editor,
+    { ...type, colorValue: color },
+    { match: (n) => Text.isText(n), split: true, hanging: true }
+  );
+};
+
+const toggleLinkLeaf = (editor, format, color) => {
+  const url = prompt("url:");
+
+  if (!url) {
+    return;
+  }
+  return Transforms.setNodes(
+    editor,
+    { link: true, url },
+    { match: (n) => Text.isText(n), split: true }
+  );
+};
+
 export const toggleMark = (editor, format, color) => {
   const isActive = isMarkActive(editor, format);
-
-  if (format === "color") {
-    return Transforms.setNodes(
-      editor,
-      { color: true, colorValue: color },
-      { match: (n) => Text.isText(n), split: true, hanging: true }
-    );
-  }
 
   if (isActive) {
     Editor.removeMark(editor, format);
   } else {
-    if (format === "link") {
-      const url = prompt("url:");
-
-      if (!url) {
-        return;
-      }
-      return Transforms.setNodes(
-        editor,
-        { link: true, url },
-        { match: (n) => Text.isText(n), split: true }
-      );
-    }
+    if (format === "color" || "bgColor") toggleColorLeaf(editor, format, color);
+    if (format === "link") toggleLinkLeaf(editor, format, color);
 
     Editor.addMark(editor, format, true);
   }

@@ -5,25 +5,42 @@ export const isMarkActive = (editor, format) => {
   return marks ? marks[format] === true : false;
 };
 
-export const toggleMark = (editor, format) => {
+const toggleColorLeaf = (editor, format, color) => {
+  const properties =
+    format === "bgColor"
+      ? { bgColor: true, bgColorValue: color }
+      : { color: true, colorValue: color };
+
+  return Transforms.setNodes(
+    editor,
+    { ...properties },
+    { match: (n) => Text.isText(n), split: true, hanging: true }
+  );
+};
+
+const toggleLinkLeaf = (editor, format, color) => {
+  const url = prompt("url:");
+
+  if (!url) {
+    return;
+  }
+  return Transforms.setNodes(
+    editor,
+    { link: true, url },
+    { match: (n) => Text.isText(n), split: true }
+  );
+};
+
+export const toggleMark = (editor, format, color) => {
   const isActive = isMarkActive(editor, format);
+
+  if (format === "color" || format === "bgColor")
+    return toggleColorLeaf(editor, format, color);
 
   if (isActive) {
     Editor.removeMark(editor, format);
   } else {
-    if (format === "link") {
-      const url = prompt("url:");
-
-      if (!url) {
-        return;
-      }
-
-      Transforms.setNodes(
-        editor,
-        { link: true, url },
-        { match: (n) => Text.isText(n), split: true }
-      );
-    }
+    if (format === "link") toggleLinkLeaf(editor, format, color);
 
     Editor.addMark(editor, format, true);
   }
@@ -44,18 +61,11 @@ export const isBlockActive = (editor, format) => {
   return !!match;
 };
 
-export const getLinkUrl = () => {
-  const url = prompt("Please, type your URL:");
-
-  return url;
-};
-
 export const toggleBlock = (editor, format) => {
   const isActive = isBlockActive(editor, format);
 
   const newProperties = {
     type: isActive ? "default" : format,
-    href: isActive ? undefined : format === "link" ? getLinkUrl() : "#",
   };
 
   Transforms.setNodes(editor, newProperties, {

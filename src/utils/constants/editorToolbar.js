@@ -26,9 +26,30 @@ const TypographyOptions = {
   h3: "Heading 3",
 };
 
+const ColorsOptions = {
+  black: "#000",
+  green: "#00ff7a",
+  purple: "#7a00ff",
+  yellow: "#fffa00",
+  red: "#ff0006",
+  blue: "#0085ff",
+};
+
+const BackgroundColorsOptions = {
+  transparent: "Transparent",
+  lightGrey: "#7f7f7f",
+  lightGreen: "#ccffe4",
+  lightPurple: "#e4ccff",
+  lightYellow: "#fffecc",
+  lightRed: "#ffcccd",
+  lightBlue: "#cce6ff",
+};
+
 const editorToolbar = {
   MarkButtons,
   TypographyOptions,
+  ColorsOptions,
+  BackgroundColorsOptions,
 };
 
 export default editorToolbar;

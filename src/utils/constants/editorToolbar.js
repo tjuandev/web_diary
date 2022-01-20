@@ -15,16 +15,20 @@ const MarkButtons = {
   underline: <FontAwesomeIcon icon={faUnderline} />,
   "line-through": <FontAwesomeIcon icon={faStrikethrough} />,
   link: <FontAwesomeIcon icon={faLink} />,
-};
-
-const BlockButtons = {
   indent: <FontAwesomeIcon icon={faIndent} />,
   outdent: <FontAwesomeIcon icon={faOutdent} />,
 };
 
+const TypographyOptions = {
+  default: "Text",
+  h1: "Heading 1",
+  h2: "Heading 2",
+  h3: "Heading 3",
+};
+
 const editorToolbar = {
   MarkButtons,
-  BlockButtons,
+  TypographyOptions,
 };
 
 export default editorToolbar;

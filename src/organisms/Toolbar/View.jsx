@@ -4,15 +4,12 @@ import { BarContainer } from "./Stylesheet";
 
 import { useSlate } from "slate-react";
 import {
-  isBlockActive,
   isMarkActive,
   toggleBlock,
   toggleMark,
 } from "utils/services/CustomEditor";
 
-const BaseButton = ({ format, value, isActive, toggleNode }) => {
-  const editor = useSlate();
-
+const BaseButton = ({ format, value, isActive, toggleNode, editor }) => {
   return (
     <RoundedButton
       id={format}
@@ -30,25 +27,35 @@ const BaseButton = ({ format, value, isActive, toggleNode }) => {
 };
 
 const View = () => {
+  const editor = useSlate();
+
   return (
     <BarContainer>
+      <select
+        onChange={(e) => {
+          return toggleBlock(editor, e.target.value);
+        }}
+        value={editor.getFragment()[0]?.type}
+      >
+        {Object.entries(editorToolbar.TypographyOptions).map(
+          ([value, name]) => {
+            return (
+              <option value={value} key={value}>
+                {name}
+              </option>
+            );
+          }
+        )}
+      </select>
       {Object.entries(editorToolbar.MarkButtons).map(([key, value]) => {
         return (
           <BaseButton
+            key={key}
             format={key}
             value={value}
+            editor={editor}
             isActive={isMarkActive}
             toggleNode={toggleMark}
-          />
-        );
-      })}
-      {Object.entries(editorToolbar.BlockButtons).map(([key, value]) => {
-        return (
-          <BaseButton
-            format={key}
-            value={value}
-            isActive={isBlockActive}
-            toggleNode={toggleBlock}
           />
         );
       })}

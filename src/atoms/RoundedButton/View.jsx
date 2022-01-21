@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
-const RoundedButton = styled.button.attrs((props) => ({ ...props }))`
+const RoundedButton = styled.button.attrs((props) => ({
+  ...props,
+  className: props.active && "active",
+}))`
   display: flex;
   justify-content: center;
   align-items: center;

@@ -14,6 +14,11 @@ const useRenderNodes = () => {
   }, []);
 
   const renderElement = useCallback((props) => {
+    const { children } = props;
+
+    const style = { textAlign: children[0]?.props?.text?.align };
+    props.attributes = { ...props.attributes, style };
+
     switch (props.element.type) {
       case "code": {
         return <CodeElement {...props} />;

@@ -4,6 +4,7 @@ import {
   isMarkActive,
   toggleBlock,
   toggleMark,
+  toggleSelectorLeaf,
 } from "utils/services/CustomEditor";
 
 const BaseButton = ({ format, value, isActive, toggleNode, editor }) => {
@@ -31,10 +32,10 @@ export const SelectTypography = ({ editor }) => {
       }}
       value={editor.getFragment()[0]?.type}
     >
-      {Object.entries(editorToolbar.TypographyOptions).map(([value, name]) => {
+      {Object.entries(editorToolbar.TypographyOptions).map(([value, label]) => {
         return (
           <option value={value} key={value}>
-            {name}
+            {label}
           </option>
         );
       })}
@@ -67,7 +68,10 @@ export const ColorSelector = ({ editor }) => {
   return (
     <select
       onChange={(e) => {
-        return toggleMark(editor, "color", e.target.value);
+        return toggleSelectorLeaf(editor, {
+          color: true,
+          colorValue: e.target.value,
+        });
       }}
       value={getColorOfSelection}
     >
@@ -88,7 +92,10 @@ export const BgSelector = ({ editor }) => {
   return (
     <select
       onChange={(e) => {
-        return toggleMark(editor, "bgColor", e.target.value);
+        return toggleSelectorLeaf(editor, {
+          bgColor: true,
+          bgColorValue: e.target.value,
+        });
       }}
       value={getBgColorOfSelection}
     >

@@ -111,3 +111,23 @@ export const BgSelector = ({ editor }) => {
     </select>
   );
 };
+
+export const TextAlignmentSelector = ({ editor }) => {
+  return (
+    <select
+      onChange={(e) => {
+        return toggleSelectorLeaf(editor, {
+          align: e.target.value,
+        });
+      }}
+    >
+      {Object.entries(editorToolbar.TextAlignOptions).map(([value, label]) => {
+        return (
+          <option value={value} key={value}>
+            {label}
+          </option>
+        );
+      })}
+    </select>
+  );
+};

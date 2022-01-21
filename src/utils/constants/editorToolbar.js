@@ -45,11 +45,19 @@ const BackgroundColorsOptions = {
   lightBlue: "#cce6ff",
 };
 
+const TextAlignOptions = {
+  left: "Left",
+  right: "Right",
+  justify: "Justify",
+  center: "Center",
+};
+
 const editorToolbar = {
   MarkButtons,
   TypographyOptions,
   ColorsOptions,
   BackgroundColorsOptions,
+  TextAlignOptions,
 };
 
 export default editorToolbar;

@@ -48,7 +48,6 @@ const BackgroundColorsOptions = {
 const TextAlignOptions = {
   left: "Left",
   right: "Right",
-  justify: "Justify",
   center: "Center",
 };
 

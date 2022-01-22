@@ -139,3 +139,13 @@ export const TextAlignmentSelector = ({ editor }) => {
     </select>
   );
 };
+
+export const Numbered = ({editor}) => {
+  return (
+    <button onMouseDown={() => {
+      toggleBlock(editor, "numbered-list")
+    }}>
+      ol
+    </button>
+  )
+};

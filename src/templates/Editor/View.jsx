@@ -25,9 +25,12 @@ const View = () => {
         placeholder="Digite alguma coisa..."
         renderElement={renderElement}
         renderLeaf={renderLeaf}
+        onBlur={(e) => e.preventDefault()}
         onKeyDown={(event) => {
           if (event.key === "Enter" && !event.shiftKey) {
+            const isList = editor.getFragment()[0].type === "numbered-list" || "bulleted-list";
             setTimeout(() => {
+              if (isList) return;
               Transforms.setNodes(editor, { type: "paragraph" });
             }, 0);
           }

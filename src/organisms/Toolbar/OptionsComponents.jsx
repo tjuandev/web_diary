@@ -1,6 +1,7 @@
 import { RoundedButton } from "atoms";
 import { editorToolbar } from "utils/constants";
 import {
+  isBlockActive,
   isMarkActive,
   toggleBlock,
   toggleMark,
@@ -53,6 +54,21 @@ export const MarkButtons = ({ editor }) => {
         editor={editor}
         isActive={isMarkActive}
         toggleNode={toggleMark}
+      />
+    );
+  });
+};
+
+export const BlockButtons = ({ editor }) => {
+  return Object.entries(editorToolbar.BlockButtons).map(([key, value]) => {
+    return (
+      <BaseButton
+        key={key}
+        format={key}
+        value={value}
+        editor={editor}
+        isActive={isBlockActive}
+        toggleNode={toggleBlock}
       />
     );
   });

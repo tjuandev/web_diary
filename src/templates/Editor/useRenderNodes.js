@@ -6,6 +6,9 @@ import {
   Heading3,
   CodeElement,
   DefaultElement,
+  ListItem,
+  NumberedList,
+  BulletedList
 } from "./Nodes";
 
 const useRenderNodes = () => {
@@ -31,6 +34,15 @@ const useRenderNodes = () => {
       }
       case "h3": {
         return <Heading3 {...props} />;
+      }
+      case "list-item": {
+        return <ListItem {...props} />;
+      }
+      case "numbered-list": {
+        return <NumberedList {...props} />;
+      }
+      case "bulleted-list": {
+        return <BulletedList {...props} />;
       }
       default: {
         return <DefaultElement {...props} />;

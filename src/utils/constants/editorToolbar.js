@@ -5,8 +5,8 @@ import {
   faLink,
   faUnderline,
   faStrikethrough,
-  faIndent,
-  faOutdent,
+  faListOl,
+  faListUl,
 } from "@fortawesome/free-solid-svg-icons";
 
 const MarkButtons = {
@@ -15,8 +15,11 @@ const MarkButtons = {
   underline: <FontAwesomeIcon icon={faUnderline} />,
   "line-through": <FontAwesomeIcon icon={faStrikethrough} />,
   link: <FontAwesomeIcon icon={faLink} />,
-  indent: <FontAwesomeIcon icon={faIndent} />,
-  outdent: <FontAwesomeIcon icon={faOutdent} />,
+};
+
+const BlockButtons = {
+  "numbered-list": <FontAwesomeIcon icon={faListOl} />,
+  "bulleted-list": <FontAwesomeIcon icon={faListUl} />,
 };
 
 const TypographyOptions = {
@@ -57,6 +60,7 @@ const editorToolbar = {
   ColorsOptions,
   BackgroundColorsOptions,
   TextAlignOptions,
+  BlockButtons,
 };
 
 export default editorToolbar;

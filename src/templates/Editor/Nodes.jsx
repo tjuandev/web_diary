@@ -53,6 +53,14 @@ const LinkLeaf = ({ children, attributes, style, url, color }) => {
   );
 };
 
+export const ListItem = ({ children, attributes }) => (
+  <li {...attributes}>{children}</li>
+);
+
+export const NumberedList = ({ children, attributes }) => (
+  <ol {...attributes}>{children}</ol>
+);
+
 export const Heading1 = ({ children, attributes }) => (
   <h1 {...attributes}>{children}</h1>
 );

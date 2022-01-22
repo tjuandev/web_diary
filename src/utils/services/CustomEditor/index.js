@@ -9,7 +9,7 @@ export const toggleSelectorLeaf = (editor, properties, options) => {
   return Transforms.setNodes(
     editor,
     { ...properties },
-    { match: (n) => Text.isText(n), ...options}
+    { match: (n) => Text.isText(n), ...options }
   );
 };
 
@@ -53,14 +53,25 @@ export const isBlockActive = (editor, format) => {
   return !!match;
 };
 
+const LIST_TYPES = ["numbered-list", "bulleted-list"];
+
 export const toggleBlock = (editor, format) => {
   const isActive = isBlockActive(editor, format);
+  const isList = LIST_TYPES.includes(format);
+
+  Transforms.unwrapNodes(editor, {
+    match: (n) => LIST_TYPES.includes(n.type),
+    split: true,
+  });
 
   const newProperties = {
-    type: isActive ? "default" : format,
+    type: isActive ? "paragraph" : isList ? "list-item" : format,
   };
 
-  Transforms.setNodes(editor, newProperties, {
-    match: (n) => Editor.isBlock(editor, n),
-  });
+  Transforms.setNodes(editor, newProperties);
+
+  if (!isActive && isList) {
+    const block = { type: format, children: [] };
+    Transforms.wrapNodes(editor, block);
+  }
 };

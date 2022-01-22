@@ -5,11 +5,11 @@ export const isMarkActive = (editor, format) => {
   return marks ? marks[format] === true : false;
 };
 
-export const toggleSelectorLeaf = (editor, properties) => {
+export const toggleSelectorLeaf = (editor, properties, options) => {
   return Transforms.setNodes(
     editor,
     { ...properties },
-    { match: (n) => Text.isText(n), split: true, hanging: true }
+    { match: (n) => Text.isText(n), ...options}
   );
 };
 

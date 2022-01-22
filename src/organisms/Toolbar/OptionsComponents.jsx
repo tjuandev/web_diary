@@ -68,10 +68,14 @@ export const ColorSelector = ({ editor }) => {
   return (
     <select
       onChange={(e) => {
-        return toggleSelectorLeaf(editor, {
-          color: true,
-          colorValue: e.target.value,
-        });
+        return toggleSelectorLeaf(
+          editor,
+          {
+            color: true,
+            colorValue: e.target.value,
+          },
+          { split: true, hanging: true }
+        );
       }}
       value={getColorOfSelection}
     >
@@ -92,10 +96,14 @@ export const BgSelector = ({ editor }) => {
   return (
     <select
       onChange={(e) => {
-        return toggleSelectorLeaf(editor, {
-          bgColor: true,
-          bgColorValue: e.target.value,
-        });
+        return toggleSelectorLeaf(
+          editor,
+          {
+            bgColor: true,
+            bgColorValue: e.target.value,
+          },
+          { split: true, hanging: true }
+        );
       }}
       value={getBgColorOfSelection}
     >

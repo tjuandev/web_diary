@@ -1,6 +1,7 @@
 import { RoundedButton } from "atoms";
 import { editorToolbar } from "utils/constants";
 import {
+  isBlockActive,
   isMarkActive,
   toggleBlock,
   toggleMark,
@@ -53,6 +54,21 @@ export const MarkButtons = ({ editor }) => {
         editor={editor}
         isActive={isMarkActive}
         toggleNode={toggleMark}
+      />
+    );
+  });
+};
+
+export const BlockButtons = ({ editor }) => {
+  return Object.entries(editorToolbar.BlockButtons).map(([key, value]) => {
+    return (
+      <BaseButton
+        key={key}
+        format={key}
+        value={value}
+        editor={editor}
+        isActive={isBlockActive}
+        toggleNode={toggleBlock}
       />
     );
   });
@@ -140,12 +156,14 @@ export const TextAlignmentSelector = ({ editor }) => {
   );
 };
 
-export const Numbered = ({editor}) => {
+export const Numbered = ({ editor }) => {
   return (
-    <button onMouseDown={() => {
-      toggleBlock(editor, "numbered-list")
-    }}>
+    <button
+      onMouseDown={() => {
+        toggleBlock(editor, "numbered-list");
+      }}
+    >
       ol
     </button>
-  )
+  );
 };

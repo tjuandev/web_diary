@@ -61,6 +61,10 @@ export const NumberedList = ({ children, attributes }) => (
   <ol {...attributes}>{children}</ol>
 );
 
+export const BulletedList = ({ children, attributes }) => (
+  <ul {...attributes}>{children}</ul>
+);
+
 export const Heading1 = ({ children, attributes }) => (
   <h1 {...attributes}>{children}</h1>
 );

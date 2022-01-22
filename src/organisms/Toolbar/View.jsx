@@ -9,7 +9,6 @@ import {
   BgSelector,
 } from "./OptionsComponents";
 import { TextAlignmentSelector } from "./OptionsComponents";
-import { Numbered } from "./OptionsComponents";
 import { BlockButtons } from "./OptionsComponents";
 
 const View = () => {

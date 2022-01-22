@@ -1,4 +1,5 @@
 import { useCallback } from "react";
+import { NumberedList } from "./Nodes";
 import {
   Leaf,
   Heading1,
@@ -31,6 +32,12 @@ const useRenderNodes = () => {
       }
       case "h3": {
         return <Heading3 {...props} />;
+      }
+      case "list-item": {
+        return <li {...props.attributes}>{props.children}</li>;
+      }
+      case "numbered-list": {
+        return <NumberedList {...props}/>;
       }
       default: {
         return <DefaultElement {...props} />;

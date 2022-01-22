@@ -9,6 +9,7 @@ import {
   BgSelector,
 } from "./OptionsComponents";
 import { TextAlignmentSelector } from "./OptionsComponents";
+import { Numbered } from "./OptionsComponents";
 
 const View = () => {
   const editor = useSlate();
@@ -20,6 +21,7 @@ const View = () => {
       <ColorSelector editor={editor} />
       <BgSelector editor={editor} />
       <TextAlignmentSelector editor={editor} />
+      <Numbered editor={editor} />
     </BarContainer>
   );
 };

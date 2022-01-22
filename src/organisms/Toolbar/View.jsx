@@ -8,6 +8,7 @@ import {
   ColorSelector,
   BgSelector,
 } from "./OptionsComponents";
+import { TextAlignmentSelector } from "./OptionsComponents";
 
 const View = () => {
   const editor = useSlate();
@@ -18,6 +19,7 @@ const View = () => {
       <MarkButtons editor={editor} />
       <ColorSelector editor={editor} />
       <BgSelector editor={editor} />
+      <TextAlignmentSelector editor={editor} />
     </BarContainer>
   );
 };

@@ -5,20 +5,15 @@ export const isMarkActive = (editor, format) => {
   return marks ? marks[format] === true : false;
 };
 
-const toggleColorLeaf = (editor, format, color) => {
-  const properties =
-    format === "bgColor"
-      ? { bgColor: true, bgColorValue: color }
-      : { color: true, colorValue: color };
-
+export const toggleSelectorLeaf = (editor, properties, options) => {
   return Transforms.setNodes(
     editor,
     { ...properties },
-    { match: (n) => Text.isText(n), split: true, hanging: true }
+    { match: (n) => Text.isText(n), ...options}
   );
 };
 
-const toggleLinkLeaf = (editor, format, color) => {
+const toggleLinkLeaf = (editor) => {
   const url = prompt("url:");
 
   if (!url) {
@@ -31,16 +26,13 @@ const toggleLinkLeaf = (editor, format, color) => {
   );
 };
 
-export const toggleMark = (editor, format, color) => {
+export const toggleMark = (editor, format) => {
   const isActive = isMarkActive(editor, format);
-
-  if (format === "color" || format === "bgColor")
-    return toggleColorLeaf(editor, format, color);
 
   if (isActive) {
     Editor.removeMark(editor, format);
   } else {
-    if (format === "link") toggleLinkLeaf(editor, format, color);
+    if (format === "link") toggleLinkLeaf(editor);
 
     Editor.addMark(editor, format, true);
   }

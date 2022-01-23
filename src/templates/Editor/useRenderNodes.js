@@ -8,7 +8,7 @@ import {
   DefaultElement,
   ListItem,
   NumberedList,
-  BulletedList
+  BulletedList,
 } from "./Nodes";
 
 const useRenderNodes = () => {
@@ -19,7 +19,9 @@ const useRenderNodes = () => {
   const renderElement = useCallback((props) => {
     const { children } = props;
 
-    const style = { textAlign: children[0]?.props?.text?.align };
+    const align = children[0]?.props?.text?.align;
+
+    const style = { textAlign: align, listStylePosition: "inside" };
     props.attributes = { ...props.attributes, style };
 
     switch (props.element.type) {

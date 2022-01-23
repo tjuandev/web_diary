@@ -149,6 +149,7 @@ export const TextAlignmentSelector = ({ editor }) => {
           align: e.target.value,
         });
       }}
+      value={getCurrentFragment(editor)?.align || "left"}
     >
       {Object.entries(editorToolbar.TextAlignOptions).map(([value, label]) => {
         return (

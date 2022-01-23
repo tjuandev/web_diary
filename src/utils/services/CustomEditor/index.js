@@ -53,14 +53,18 @@ export const isBlockActive = (editor, format) => {
   return !!match;
 };
 
+export const isInListTypes = (element) => {
 const LIST_TYPES = ["numbered-list", "bulleted-list"];
+
+  return LIST_TYPES.includes(element);
+};
 
 export const toggleBlock = (editor, format) => {
   const isActive = isBlockActive(editor, format);
-  const isList = LIST_TYPES.includes(format);
+  const isList = isInListTypes(format);
 
   Transforms.unwrapNodes(editor, {
-    match: (n) => LIST_TYPES.includes(n.type),
+    match: (n) => isInListTypes(n.type),
     split: true,
   });
 

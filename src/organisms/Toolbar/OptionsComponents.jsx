@@ -75,7 +75,12 @@ export const BlockButtons = ({ editor }) => {
 };
 
 const getCurrentFragment = (editor) => {
-  return editor.getFragment()[0]?.children[0];
+  const currentSelection = editor.getFragment()[0]?.children[0];
+
+  if (currentSelection?.type === "list-item")
+    return currentSelection.children[0];
+
+  return currentSelection;
 };
 
 export const ColorSelector = ({ editor }) => {
@@ -144,6 +149,7 @@ export const TextAlignmentSelector = ({ editor }) => {
           align: e.target.value,
         });
       }}
+      value={getCurrentFragment(editor)?.align || "left"}
     >
       {Object.entries(editorToolbar.TextAlignOptions).map(([value, label]) => {
         return (

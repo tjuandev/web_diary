@@ -1,8 +1,10 @@
 import { useRef, useState } from "react";
+
 import { createEditor, Transforms } from "slate";
 import { withHistory } from "slate-history";
 import { Slate, Editable, withReact } from "slate-react";
 
+import { isInListTypes } from "utils/services/CustomEditor";
 import { Toolbar } from "organisms";
 import useRenderNodes from "./useRenderNodes";
 
@@ -28,7 +30,8 @@ const View = () => {
         onBlur={(e) => e.preventDefault()}
         onKeyDown={(event) => {
           if (event.key === "Enter" && !event.shiftKey) {
-            const isList = editor.getFragment()[0].type === "numbered-list" || "bulleted-list";
+            const isList = isInListTypes(editor.getFragment()[0].type);
+
             setTimeout(() => {
               if (isList) return;
               Transforms.setNodes(editor, { type: "paragraph" });

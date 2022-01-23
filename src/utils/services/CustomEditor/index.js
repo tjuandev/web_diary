@@ -54,7 +54,7 @@ export const isBlockActive = (editor, format) => {
 };
 
 export const isInListTypes = (element) => {
-const LIST_TYPES = ["numbered-list", "bulleted-list"];
+  const LIST_TYPES = ["numbered-list", "bulleted-list"];
 
   return LIST_TYPES.includes(element);
 };

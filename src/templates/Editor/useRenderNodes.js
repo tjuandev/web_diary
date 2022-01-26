@@ -11,7 +11,7 @@ import {
   BulletedList,
 } from "./Nodes";
 
-const useRenderNodes = () => {
+const useRenderNodes = (Image) => {
   const renderLeaf = useCallback((props) => {
     return <Leaf {...props} />;
   }, []);
@@ -45,6 +45,11 @@ const useRenderNodes = () => {
       }
       case "bulleted-list": {
         return <BulletedList {...props} />;
+      }
+      case "image": {
+        console.log('imagemzinha');
+
+        return <Image {...props} />;
       }
       default: {
         return <DefaultElement {...props} />;

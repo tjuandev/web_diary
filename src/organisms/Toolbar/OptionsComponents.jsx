@@ -1,7 +1,10 @@
 import { RoundedButton } from "atoms";
+import { useSlateStatic } from "slate-react";
 import { editorToolbar } from "utils/constants";
 import {
+  insertImage,
   isBlockActive,
+  isImageUrl,
   isMarkActive,
   toggleBlock,
   toggleMark,

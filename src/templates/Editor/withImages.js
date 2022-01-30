@@ -1,6 +1,6 @@
 import { insertImage, isImageUrl } from "utils/services/CustomEditor";
 
-const useWithImages = (editor) => {
+const withImages = (editor) => {
   const { insertData, isVoid } = editor;
 
   editor.isVoid = (element) => {
@@ -32,7 +32,7 @@ const useWithImages = (editor) => {
     }
   };
 
-  return [editor];
+  return editor;
 };
 
-export default useWithImages;
+export default withImages;

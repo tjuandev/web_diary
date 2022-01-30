@@ -72,7 +72,7 @@ export const BlockButtons = ({ editor }) => {
   });
 };
 
-const getCurrentFragment = (editor) => {
+const getCurrentSelection = (editor) => {
   const currentSelection = editor.getFragment()[0]?.children[0];
 
   if (currentSelection?.type === "list-item")
@@ -82,7 +82,7 @@ const getCurrentFragment = (editor) => {
 };
 
 export const ColorSelector = ({ editor }) => {
-  const getColorOfSelection = getCurrentFragment(editor)?.colorValue || "#000";
+  const getColorOfSelection = getCurrentSelection(editor)?.colorValue || "#000";
 
   return (
     <select
@@ -110,7 +110,7 @@ export const ColorSelector = ({ editor }) => {
 };
 
 export const BgSelector = ({ editor }) => {
-  const getBgColorOfSelection = getCurrentFragment(editor)?.bgColorValue || "";
+  const getBgColorOfSelection = getCurrentSelection(editor)?.bgColorValue || "";
 
   return (
     <select
@@ -147,7 +147,7 @@ export const TextAlignmentSelector = ({ editor }) => {
           align: e.target.value,
         });
       }}
-      value={getCurrentFragment(editor)?.align || "left"}
+      value={getCurrentSelection(editor)?.align || "left"}
     >
       {Object.entries(editorToolbar.TextAlignOptions).map(([value, label]) => {
         return (

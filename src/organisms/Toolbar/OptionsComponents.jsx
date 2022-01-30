@@ -8,17 +8,13 @@ import {
   toggleSelectorLeaf,
 } from "utils/services/CustomEditor";
 
-const BaseButton = ({ format, value, isActive, toggleNode, editor }) => {
+const BaseButton = ({ value, isActive, onMouseDown }) => {
   return (
     <RoundedButton
-      id={format}
-      key={format}
+      key={value}
       style={{ margin: "0.5rem" }}
-      active={isActive(editor, format)}
-      onMouseDown={(event) => {
-        event.preventDefault();
-        toggleNode(editor, format);
-      }}
+      active={isActive}
+      onMouseDown={onMouseDown}
     >
       {value}
     </RoundedButton>
@@ -45,30 +41,32 @@ export const SelectTypography = ({ editor }) => {
 };
 
 export const MarkButtons = ({ editor }) => {
-  return Object.entries(editorToolbar.MarkButtons).map(([key, value]) => {
+  return Object.entries(editorToolbar.MarkButtons).map(([format, value]) => {
     return (
       <BaseButton
-        key={key}
-        format={key}
+        key={format}
         value={value}
-        editor={editor}
-        isActive={isMarkActive}
-        toggleNode={toggleMark}
+        isActive={() => isMarkActive(editor, format)}
+        onMouseDown={(e) => {
+          e.preventDefault();
+          toggleMark(editor, format);
+        }}
       />
     );
   });
 };
 
 export const BlockButtons = ({ editor }) => {
-  return Object.entries(editorToolbar.BlockButtons).map(([key, value]) => {
+  return Object.entries(editorToolbar.BlockButtons).map(([format, value]) => {
     return (
       <BaseButton
-        key={key}
-        format={key}
+        key={format}
         value={value}
-        editor={editor}
-        isActive={isBlockActive}
-        toggleNode={toggleBlock}
+        isActive={() => isBlockActive(editor, format)}
+        onMouseDown={(e) => {
+          e.preventDefault();
+          toggleBlock(editor, format);
+        }}
       />
     );
   });

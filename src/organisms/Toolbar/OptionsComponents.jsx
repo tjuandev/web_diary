@@ -159,3 +159,25 @@ export const TextAlignmentSelector = ({ editor }) => {
     </select>
   );
 };
+
+export const InsertImageButton = () => {
+  const editor = useSlateStatic();
+  
+  return (
+    <RoundedButton
+      onMouseDown={(e) => {
+        e.preventDefault();
+        const url = window.prompt("Enter the URL of the image:");
+
+        if ((url && !isImageUrl(url)) || !url) {
+          alert("URL is not an image");
+          return;
+        }
+
+        insertImage(editor, url);
+      }}
+    >
+      image
+    </RoundedButton>
+  );
+};

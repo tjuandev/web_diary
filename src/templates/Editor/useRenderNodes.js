@@ -47,8 +47,6 @@ const useRenderNodes = (Image) => {
         return <BulletedList {...props} />;
       }
       case "image": {
-        console.log('imagemzinha');
-
         return <Image {...props} />;
       }
       default: {

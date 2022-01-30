@@ -49,7 +49,7 @@ export const MarkButtons = ({ editor }) => {
       <BaseButton
         key={format}
         value={value}
-        isActive={() => isMarkActive(editor, format)}
+        isActive={isMarkActive(editor, format)}
         onMouseDown={(e) => {
           e.preventDefault();
           toggleMark(editor, format);
@@ -65,7 +65,7 @@ export const BlockButtons = ({ editor }) => {
       <BaseButton
         key={format}
         value={value}
-        isActive={() => isBlockActive(editor, format)}
+        isActive={isBlockActive(editor, format)}
         onMouseDown={(e) => {
           e.preventDefault();
           toggleBlock(editor, format);
@@ -165,7 +165,7 @@ export const TextAlignmentSelector = ({ editor }) => {
 
 export const InsertImageButton = () => {
   const editor = useSlateStatic();
-  
+
   return (
     <RoundedButton
       onMouseDown={(e) => {

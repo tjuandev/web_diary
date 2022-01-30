@@ -9,9 +9,10 @@ import {
   ListItem,
   NumberedList,
   BulletedList,
+  Image
 } from "./Nodes";
 
-const useRenderNodes = (Image) => {
+const useRenderNodes = () => {
   const renderLeaf = useCallback((props) => {
     return <Leaf {...props} />;
   }, []);

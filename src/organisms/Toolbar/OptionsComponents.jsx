@@ -11,6 +11,9 @@ import {
   toggleSelectorLeaf,
 } from "utils/services/CustomEditor";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faImage } from "@fortawesome/free-solid-svg-icons";
+
 const BaseButton = ({ value, isActive, onMouseDown }) => {
   return (
     <RoundedButton
@@ -166,8 +169,11 @@ export const TextAlignmentSelector = ({ editor }) => {
 export const InsertImageButton = () => {
   const editor = useSlateStatic();
 
+  const isActive = isBlockActive(editor, "image");
+
   return (
-    <RoundedButton
+    <BaseButton
+      isActive={isActive}
       onMouseDown={(e) => {
         e.preventDefault();
         const url = window.prompt("Enter the URL of the image:");
@@ -179,8 +185,7 @@ export const InsertImageButton = () => {
 
         insertImage(editor, url);
       }}
-    >
-      image
-    </RoundedButton>
+      value={<FontAwesomeIcon icon={faImage} />}
+    />
   );
 };

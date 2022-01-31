@@ -7,10 +7,10 @@ import {
   MarkButtons,
   ColorSelector,
   BgSelector,
+  TextAlignmentSelector,
+  BlockButtons,
+  InsertImageButton
 } from "./OptionsComponents";
-import { TextAlignmentSelector } from "./OptionsComponents";
-import { BlockButtons } from "./OptionsComponents";
-
 const View = () => {
   const editor = useSlate();
 
@@ -19,11 +19,13 @@ const View = () => {
       <SelectTypography editor={editor} />
       <MarkButtons editor={editor} />
       <BlockButtons editor={editor} />
+      <InsertImageButton />
       <ColorSelector editor={editor} />
       <BgSelector editor={editor} />
       <TextAlignmentSelector editor={editor} />
     </BarContainer>
   );
 };
+
 
 export default View;

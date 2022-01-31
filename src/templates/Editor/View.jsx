@@ -2,13 +2,11 @@ import { useRef, useState } from "react";
 
 import { createEditor, Transforms } from "slate";
 import { withHistory } from "slate-history";
-import {
-  Slate,
-  Editable,
-  withReact,
-} from "slate-react";
+import { Slate, Editable, withReact } from "slate-react";
 
-import { isInListTypes, withImages } from "utils/services/CustomEditor";
+import { isInListTypes } from "utils/services/CustomEditor";
+
+import withImages from "./withImages";
 
 import { Toolbar } from "organisms";
 import useRenderNodes from "./useRenderNodes";

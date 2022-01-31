@@ -100,10 +100,16 @@ export const Image = ({ attributes, children, element, align }) => {
   const editor = useSlateStatic();
   const path = ReactEditor.findPath(editor, element);
 
+  let sUsrAg = navigator.userAgent;
+  const isFirefox = sUsrAg.includes("Firefox");
+
   const selected = useSelected();
   const focused = useFocused();
   return (
-    <div style={{ display: "flex", justifyContent: align }} {...attributes}>
+    <div
+      style={{ display: "flex", justifyContent: align }}
+      {...attributes}
+    >
       {children}
       <div contentEditable={false} style={{ position: "relative" }}>
         <img
@@ -116,6 +122,7 @@ export const Image = ({ attributes, children, element, align }) => {
             resize: "both",
           }}
           alt="no recognized source"
+          draggable={!isFirefox}
         />
         <button
           onClick={() => Transforms.removeNodes(editor, { at: path })}

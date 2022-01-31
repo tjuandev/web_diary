@@ -88,8 +88,7 @@ export const insertImage = (editor, url) => {
   Transforms.insertNodes(editor, image);
 };
 export const isImageUrl = (url) => {
-  if (!url) return false;
-  let urlChecked = "";
+  let urlChecked;
 
   try {
     urlChecked = new URL(url);

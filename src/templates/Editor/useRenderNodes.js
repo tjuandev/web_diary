@@ -9,6 +9,7 @@ import {
   ListItem,
   NumberedList,
   BulletedList,
+  Image
 } from "./Nodes";
 
 const useRenderNodes = () => {
@@ -45,6 +46,9 @@ const useRenderNodes = () => {
       }
       case "bulleted-list": {
         return <BulletedList {...props} />;
+      }
+      case "image": {
+        return <Image {...props} />;
       }
       default: {
         return <DefaultElement {...props} />;

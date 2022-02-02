@@ -1,24 +1,26 @@
 import { RoundedButton } from "atoms";
+import { useSlateStatic } from "slate-react";
 import { editorToolbar } from "utils/constants";
 import {
+  insertImage,
   isBlockActive,
+  isImageUrl,
   isMarkActive,
   toggleBlock,
   toggleMark,
   toggleSelectorLeaf,
 } from "utils/services/CustomEditor";
 
-const BaseButton = ({ format, value, isActive, toggleNode, editor }) => {
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faImage } from "@fortawesome/free-solid-svg-icons";
+
+const BaseButton = ({ value, isActive, onMouseDown }) => {
   return (
     <RoundedButton
-      id={format}
-      key={format}
+      key={value}
       style={{ margin: "0.5rem" }}
-      active={isActive(editor, format)}
-      onMouseDown={(event) => {
-        event.preventDefault();
-        toggleNode(editor, format);
-      }}
+      active={isActive}
+      onMouseDown={onMouseDown}
     >
       {value}
     </RoundedButton>
@@ -45,36 +47,38 @@ export const SelectTypography = ({ editor }) => {
 };
 
 export const MarkButtons = ({ editor }) => {
-  return Object.entries(editorToolbar.MarkButtons).map(([key, value]) => {
+  return Object.entries(editorToolbar.MarkButtons).map(([format, value]) => {
     return (
       <BaseButton
-        key={key}
-        format={key}
+        key={format}
         value={value}
-        editor={editor}
-        isActive={isMarkActive}
-        toggleNode={toggleMark}
+        isActive={isMarkActive(editor, format)}
+        onMouseDown={(e) => {
+          e.preventDefault();
+          toggleMark(editor, format);
+        }}
       />
     );
   });
 };
 
 export const BlockButtons = ({ editor }) => {
-  return Object.entries(editorToolbar.BlockButtons).map(([key, value]) => {
+  return Object.entries(editorToolbar.BlockButtons).map(([format, value]) => {
     return (
       <BaseButton
-        key={key}
-        format={key}
+        key={format}
         value={value}
-        editor={editor}
-        isActive={isBlockActive}
-        toggleNode={toggleBlock}
+        isActive={isBlockActive(editor, format)}
+        onMouseDown={(e) => {
+          e.preventDefault();
+          toggleBlock(editor, format);
+        }}
       />
     );
   });
 };
 
-const getCurrentFragment = (editor) => {
+const getCurrentSelection = (editor) => {
   const currentSelection = editor.getFragment()[0]?.children[0];
 
   if (currentSelection?.type === "list-item")
@@ -84,7 +88,7 @@ const getCurrentFragment = (editor) => {
 };
 
 export const ColorSelector = ({ editor }) => {
-  const getColorOfSelection = getCurrentFragment(editor)?.colorValue || "#000";
+  const getColorOfSelection = getCurrentSelection(editor)?.colorValue || "#000";
 
   return (
     <select
@@ -112,7 +116,7 @@ export const ColorSelector = ({ editor }) => {
 };
 
 export const BgSelector = ({ editor }) => {
-  const getBgColorOfSelection = getCurrentFragment(editor)?.bgColorValue || "";
+  const getBgColorOfSelection = getCurrentSelection(editor)?.bgColorValue || "";
 
   return (
     <select
@@ -149,7 +153,7 @@ export const TextAlignmentSelector = ({ editor }) => {
           align: e.target.value,
         });
       }}
-      value={getCurrentFragment(editor)?.align || "left"}
+      value={getCurrentSelection(editor)?.align || "left"}
     >
       {Object.entries(editorToolbar.TextAlignOptions).map(([value, label]) => {
         return (
@@ -159,5 +163,29 @@ export const TextAlignmentSelector = ({ editor }) => {
         );
       })}
     </select>
+  );
+};
+
+export const InsertImageButton = () => {
+  const editor = useSlateStatic();
+
+  const isActive = isBlockActive(editor, "image");
+
+  return (
+    <BaseButton
+      isActive={isActive}
+      onMouseDown={(e) => {
+        e.preventDefault();
+        const url = window.prompt("Enter the URL of the image:");
+
+        if ((url && !isImageUrl(url)) || !url) {
+          alert("URL is not an image");
+          return;
+        }
+
+        insertImage(editor, url);
+      }}
+      value={<FontAwesomeIcon icon={faImage} />}
+    />
   );
 };

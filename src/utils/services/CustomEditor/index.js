@@ -1,5 +1,7 @@
 import { Editor, Element, Text, Transforms } from "slate";
 
+import imageExtensions from "utils/constants/imagesExt";
+
 export const isMarkActive = (editor, format) => {
   const marks = Editor.marks(editor);
   return marks ? marks[format] === true : false;
@@ -77,5 +79,24 @@ export const toggleBlock = (editor, format) => {
   if (!isActive && isList) {
     const block = { type: format, children: [] };
     Transforms.wrapNodes(editor, block);
+  }
+};
+
+export const insertImage = (editor, url) => {
+  const text = { text: "" };
+  const image = { type: "image", url, children: [text] };
+  Transforms.insertNodes(editor, image);
+};
+export const isImageUrl = (url) => {
+  let urlChecked;
+
+  try {
+    urlChecked = new URL(url);
+
+    const ext = urlChecked.pathname.split(".").pop();
+
+    return imageExtensions.includes(ext);
+  } catch {
+    return false;
   }
 };

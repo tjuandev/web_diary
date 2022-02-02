@@ -5,6 +5,9 @@ import { withHistory } from "slate-history";
 import { Slate, Editable, withReact } from "slate-react";
 
 import { isInListTypes } from "utils/services/CustomEditor";
+
+import withImages from "./withImages";
+
 import { Toolbar } from "organisms";
 import useRenderNodes from "./useRenderNodes";
 
@@ -13,11 +16,11 @@ const View = () => {
     { type: "paragraph", children: [{ text: "" }] },
   ]);
 
-  const [renderLeaf, renderElement] = useRenderNodes();
+  const [renderLeaf, renderElement] = useRenderNodes(Image);
 
   const editorRef = useRef();
   if (!editorRef.current)
-    editorRef.current = withReact(withHistory(createEditor()));
+    editorRef.current = withImages(withHistory(withReact(createEditor())));
   const editor = editorRef.current;
 
   return (

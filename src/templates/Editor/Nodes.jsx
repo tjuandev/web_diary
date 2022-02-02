@@ -1,6 +1,15 @@
+import { Transforms } from "slate";
+
+import {
+  ReactEditor,
+  useFocused,
+  useSelected,
+  useSlateStatic,
+} from "slate-react";
+
 import { removePartOfString } from "utils/lib/String";
 
-const Leaf = (props) => {
+export const Leaf = (props) => {
   const { children, attributes, leaf } = props;
 
   const leafFlag = (format, defaultValue = "") =>
@@ -32,7 +41,7 @@ const Leaf = (props) => {
   );
 };
 
-const LinkLeaf = ({ children, attributes, style, url, color }) => {
+export const LinkLeaf = ({ children, attributes, style, url, color }) => {
   const textDecoration = style.textDecoration;
   const hasUnderline = textDecoration.includes("underline");
 
@@ -75,7 +84,7 @@ export const Heading3 = ({ children, attributes }) => (
   <h3 {...attributes}>{children}</h3>
 );
 
-const CodeElement = ({ children, attributes }) => {
+export const CodeElement = ({ children, attributes }) => {
   return (
     <pre {...attributes}>
       <code>{children}</code>
@@ -83,8 +92,51 @@ const CodeElement = ({ children, attributes }) => {
   );
 };
 
-const DefaultElement = ({ children, attributes }) => {
+export const DefaultElement = ({ children, attributes }) => {
   return <p {...attributes}>{children}</p>;
 };
 
-export { Leaf, LinkLeaf, CodeElement, DefaultElement };
+export const Image = ({ attributes, children, element, align }) => {
+  const editor = useSlateStatic();
+  const path = ReactEditor.findPath(editor, element);
+
+  let sUsrAg = navigator.userAgent;
+  const isFirefox = sUsrAg.includes("Firefox");
+
+  const selected = useSelected();
+  const focused = useFocused();
+  return (
+    <div
+      style={{ display: "flex", justifyContent: align }}
+      {...attributes}
+    >
+      {children}
+      <div contentEditable={false} style={{ position: "relative" }}>
+        <img
+          src={element.url}
+          style={{
+            display: "block",
+            maxWidth: "100%",
+            maxHeight: "20em",
+            boxShadow: `${selected && focused ? "0 0 0 3px" : "none"}`,
+            resize: "both",
+          }}
+          alt="no recognized source"
+          draggable={!isFirefox}
+        />
+        <button
+          onClick={() => Transforms.removeNodes(editor, { at: path })}
+          style={{
+            display: `${selected && focused ? "inline" : "none"}`,
+            position: "absolute",
+            top: " 0.5em",
+            left: "0.5em",
+            backgroundColor: "white",
+          }}
+        >
+          delete
+        </button>
+      </div>
+    </div>
+  );
+};

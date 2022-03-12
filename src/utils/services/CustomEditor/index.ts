@@ -1,8 +1,7 @@
 import { Editor, Element, Text, Transforms } from "slate";
-
 import imageExtensions from "utils/constants/imagesExt";
 
-export const isMarkActive = (editor, format) => {
+export const isMarkActive = (editor: Editor, format: string) => {
   const marks = Editor.marks(editor);
   return marks ? marks[format] === true : false;
 };
@@ -55,18 +54,18 @@ export const isBlockActive = (editor, format) => {
   return !!match;
 };
 
-export const isInListTypes = (element) => {
+export const isInListTypes = (element: string) => {
   const LIST_TYPES = ["numbered-list", "bulleted-list"];
 
   return LIST_TYPES.includes(element);
 };
 
-export const toggleBlock = (editor, format) => {
+export const toggleBlock = (editor: Editor, format: string) => {
   const isActive = isBlockActive(editor, format);
   const isList = isInListTypes(format);
 
   Transforms.unwrapNodes(editor, {
-    match: (n) => isInListTypes(n.type),
+    match: (n) => isInListTypes(Element.isElement(n) ? n.type : ""),
     split: true,
   });
 

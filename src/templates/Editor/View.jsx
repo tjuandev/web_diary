@@ -16,7 +16,7 @@ const View = () => {
     { type: "paragraph", children: [{ text: "" }] },
   ]);
 
-  const [renderLeaf, renderElement] = useRenderNodes(Image);
+  const [renderLeaf, renderElement] = useRenderNodes();
 
   const editorRef = useRef();
   if (!editorRef.current)

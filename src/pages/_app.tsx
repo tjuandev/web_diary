@@ -1,6 +1,8 @@
 import GlobalStyles from "utils/styles/GlobalStyles";
 
-const MyApp = ({ Component, pageProps }) => {
+import { AppProps } from "next/app";
+
+const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <>
       <GlobalStyles />

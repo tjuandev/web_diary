@@ -13,14 +13,22 @@ type CustomText = {
 
 type GenericElement = {
   type: string;
-}
+};
 
 type UrlElement = {
   link?: boolean;
   url?: string;
 };
 
-type CustomElements =  GenericElement & UrlElement;
+export type SelectorElement = {
+  isColor?: boolean;
+  color?: string;
+  isBg?: boolean;
+  bgColor?: string;
+  align?: string;
+};
+
+type CustomElements = GenericElement & UrlElement & SelectorElement;
 
 declare module "slate" {
   interface CustomTypes {

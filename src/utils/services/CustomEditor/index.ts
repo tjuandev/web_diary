@@ -1,12 +1,23 @@
 import { Editor, Element, Text, Transforms } from "slate";
 import imageExtensions from "utils/constants/imagesExt";
 
+import { SelectorElement } from "./types";
+
+type NodeOptions = {
+  hanging: boolean;
+  split: boolean;
+};
+
 export const isMarkActive = (editor: Editor, format: string) => {
   const marks = Editor.marks(editor);
   return marks ? marks[format] === true : false;
 };
 
-export const toggleSelectorLeaf = (editor, properties, options) => {
+export const toggleSelectorLeaf = (
+  editor: Editor,
+  properties: SelectorElement,
+  options?: NodeOptions
+) => {
   return Transforms.setNodes(
     editor,
     { ...properties },
@@ -14,7 +25,7 @@ export const toggleSelectorLeaf = (editor, properties, options) => {
   );
 };
 
-const toggleLinkLeaf = (editor) => {
+const toggleLinkLeaf = (editor: Editor) => {
   const url = prompt("url:");
 
   if (!url) {
@@ -27,7 +38,7 @@ const toggleLinkLeaf = (editor) => {
   );
 };
 
-export const toggleMark = (editor, format) => {
+export const toggleMark = (editor: Editor, format: string) => {
   const isActive = isMarkActive(editor, format);
 
   if (isActive) {
@@ -39,7 +50,7 @@ export const toggleMark = (editor, format) => {
   }
 };
 
-export const isBlockActive = (editor, format) => {
+export const isBlockActive = (editor: Editor, format: string) => {
   const { selection } = editor;
   if (!selection) return false;
 
@@ -81,12 +92,12 @@ export const toggleBlock = (editor: Editor, format: string) => {
   }
 };
 
-export const insertImage = (editor, url) => {
+export const insertImage = (editor: Editor, url: string) => {
   const text = { text: "" };
   const image = { type: "image", url, children: [text] };
   Transforms.insertNodes(editor, image);
 };
-export const isImageUrl = (url) => {
+export const isImageUrl = (url: string) => {
   let urlChecked;
 
   try {

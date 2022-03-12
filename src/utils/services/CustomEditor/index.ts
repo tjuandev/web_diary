@@ -1,7 +1,7 @@
 import { Editor, Element, Text, Transforms } from "slate";
 import imageExtensions from "utils/constants/imagesExt";
 
-import { SelectorElement } from "./types";
+import { SelectorElement } from "./editor";
 
 type NodeOptions = {
   hanging: boolean;

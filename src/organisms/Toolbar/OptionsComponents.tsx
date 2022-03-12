@@ -104,8 +104,8 @@ export const ColorSelector = ({ editor }) => {
         return toggleSelectorLeaf(
           editor,
           {
-            color: true,
-            colorValue: e.target.value,
+            isColor: true,
+            color: e.target.value,
           },
           { split: true, hanging: true }
         );
@@ -132,8 +132,8 @@ export const BgSelector = ({ editor }) => {
         return toggleSelectorLeaf(
           editor,
           {
-            bgColor: true,
-            bgColorValue: e.target.value,
+            isBg: true,
+            bgColor: e.target.value,
           },
           { split: true, hanging: true }
         );

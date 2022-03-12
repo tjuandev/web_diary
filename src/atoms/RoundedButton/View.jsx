@@ -17,6 +17,10 @@ const RoundedButton = styled.button.attrs((props) => ({
 
   font-size: large;
 
+  > svg {
+    width: 35%;
+  }
+
   &:hover,
   &.active {
     box-shadow: inset -2px -2px 5px #ffffff,

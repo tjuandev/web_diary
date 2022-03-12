@@ -1,5 +1,4 @@
 import { Editor, Element, Text, Transforms } from "slate";
-import imageExtensions from "utils/constants/imagesExt";
 
 import { SelectorElement } from "./editor";
 
@@ -97,6 +96,9 @@ export const insertImage = (editor: Editor, url: string) => {
   const image = { type: "image", url, children: [text] };
   Transforms.insertNodes(editor, image);
 };
+
+const imageExtensions = ["png", "jpeg", "jpg", "webp", "gif"];
+
 export const isImageUrl = (url: string) => {
   let urlChecked;
 

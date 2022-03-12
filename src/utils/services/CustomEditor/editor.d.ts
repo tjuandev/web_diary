@@ -4,8 +4,6 @@ import { ReactEditor } from "slate-react";
 
 const CustomEditor = BaseEditor & ReactEditor & HistoryEditor;
 
-const EmptyChildren = [];
-
 type CustomText = {
   type: string;
   children: any[];

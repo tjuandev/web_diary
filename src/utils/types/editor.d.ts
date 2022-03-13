@@ -2,7 +2,7 @@ import { BaseEditor, Node } from "slate";
 import { HistoryEditor } from "slate-history";
 import { ReactEditor } from "slate-react";
 
-const CustomEditor = BaseEditor & ReactEditor & HistoryEditor;
+export const CustomEditor = BaseEditor & ReactEditor & HistoryEditor;
 
 type CustomText = {
   type: string;

@@ -96,7 +96,7 @@ const getCurrentSelection = (editor) => {
 };
 
 export const ColorSelector = ({ editor }) => {
-  const getColorOfSelection = getCurrentSelection(editor)?.colorValue || "#000";
+  const getColorOfSelection = getCurrentSelection(editor)?.color || "#000";
 
   return (
     <select
@@ -124,7 +124,7 @@ export const ColorSelector = ({ editor }) => {
 };
 
 export const BgSelector = ({ editor }) => {
-  const getBgColorOfSelection = getCurrentSelection(editor)?.bgColorValue || "";
+  const getBgColorOfSelection = getCurrentSelection(editor)?.bgColor || "";
 
   return (
     <select

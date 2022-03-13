@@ -1,6 +1,6 @@
 import { Editor, Element, Text, Transforms } from "slate";
 
-import { SelectorElement } from "./editor";
+import { SelectorElement } from "utils/types/editor";
 
 type NodeOptions = {
   hanging: boolean;
@@ -91,7 +91,7 @@ export const toggleBlock = (editor: Editor, format: string) => {
   }
 };
 
-export const insertImage = (editor: Editor, url: string) => {
+export const insertImage = (editor: Editor, url: string | ArrayBuffer) => {
   const text = { text: "" };
   const image = { type: "image", url, children: [text] };
   Transforms.insertNodes(editor, image);

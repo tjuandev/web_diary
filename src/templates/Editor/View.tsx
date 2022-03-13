@@ -1,8 +1,8 @@
 import { useRef, useState } from "react";
 
-import { createEditor, Transforms } from "slate";
+import { createEditor, Descendant, Transforms } from "slate";
 import { withHistory } from "slate-history";
-import { Slate, Editable, withReact } from "slate-react";
+import { Slate, Editable, withReact, ReactEditor } from "slate-react";
 
 import { isInListTypes } from "utils/services/CustomEditor";
 
@@ -12,15 +12,19 @@ import { Toolbar } from "organisms";
 import useRenderNodes from "./useRenderNodes";
 
 const View = () => {
-  const [value, setValue] = useState([
+  const [value, setValue] = useState<Descendant[]>([
     { type: "paragraph", children: [{ text: "" }] },
   ]);
 
   const [renderLeaf, renderElement] = useRenderNodes();
 
-  const editorRef = useRef();
+  const editorRef = useRef(null);
+
   if (!editorRef.current)
-    editorRef.current = withImages(withHistory(withReact(createEditor())));
+    editorRef.current = withImages(
+      withHistory(withReact(createEditor() as ReactEditor))
+    );
+
   const editor = editorRef.current;
 
   return (

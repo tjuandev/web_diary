@@ -1,6 +1,11 @@
 import styled from "styled-components";
 
-const RoundedButton = styled.button.attrs((props) => ({
+type RoundedButtonProps = {
+  active: string;
+  [x: string]: any;
+};
+
+const RoundedButton = styled.button.attrs((props: RoundedButtonProps) => ({
   ...props,
   className: props.active && "active",
 }))`
@@ -16,6 +21,10 @@ const RoundedButton = styled.button.attrs((props) => ({
   border-radius: 50%;
 
   font-size: large;
+
+  > svg {
+    width: 35%;
+  }
 
   &:hover,
   &.active {

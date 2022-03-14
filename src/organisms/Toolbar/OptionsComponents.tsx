@@ -47,35 +47,43 @@ export const SelectTypography = ({ editor }) => {
 };
 
 export const MarkButtons = ({ editor }) => {
-  return Object.entries(editorToolbar.MarkButtons).map(([format, value]) => {
-    return (
-      <BaseButton
-        key={format}
-        value={value}
-        isActive={isMarkActive(editor, format)}
-        onMouseDown={(e) => {
-          e.preventDefault();
-          toggleMark(editor, format);
-        }}
-      />
-    );
-  });
+  const Buttons = Object.entries(editorToolbar.MarkButtons).map(
+    ([format, value]) => {
+      return (
+        <BaseButton
+          key={format}
+          value={value}
+          isActive={isMarkActive(editor, format)}
+          onMouseDown={(e) => {
+            e.preventDefault();
+            toggleMark(editor, format);
+          }}
+        />
+      );
+    }
+  );
+
+  return <>{Buttons}</>;
 };
 
 export const BlockButtons = ({ editor }) => {
-  return Object.entries(editorToolbar.BlockButtons).map(([format, value]) => {
-    return (
-      <BaseButton
-        key={format}
-        value={value}
-        isActive={isBlockActive(editor, format)}
-        onMouseDown={(e) => {
-          e.preventDefault();
-          toggleBlock(editor, format);
-        }}
-      />
-    );
-  });
+  const Buttons = Object.entries(editorToolbar.BlockButtons).map(
+    ([format, value]) => {
+      return (
+        <BaseButton
+          key={format}
+          value={value}
+          isActive={isBlockActive(editor, format)}
+          onMouseDown={(e) => {
+            e.preventDefault();
+            toggleBlock(editor, format);
+          }}
+        />
+      );
+    }
+  );
+
+  return <>{Buttons}</>;
 };
 
 const getCurrentSelection = (editor) => {
@@ -88,7 +96,7 @@ const getCurrentSelection = (editor) => {
 };
 
 export const ColorSelector = ({ editor }) => {
-  const getColorOfSelection = getCurrentSelection(editor)?.colorValue || "#000";
+  const getColorOfSelection = getCurrentSelection(editor)?.color || "#000";
 
   return (
     <select
@@ -96,8 +104,8 @@ export const ColorSelector = ({ editor }) => {
         return toggleSelectorLeaf(
           editor,
           {
-            color: true,
-            colorValue: e.target.value,
+            isColor: true,
+            color: e.target.value,
           },
           { split: true, hanging: true }
         );
@@ -116,7 +124,7 @@ export const ColorSelector = ({ editor }) => {
 };
 
 export const BgSelector = ({ editor }) => {
-  const getBgColorOfSelection = getCurrentSelection(editor)?.bgColorValue || "";
+  const getBgColorOfSelection = getCurrentSelection(editor)?.bgColor || "";
 
   return (
     <select
@@ -124,8 +132,8 @@ export const BgSelector = ({ editor }) => {
         return toggleSelectorLeaf(
           editor,
           {
-            bgColor: true,
-            bgColorValue: e.target.value,
+            isBg: true,
+            bgColor: e.target.value,
           },
           { split: true, hanging: true }
         );
@@ -189,3 +197,19 @@ export const InsertImageButton = () => {
     />
   );
 };
+
+const Options = ({ editor }) => {
+  return (
+    <>
+      <SelectTypography editor={editor} />
+      <MarkButtons editor={editor} />
+      <BlockButtons editor={editor} />
+      <InsertImageButton />
+      <ColorSelector editor={editor} />
+      <BgSelector editor={editor} />
+      <TextAlignmentSelector editor={editor} />
+    </>
+  );
+};
+
+export default Options;

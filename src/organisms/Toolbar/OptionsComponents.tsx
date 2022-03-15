@@ -13,13 +13,20 @@ import {
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImage } from "@fortawesome/free-solid-svg-icons";
-import { ReactElement, ReactNode } from "react";
+import { ReactNode } from "react";
 import { Editor } from "slate";
 
 interface BaseButtonProps {
   value: string | React.ReactElement;
   isActive: boolean;
   onMouseDown: React.MouseEventHandler;
+}
+interface BaseSelectorProps {
+  editor: Editor;
+  colorTypeKey: string;
+  colorValueKey: string;
+  children: ReactNode;
+  defaultValue?: string;
 }
 
 const BaseButton = ({ value, isActive, onMouseDown }: BaseButtonProps) => {
@@ -32,6 +39,49 @@ const BaseButton = ({ value, isActive, onMouseDown }: BaseButtonProps) => {
     >
       {value}
     </RoundedButton>
+  );
+};
+
+const getCurrentSelection = (editor) => {
+  const currentSelection = editor.getFragment()[0]?.children[0];
+
+  if (currentSelection?.type === "list-item")
+    return currentSelection.children[0];
+
+  return currentSelection;
+};
+
+const BaseColorSelector = ({
+  editor,
+  colorTypeKey,
+  colorValueKey,
+  children,
+  defaultValue = "",
+}: BaseSelectorProps) => {
+  const elementOptions = {
+    split: true,
+    hanging: true,
+  };
+
+  const currentSelectorValue =
+    getCurrentSelection(editor)?.[colorValueKey] || defaultValue;
+
+  return (
+    <select
+      onChange={(e) => {
+        return toggleSelectorLeaf(
+          editor,
+          {
+            [colorTypeKey]: true,
+            [colorValueKey]: e.target.value,
+          },
+          elementOptions
+        );
+      }}
+      value={currentSelectorValue}
+    >
+      {children}
+    </select>
   );
 };
 
@@ -94,31 +144,13 @@ export const BlockButtons = ({ editor }) => {
   return <>{Buttons}</>;
 };
 
-const getCurrentSelection = (editor) => {
-  const currentSelection = editor.getFragment()[0]?.children[0];
-
-  if (currentSelection?.type === "list-item")
-    return currentSelection.children[0];
-
-  return currentSelection;
-};
-
 export const ColorSelector = ({ editor }) => {
-  const getColorOfSelection = getCurrentSelection(editor)?.color || "#000";
-
   return (
-    <select
-      onChange={(e) => {
-        return toggleSelectorLeaf(
-          editor,
-          {
-            isColor: true,
-            color: e.target.value,
-          },
-          { split: true, hanging: true }
-        );
-      }}
-      value={getColorOfSelection}
+    <BaseColorSelector
+      colorTypeKey="isColor"
+      colorValueKey="color"
+      editor={editor}
+      defaultValue="#000"
     >
       {Object.entries(editorToolbar.ColorsOptions).map(([key, color]) => {
         return (
@@ -126,27 +158,19 @@ export const ColorSelector = ({ editor }) => {
             {color}
           </option>
         );
+        2;
       })}
-    </select>
+    </BaseColorSelector>
   );
 };
 
 export const BgSelector = ({ editor }) => {
-  const getBgColorOfSelection = getCurrentSelection(editor)?.bgColor || "";
-
   return (
-    <select
-      onChange={(e) => {
-        return toggleSelectorLeaf(
-          editor,
-          {
-            isBg: true,
-            bgColor: e.target.value,
-          },
-          { split: true, hanging: true }
-        );
-      }}
-      value={getBgColorOfSelection}
+    <BaseColorSelector
+      colorTypeKey="isBg"
+      colorValueKey="bgColor"
+      editor={editor}
+      defaultValue="#000"
     >
       {Object.entries(editorToolbar.BackgroundColorsOptions).map(
         ([key, color]) => {
@@ -157,7 +181,7 @@ export const BgSelector = ({ editor }) => {
           );
         }
       )}
-    </select>
+    </BaseColorSelector>
   );
 };
 

@@ -158,7 +158,6 @@ export const ColorSelector = ({ editor }) => {
             {color}
           </option>
         );
-        2;
       })}
     </BaseColorSelector>
   );

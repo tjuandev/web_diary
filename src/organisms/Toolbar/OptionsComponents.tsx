@@ -16,6 +16,9 @@ import { faImage } from "@fortawesome/free-solid-svg-icons";
 import { ReactNode } from "react";
 import { Editor } from "slate";
 
+interface EditorInterface {
+  editor: Editor;
+}
 interface BaseButtonProps {
   value: string | React.ReactElement;
   isActive: boolean;
@@ -42,7 +45,7 @@ const BaseButton = ({ value, isActive, onMouseDown }: BaseButtonProps) => {
   );
 };
 
-const getCurrentSelection = (editor) => {
+const getCurrentSelection = (editor: Editor) => {
   const currentSelection = editor.getFragment()[0]?.children[0];
 
   if (currentSelection?.type === "list-item")
@@ -85,7 +88,7 @@ const BaseColorSelector = ({
   );
 };
 
-export const SelectTypography = ({ editor }) => {
+export const SelectTypography = ({ editor }: EditorInterface) => {
   return (
     <select
       onChange={(e) => {
@@ -104,7 +107,7 @@ export const SelectTypography = ({ editor }) => {
   );
 };
 
-export const MarkButtons = ({ editor }) => {
+export const MarkButtons = ({ editor }: EditorInterface) => {
   const Buttons = Object.entries(editorToolbar.MarkButtons).map(
     ([format, value]) => {
       return (
@@ -124,7 +127,7 @@ export const MarkButtons = ({ editor }) => {
   return <>{Buttons}</>;
 };
 
-export const BlockButtons = ({ editor }) => {
+export const BlockButtons = ({ editor }: EditorInterface) => {
   const Buttons = Object.entries(editorToolbar.BlockButtons).map(
     ([format, value]) => {
       return (
@@ -144,7 +147,7 @@ export const BlockButtons = ({ editor }) => {
   return <>{Buttons}</>;
 };
 
-export const ColorSelector = ({ editor }) => {
+export const ColorSelector = ({ editor }: EditorInterface) => {
   return (
     <BaseColorSelector
       colorTypeKey="isColor"
@@ -163,7 +166,7 @@ export const ColorSelector = ({ editor }) => {
   );
 };
 
-export const BgSelector = ({ editor }) => {
+export const BgSelector = ({ editor }: EditorInterface) => {
   return (
     <BaseColorSelector
       colorTypeKey="isBg"
@@ -184,7 +187,7 @@ export const BgSelector = ({ editor }) => {
   );
 };
 
-export const TextAlignmentSelector = ({ editor }) => {
+export const TextAlignmentSelector = ({ editor }: EditorInterface) => {
   return (
     <select
       onChange={(e) => {
@@ -229,7 +232,7 @@ export const InsertImageButton = () => {
   );
 };
 
-const Options = ({ editor }) => {
+const Options = ({ editor }: EditorInterface) => {
   return (
     <>
       <SelectTypography editor={editor} />

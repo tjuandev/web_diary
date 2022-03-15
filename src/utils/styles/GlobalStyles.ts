@@ -39,7 +39,12 @@ const GlobalStyles = createGlobalStyle`
     font-family: Poppins, Verdana, Geneva, Tahoma, sans-serif;
   }
 
+  input, 
+  textarea, 
+  select, 
   button {
+    background: transparent;
+    border: 0;
     cursor: pointer;
   }
   

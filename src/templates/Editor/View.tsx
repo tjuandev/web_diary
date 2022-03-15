@@ -11,6 +11,8 @@ import withImages from "./withImages";
 import { Toolbar } from "organisms";
 import useRenderNodes from "./useRenderNodes";
 
+const RESET_FRAGMENT_TIMEOUT = 1;
+
 const View = () => {
   const [value, setValue] = useState<Descendant[]>([
     { type: "paragraph", children: [{ text: "" }] },
@@ -42,7 +44,7 @@ const View = () => {
             setTimeout(() => {
               if (isList) return;
               Transforms.setNodes(editor, { type: "paragraph" });
-            }, 1);
+            }, RESET_FRAGMENT_TIMEOUT);
           }
         }}
       />

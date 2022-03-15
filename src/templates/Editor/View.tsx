@@ -42,7 +42,7 @@ const View = () => {
             setTimeout(() => {
               if (isList) return;
               Transforms.setNodes(editor, { type: "paragraph" });
-            }, 0);
+            }, 1);
           }
         }}
       />

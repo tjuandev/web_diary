@@ -1,2 +1,2 @@
-import View from './View';
-export default View;
+import { Toolbar } from "./View";
+export default Toolbar;

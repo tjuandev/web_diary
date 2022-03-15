@@ -1,2 +1,2 @@
-import View from './View';
-export default View;
+import { Editor } from "./View";
+export default Editor;

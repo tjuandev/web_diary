@@ -13,7 +13,7 @@ import useRenderNodes from "./useRenderNodes";
 
 const RESET_FRAGMENT_TIMEOUT = 1;
 
-const View = () => {
+export const Editor = () => {
   const [value, setValue] = useState<Descendant[]>([
     { type: "paragraph", children: [{ text: "" }] },
   ]);
@@ -51,5 +51,3 @@ const View = () => {
     </Slate>
   );
 };
-
-export default View;

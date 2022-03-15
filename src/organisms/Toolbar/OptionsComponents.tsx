@@ -13,11 +13,19 @@ import {
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImage } from "@fortawesome/free-solid-svg-icons";
+import { ReactElement, ReactNode } from "react";
+import { Editor } from "slate";
 
-const BaseButton = ({ value, isActive, onMouseDown }) => {
+interface BaseButtonProps {
+  value: string | React.ReactElement;
+  isActive: boolean;
+  onMouseDown: React.MouseEventHandler;
+}
+
+const BaseButton = ({ value, isActive, onMouseDown }: BaseButtonProps) => {
   return (
     <RoundedButton
-      key={value}
+      key={value as string}
       style={{ margin: "0.5rem" }}
       active={isActive}
       onMouseDown={onMouseDown}

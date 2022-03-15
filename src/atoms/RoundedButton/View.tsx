@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 type RoundedButtonProps = {
-  active: string;
+  active: boolean;
   [x: string]: any;
 };
 

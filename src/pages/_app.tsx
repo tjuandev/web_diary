@@ -1,3 +1,4 @@
+import "normalize.css";
 import GlobalStyles from "utils/styles/GlobalStyles";
 
 import { AppProps } from "next/app";

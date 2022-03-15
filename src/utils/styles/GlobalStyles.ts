@@ -23,7 +23,19 @@ const GlobalStyles = createGlobalStyle`
     background-color: #f4f4f4;
     min-width: 100vw;
     min-height: 100vh;
+  }
 
+  button {
+    cursor: pointer;
+  }
+
+  body,
+  input,
+  textarea,
+  select,
+  button {
+    font-weight: 400;
+    font-size: 1rem;
     font-family: Poppins, Verdana, Geneva, Tahoma, sans-serif;
   }
 

@@ -1,4 +1,4 @@
-import { RoundedButton } from "atoms";
+import { RoundedButton, Selector } from "atoms";
 import { useSlateStatic } from "slate-react";
 import { editorToolbar } from "utils/constants";
 import {
@@ -13,9 +13,13 @@ import {
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImage } from "@fortawesome/free-solid-svg-icons";
-import { ReactNode } from "react";
+import { useEffect, useState } from "react";
 import { Editor } from "slate";
 
+type SelectorOptionsType = {
+  value: string;
+  label: string;
+};
 interface EditorInterface {
   editor: Editor;
 }
@@ -24,12 +28,16 @@ interface BaseButtonProps {
   isActive: boolean;
   onMouseDown: React.MouseEventHandler;
 }
+
 interface BaseSelectorProps {
   editor: Editor;
-  colorTypeKey: string;
-  colorValueKey: string;
-  children: ReactNode;
-  defaultValue?: string;
+  data: {
+    [x: string]: any;
+  };
+  toggleFunction: (editor: Editor, value: string) => void;
+  defaultValue: string;
+  isBlockElement?: boolean;
+  fragmentKey?: string;
 }
 
 const BaseButton = ({ value, isActive, onMouseDown }: BaseButtonProps) => {
@@ -45,8 +53,15 @@ const BaseButton = ({ value, isActive, onMouseDown }: BaseButtonProps) => {
   );
 };
 
-const getCurrentSelection = (editor: Editor) => {
-  const currentSelection = editor.getFragment()[0]?.children[0];
+const getCurrentEditorSelection = (
+  editor: Editor,
+  isBlockElement?: boolean
+) => {
+  const currentSelection = isBlockElement
+    ? editor.getFragment()[0]
+    : editor.getFragment()[0]?.children[0];
+
+  console.log("currentSelection", currentSelection);
 
   if (currentSelection?.type === "list-item")
     return currentSelection.children[0];
@@ -54,56 +69,62 @@ const getCurrentSelection = (editor: Editor) => {
   return currentSelection;
 };
 
-const BaseColorSelector = ({
-  editor,
-  colorTypeKey,
-  colorValueKey,
-  children,
-  defaultValue = "",
-}: BaseSelectorProps) => {
-  const elementOptions = {
-    split: true,
-    hanging: true,
-  };
+const BaseSelector = (props: BaseSelectorProps) => {
+  const {
+    editor,
+    data,
+    toggleFunction,
+    defaultValue,
+    isBlockElement = false,
+    fragmentKey = "type",
+  } = props;
 
-  const currentSelectorValue =
-    getCurrentSelection(editor)?.[colorValueKey] || defaultValue;
+  const options = Object.entries(data).map(([value, label]) => {
+    return {
+      value,
+      label,
+    };
+  });
+
+  const currentFragmentType = getCurrentEditorSelection(
+    editor,
+    isBlockElement
+  )?.[fragmentKey];
+
+  const [value, setValue] = useState(options[0]);
+
+  const currentValue = options.find(({ value }) => {
+    if (!currentFragmentType) return value === defaultValue;
+
+    return value === currentFragmentType;
+  });
+
+  useEffect(() => {
+    setValue(currentValue);
+  }, [currentFragmentType]);
 
   return (
-    <select
-      onChange={(e) => {
-        return toggleSelectorLeaf(
-          editor,
-          {
-            [colorTypeKey]: true,
-            [colorValueKey]: e.target.value,
-          },
-          elementOptions
-        );
+    <Selector
+      options={options}
+      onChange={(newValue: SelectorOptionsType) => {
+        toggleFunction(editor, newValue.value);
+        return setValue(newValue);
       }}
-      value={currentSelectorValue}
-    >
-      {children}
-    </select>
+      defaultValue={defaultValue}
+      value={value}
+    />
   );
 };
 
 export const SelectTypography = ({ editor }: EditorInterface) => {
   return (
-    <select
-      onChange={(e) => {
-        return toggleBlock(editor, e.target.value);
-      }}
-      value={editor.getFragment()[0]?.type}
-    >
-      {Object.entries(editorToolbar.TypographyOptions).map(([value, label]) => {
-        return (
-          <option value={value} key={value}>
-            {label}
-          </option>
-        );
-      })}
-    </select>
+    <BaseSelector
+      editor={editor}
+      data={editorToolbar.TypographyOptions}
+      toggleFunction={toggleBlock}
+      isBlockElement={true}
+      defaultValue="paragraph"
+    />
   );
 };
 
@@ -148,63 +169,60 @@ export const BlockButtons = ({ editor }: EditorInterface) => {
 };
 
 export const ColorSelector = ({ editor }: EditorInterface) => {
+  const toggleFunction = (_: Editor, value: string) => {
+    toggleSelectorLeaf(
+      editor,
+      { isColor: true, color: value },
+      { split: true, hanging: true }
+    );
+  };
+
   return (
-    <BaseColorSelector
-      colorTypeKey="isColor"
-      colorValueKey="color"
+    <BaseSelector
       editor={editor}
-      defaultValue="#000"
-    >
-      {Object.entries(editorToolbar.ColorsOptions).map(([key, color]) => {
-        return (
-          <option value={color} key={key}>
-            {color}
-          </option>
-        );
-      })}
-    </BaseColorSelector>
+      data={editorToolbar.ColorsOptions}
+      toggleFunction={toggleFunction}
+      fragmentKey="color"
+      defaultValue="black"
+    />
   );
 };
 
 export const BgSelector = ({ editor }: EditorInterface) => {
+  const toggleFunction = (_: Editor, value: string) => {
+    toggleSelectorLeaf(
+      editor,
+      { isBg: true, bgColor: value },
+      { split: true, hanging: true }
+    );
+  };
+
   return (
-    <BaseColorSelector
-      colorTypeKey="isBg"
-      colorValueKey="bgColor"
+    <BaseSelector
       editor={editor}
-      defaultValue="#000"
-    >
-      {Object.entries(editorToolbar.BackgroundColorsOptions).map(
-        ([key, color]) => {
-          return (
-            <option value={color} key={key}>
-              {color}
-            </option>
-          );
-        }
-      )}
-    </BaseColorSelector>
+      data={editorToolbar.BackgroundColorsOptions}
+      toggleFunction={toggleFunction}
+      defaultValue="transparent"
+      fragmentKey="bgColor"
+    />
   );
 };
 
 export const TextAlignmentSelector = ({ editor }: EditorInterface) => {
+  const toggleFunction = (editor, value) => {
+    return toggleSelectorLeaf(editor, {
+      align: value,
+    });
+  };
+
   return (
-    <select
-      onChange={(e) => {
-        return toggleSelectorLeaf(editor, {
-          align: e.target.value,
-        });
-      }}
-      value={getCurrentSelection(editor)?.align || "left"}
-    >
-      {Object.entries(editorToolbar.TextAlignOptions).map(([value, label]) => {
-        return (
-          <option value={value} key={value}>
-            {label}
-          </option>
-        );
-      })}
-    </select>
+    <BaseSelector
+      editor={editor}
+      data={editorToolbar.TextAlignOptions}
+      toggleFunction={toggleFunction}
+      defaultValue="left"
+      fragmentKey="align"
+    />
   );
 };
 

@@ -1,19 +1,22 @@
-import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import { SelectorStyled } from "./Stylesheet";
 
-import { Props as SelectorProps } from "react-select";
+import { SelectorProps } from "./types";
 
-const DropdownIndicator = () => <FontAwesomeIcon icon={faCaretDown} />;
+import { DropdownIndicator, MenuList, Menu, Option } from "./CustomComponents";
 
 export const Selector = (props: SelectorProps) => {
+  const { width = "10rem" } = props;
+
   return (
     <SelectorStyled
       classNamePrefix="neo-selector"
+      width={width}
       isSearchable={false}
       components={{
         DropdownIndicator,
+        MenuList,
+        Menu,
+        Option,
       }}
       {...props}
     />

@@ -1,9 +1,10 @@
 import styled from "styled-components";
 import Select from "react-select";
 
+import { SelectorProps } from "./types";
+
 export const SelectorStyled = styled(Select)`
-  width: fit-content;
-  height: fit-content;
+  width: ${(props: SelectorProps) => props.width};
 
   .neo-selector__control,
   .neo-selector__control--menu-is-open {
@@ -34,8 +35,42 @@ export const SelectorStyled = styled(Select)`
   position: relative;
 `;
 
-export const Menu = styled.div`
+export const MenuWrapper = styled.menu`
+  .neo-selector__menu,
+  .css-4ljt47-MenuList {
+    border: 0;
+    box-shadow: none;
+    background: transparent;
+    padding: 0;
+  }
+`;
+
+export const MenuListWrapper = styled.div`
   background: #f4f4f4;
   border-radius: 1rem;
   box-shadow: -2px -2px 5px #ffffff, 2px 2px 5px rgba(0, 0, 0, 0.15);
+
+  > div > div:first-child .neo-selector__option {
+    border-radius: 1rem 1rem 0 0;
+  }
+
+  > div > div:last-child .neo-selector__option {
+    border-radius: 0 0 1rem 1rem;
+  }
+`;
+
+export const OptionItem = styled.div`
+  .neo-selector__option--is-focused {
+    color: #000;
+    background: #e1e1e1;
+    cursor: pointer;
+  }
+
+  .neo-selector__option--is-selected {
+    color: #000;
+    background: #d1d0d0;
+  }
+  :hover {
+    background: transparent;
+  }
 `;

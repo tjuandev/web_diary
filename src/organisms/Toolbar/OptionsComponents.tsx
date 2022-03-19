@@ -43,14 +43,14 @@ interface BaseSelectorProps {
 
 const BaseButton = ({ value, isActive, onMouseDown }: BaseButtonProps) => {
   return (
-    <RoundedButton
+    <RoundedButton.default
       key={value as string}
       style={{ margin: "0.5rem" }}
       active={isActive}
       onMouseDown={onMouseDown}
     >
       {value}
-    </RoundedButton>
+    </RoundedButton.default>
   );
 };
 

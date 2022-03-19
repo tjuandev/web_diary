@@ -38,6 +38,7 @@ interface BaseSelectorProps {
   defaultValue: string;
   isBlockElement?: boolean;
   fragmentKey?: string;
+  width?: string;
 }
 
 const BaseButton = ({ value, isActive, onMouseDown }: BaseButtonProps) => {
@@ -75,6 +76,8 @@ const BaseSelector = (props: BaseSelectorProps) => {
     defaultValue,
     isBlockElement = false,
     fragmentKey = "type",
+    width,
+    ...extraProps
   } = props;
 
   const options = Object.entries(data).map(([value, label]) => {
@@ -110,6 +113,8 @@ const BaseSelector = (props: BaseSelectorProps) => {
       }}
       defaultValue={defaultValue}
       value={value}
+      width={width}
+      {...extraProps}
     />
   );
 };
@@ -117,6 +122,7 @@ const BaseSelector = (props: BaseSelectorProps) => {
 export const SelectTypography = ({ editor }: EditorInterface) => {
   return (
     <BaseSelector
+      width="10rem"
       editor={editor}
       data={editorToolbar.TypographyOptions}
       toggleFunction={toggleBlock}
@@ -177,6 +183,7 @@ export const ColorSelector = ({ editor }: EditorInterface) => {
 
   return (
     <BaseSelector
+      width="7rem"
       editor={editor}
       data={editorToolbar.ColorsOptions}
       toggleFunction={toggleFunction}

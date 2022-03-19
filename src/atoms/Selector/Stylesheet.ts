@@ -3,8 +3,8 @@ import Select from "react-select";
 
 import { SelectorProps } from "./types";
 
-export const SelectorStyled = styled(Select)`
-  width: ${(props: SelectorProps) => props.width};
+export const SelectorStyled = styled(Select)<SelectorProps>`
+  width: ${(props) => props.width};
 
   .neo-selector__control,
   .neo-selector__control--menu-is-open {

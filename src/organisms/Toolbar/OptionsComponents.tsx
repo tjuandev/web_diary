@@ -61,8 +61,6 @@ const getCurrentEditorSelection = (
     ? editor.getFragment()[0]
     : editor.getFragment()[0]?.children[0];
 
-  console.log("currentSelection", currentSelection);
-
   if (currentSelection?.type === "list-item")
     return currentSelection.children[0];
 

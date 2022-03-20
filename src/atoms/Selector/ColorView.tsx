@@ -1,6 +1,11 @@
 import { SelectorStyled } from "./Stylesheet";
 
-import { DropdownIndicator, Menu, MenuList, Option } from "./CustomComponents";
+import {
+  DropdownIndicator,
+  Menu,
+  ColorList,
+  ColorOption,
+} from "./CustomComponents";
 
 import { SelectorProps } from "./types";
 
@@ -14,10 +19,11 @@ export const ColorSelector = (props: SelectorProps) => {
       isSearchable={false}
       components={{
         DropdownIndicator,
-        MenuList,
+        MenuList: ColorList,
         Menu: (props) => <Menu isHorizontal={isHorizontal} {...props} />,
-        Option,
+        Option: (props) => <ColorOption {...props} />,
       }}
+      menuIsOpen
       {...props}
     />
   );

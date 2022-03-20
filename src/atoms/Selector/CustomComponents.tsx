@@ -1,10 +1,16 @@
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { ReactElement } from "react";
 
 import { components, MenuListProps, OptionProps } from "react-select";
 
+import {
+  MenuListWrapper,
+  MenuWrapper,
   OptionItem,
   ColorListWrapper,
+  ColorOptionWrapper,
+} from "./Stylesheet";
 
 import { MenuCustomProps } from "./types";
 
@@ -41,5 +47,19 @@ export const ColorList = (props: MenuListProps) => {
     <ColorListWrapper>
       <components.MenuList {...props}>{props.children}</components.MenuList>
     </ColorListWrapper>
+  );
+};
+
+export const ColorOption = (props: OptionProps) => {
+  const { isSelected } = props;
+
+  return (
+    <ColorOptionWrapper>
+      <components.Option {...props}>
+        {React.cloneElement(props.children as ReactElement, {
+          className: isSelected && "active",
+        })}
+      </components.Option>
+    </ColorOptionWrapper>
   );
 };

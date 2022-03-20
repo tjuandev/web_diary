@@ -81,3 +81,18 @@ export const ColorListWrapper = styled(MenuListWrapper)`
   border-radius: 5rem;
   padding: 0.5rem;
 `;
+
+export const ColorOptionWrapper = styled.div`
+  .neo-selector__option {
+    padding: 0;
+  }
+
+  .neo-selector__option--is-focused {
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .neo-selector__option--is-selected {
+    background: transparent;
+  }
+`;

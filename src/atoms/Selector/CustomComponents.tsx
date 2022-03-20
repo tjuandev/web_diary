@@ -5,11 +5,15 @@ import { components } from "react-select";
 
 import { MenuListWrapper, MenuWrapper, OptionItem } from "./Stylesheet";
 
+import { MenuCustomProps } from "./types";
+
 export const DropdownIndicator = () => <FontAwesomeIcon icon={faCaretDown} />;
 
-export const Menu = (props) => {
+export const Menu = (props: MenuCustomProps) => {
+  const { isHorizontal = false } = props;
+
   return (
-    <MenuWrapper>
+    <MenuWrapper isHorizontal={isHorizontal}>
       <components.Menu {...props}>{props.children}</components.Menu>
     </MenuWrapper>
   );

@@ -34,11 +34,13 @@ interface BaseSelectorProps {
   data: {
     [x: string]: any;
   };
+  selectorType?: string;
   toggleFunction: (editor: Editor, value: string) => void;
   defaultValue: string;
   isBlockElement?: boolean;
   fragmentKey?: string;
   width?: string;
+  isHorizontal?: boolean;
 }
 
 const BaseButton = ({ value, isActive, onMouseDown }: BaseButtonProps) => {
@@ -72,6 +74,7 @@ const BaseSelector = (props: BaseSelectorProps) => {
   const {
     editor,
     data,
+    selectorType = "default",
     toggleFunction,
     defaultValue,
     isBlockElement = false,
@@ -104,19 +107,23 @@ const BaseSelector = (props: BaseSelectorProps) => {
     setValue(currentValue);
   }, [currentFragmentType]);
 
-  return (
-    <Selector
-      options={options}
-      onChange={(newValue: SelectorOptionsType) => {
-        toggleFunction(editor, newValue.value);
-        return setValue(newValue);
-      }}
-      defaultValue={defaultValue}
-      value={value}
-      width={width}
-      {...extraProps}
-    />
-  );
+  const selectorProps = {
+    options: options,
+    onChange: (newValue: SelectorOptionsType) => {
+      toggleFunction(editor, newValue.value);
+      return setValue(newValue);
+    },
+    defaultValue: defaultValue,
+    value: value,
+    width: width,
+    ...extraProps,
+  };
+
+  if (selectorType === "default") {
+    return <Selector.default {...selectorProps} />;
+  } else if (selectorType === "colorSelector") {
+    return <Selector.ColorSelector {...selectorProps} />;
+  }
 };
 
 export const SelectTypography = ({ editor }: EditorInterface) => {
@@ -186,9 +193,11 @@ export const ColorSelector = ({ editor }: EditorInterface) => {
       width="7rem"
       editor={editor}
       data={editorToolbar.ColorsOptions}
+      selectorType="colorSelector"
       toggleFunction={toggleFunction}
       fragmentKey="color"
       defaultValue="black"
+      isHorizontal={true}
     />
   );
 };

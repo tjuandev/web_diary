@@ -1,8 +1,53 @@
 import styled from "styled-components";
 
-export const Colored = styled.div<{ color: string }>`
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
+
+type ColoredProps = {
+  color: string;
+  className?: string;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+};
+
+const Wrapper = styled.div.attrs((props) => ({
+  ...props,
+}))<ColoredProps>`
   border-radius: 50%;
   width: 2rem;
   height: 2rem;
   background-color: ${(props) => props.color};
+
+  position: relative;
+
+  :hover {
+    filter: brightness(0.85);
+  }
+
+  .icon {
+    display: none;
+  }
+
+  &.active {
+    .icon {
+      display: inline;
+      position: absolute;
+      z-index: 5;
+
+      top: 50%;
+      left: 50%;
+
+      transform: translate(-50%, -50%);
+
+      width: 50%;
+      height: 50%;
+    }
+  }
 `;
+
+export const Colored = (props) => {
+  return (
+    <Wrapper {...props}>
+      <FontAwesomeIcon icon={faCheck} className="icon" />
+    </Wrapper>
+  );
+};

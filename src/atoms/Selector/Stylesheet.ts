@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Select from "react-select";
 
-import { SelectorProps } from "./types";
+import { SelectorProps, MenuCustomProps } from "./types";
 
 export const SelectorStyled = styled(Select)<SelectorProps>`
   width: ${(props) => props.width};
@@ -35,9 +35,11 @@ export const SelectorStyled = styled(Select)<SelectorProps>`
   position: relative;
 `;
 
-export const MenuWrapper = styled.menu`
+export const MenuWrapper = styled.menu<Pick<MenuCustomProps, "isHorizontal">>`
   .neo-selector__menu,
   .css-4ljt47-MenuList {
+    display: ${(props) => props.isHorizontal && "flex"};
+
     border: 0;
     box-shadow: none;
     background: transparent;

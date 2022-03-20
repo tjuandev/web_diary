@@ -76,3 +76,8 @@ export const OptionItem = styled.div`
     background: transparent;
   }
 `;
+
+export const ColorListWrapper = styled(MenuListWrapper)`
+  border-radius: 5rem;
+  padding: 0.5rem;
+`;

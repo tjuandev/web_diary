@@ -3,7 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { components, MenuListProps, OptionProps } from "react-select";
 
-import { MenuListWrapper, MenuWrapper, OptionItem } from "./Stylesheet";
+  OptionItem,
+  ColorListWrapper,
 
 import { MenuCustomProps } from "./types";
 
@@ -32,5 +33,13 @@ export const Option = (props: OptionProps) => {
     <OptionItem>
       <components.Option {...props}>{props.children}</components.Option>
     </OptionItem>
+  );
+};
+
+export const ColorList = (props: MenuListProps) => {
+  return (
+    <ColorListWrapper>
+      <components.MenuList {...props}>{props.children}</components.MenuList>
+    </ColorListWrapper>
   );
 };

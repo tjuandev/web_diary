@@ -1,7 +1,7 @@
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { components } from "react-select";
+import { components, MenuListProps, OptionProps } from "react-select";
 
 import { MenuListWrapper, MenuWrapper, OptionItem } from "./Stylesheet";
 
@@ -19,7 +19,7 @@ export const Menu = (props: MenuCustomProps) => {
   );
 };
 
-export const MenuList = (props) => {
+export const MenuList = (props: MenuListProps) => {
   return (
     <MenuListWrapper>
       <components.MenuList {...props}>{props.children}</components.MenuList>
@@ -27,7 +27,7 @@ export const MenuList = (props) => {
   );
 };
 
-export const Option = (props) => {
+export const Option = (props: OptionProps) => {
   return (
     <OptionItem>
       <components.Option {...props}>{props.children}</components.Option>

@@ -23,7 +23,6 @@ export const ColorSelector = (props: SelectorProps) => {
         Menu: (props) => <Menu isHorizontal={isHorizontal} {...props} />,
         Option: (props) => <ColorOption {...props} />,
       }}
-      menuIsOpen
       {...props}
     />
   );

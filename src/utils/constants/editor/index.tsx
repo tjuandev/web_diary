@@ -8,6 +8,7 @@ import {
   faListOl,
   faListUl,
 } from "@fortawesome/free-solid-svg-icons";
+import { RoundedButton } from "atoms";
 
 const MarkButtons = {
   bold: <FontAwesomeIcon icon={faBold} />,
@@ -30,12 +31,12 @@ const TypographyOptions = {
 };
 
 const ColorsOptions = {
-  black: "#000",
-  green: "#00ff7a",
-  purple: "#7a00ff",
-  yellow: "#fffa00",
-  red: "#ff0006",
-  blue: "#0085ff",
+  black: <RoundedButton.Colored color="#000" />,
+  green: <RoundedButton.Colored color="#00ff7a" />,
+  purple: <RoundedButton.Colored color="#7a00ff" />,
+  yellow: <RoundedButton.Colored color="#fffa00" />,
+  red: <RoundedButton.Colored color="#ff0006" />,
+  blue: <RoundedButton.Colored color="#0085ff" />,
 };
 
 const BackgroundColorsOptions = {

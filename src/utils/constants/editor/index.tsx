@@ -41,13 +41,19 @@ const ColorsOptions = {
 };
 
 const BackgroundColorsOptions = {
-  transparent: "Transparent",
-  lightGrey: "#7f7f7f",
-  lightGreen: "#ccffe4",
-  lightPurple: "#e4ccff",
-  lightYellow: "#fffecc",
-  lightRed: "#ffcccd",
-  lightBlue: "#cce6ff",
+  "transparent": (
+    <FontAwesomeIcon
+      icon={faTimesCircle}
+      color="#c0c0c0"
+      style={{ fontSize: "2rem" }}
+    />
+  ),
+  "#FFA41B": <RoundedButton.Colored color="#FFA41B" />,
+  "#FF7676": <RoundedButton.Colored color="#FF7676" />,
+  "#A1FF8A": <RoundedButton.Colored color="#A1FF8A" />,
+  "#90DEFF": <RoundedButton.Colored color="#90DEFF" />,
+  "#D8A7FF": <RoundedButton.Colored color="#D8A7FF" />,
+  "#FF9BD7": <RoundedButton.Colored color="#FF9BD7" />,
 };
 
 const TextAlignOptions = {

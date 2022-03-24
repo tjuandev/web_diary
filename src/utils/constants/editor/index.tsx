@@ -7,6 +7,7 @@ import {
   faStrikethrough,
   faListOl,
   faListUl,
+  faTimesCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { RoundedButton } from "atoms";
 

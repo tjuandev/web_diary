@@ -31,12 +31,13 @@ const TypographyOptions = {
 };
 
 const ColorsOptions = {
-  black: <RoundedButton.Colored color="#000" />,
-  green: <RoundedButton.Colored color="#00ff7a" />,
-  purple: <RoundedButton.Colored color="#7a00ff" />,
-  yellow: <RoundedButton.Colored color="#fffa00" />,
-  red: <RoundedButton.Colored color="#ff0006" />,
-  blue: <RoundedButton.Colored color="#0085ff" />,
+  black: <RoundedButton.Colored color="black" />,
+  "#FF7A00": <RoundedButton.Colored color="#FF7A00" />,
+  "#FF0000": <RoundedButton.Colored color="#FF0000" />,
+  "#1CC600": <RoundedButton.Colored color="#1CC600" />,
+  "#00B2FF": <RoundedButton.Colored color="#00B2FF" />,
+  "#8F00FF": <RoundedButton.Colored color="#8F00FF" />,
+  "#EE0490": <RoundedButton.Colored color="#EE0490" />,
 };
 
 const BackgroundColorsOptions = {

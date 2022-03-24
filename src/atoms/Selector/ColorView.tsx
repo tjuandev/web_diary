@@ -5,12 +5,13 @@ import {
   Menu,
   ColorList,
   ColorOption,
+  SingleValue,
 } from "./CustomComponents";
 
-import { SelectorProps } from "./types";
+import { SelectorProps, SingleCustomValueProps } from "./types";
 
 export const ColorSelector = (props: SelectorProps) => {
-  const { width = "10rem", isHorizontal = false } = props;
+  const { width = "10rem", isHorizontal = false, isHighlighter } = props;
 
   return (
     <SelectorStyled
@@ -22,6 +23,12 @@ export const ColorSelector = (props: SelectorProps) => {
         MenuList: ColorList,
         Menu: (props) => <Menu isHorizontal={isHorizontal} {...props} />,
         Option: (props) => <ColorOption {...props} />,
+        SingleValue: (props) => (
+          <SingleValue
+            isHighlighter={isHighlighter}
+            {...(props as SingleCustomValueProps)}
+          />
+        ),
       }}
       {...props}
     />

@@ -34,13 +34,14 @@ interface BaseSelectorProps {
   data: {
     [x: string]: any;
   };
-  selectorType?: string;
+  selectorType?: "default" | "colorSelector";
   toggleFunction: (editor: Editor, value: string) => void;
   defaultValue: string;
   isBlockElement?: boolean;
   fragmentKey?: string;
   width?: string;
   isHorizontal?: boolean;
+  isHighlighter?: boolean;
 }
 
 const BaseButton = ({ value, isActive, onMouseDown }: BaseButtonProps) => {
@@ -218,6 +219,9 @@ export const BgSelector = ({ editor }: EditorInterface) => {
       toggleFunction={toggleFunction}
       defaultValue="transparent"
       fragmentKey="bgColor"
+      isHorizontal={true}
+      selectorType="colorSelector"
+      isHighlighter={true}
     />
   );
 };

@@ -77,7 +77,7 @@ export const ColorOption = (props: OptionProps) => {
     <ColorOptionWrapper>
       <components.Option {...props}>
         {React.cloneElement(props.children as ReactElement, {
-          className: isSelected && "active",
+          className: isSelected ? "active" : "",
         })}
       </components.Option>
     </ColorOptionWrapper>

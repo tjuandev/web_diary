@@ -1,4 +1,4 @@
-import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
+import { faCaretDown, faHighlighter } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { ReactElement } from "react";
 
@@ -12,7 +12,7 @@ import {
   ColorOptionWrapper,
 } from "./Stylesheet";
 
-import { MenuCustomProps } from "./types";
+import { MenuCustomProps, SingleCustomValueProps } from "./types";
 
 export const DropdownIndicator = () => <FontAwesomeIcon icon={faCaretDown} />;
 
@@ -39,6 +39,26 @@ export const Option = (props: OptionProps) => {
     <OptionItem>
       <components.Option {...props}>{props.children}</components.Option>
     </OptionItem>
+  );
+};
+
+export const SingleValue = (props: SingleCustomValueProps) => {
+  const { data, children, isHighlighter } = props;
+
+  return (
+    <>
+      <components.SingleValue {...props}>
+        {isHighlighter ? (
+          <FontAwesomeIcon
+            icon={faHighlighter}
+            size="2x"
+            color={data.value === "transparent" ? "#c0c0c0" : data.value}
+          />
+        ) : (
+          children
+        )}
+      </components.SingleValue>
+    </>
   );
 };
 

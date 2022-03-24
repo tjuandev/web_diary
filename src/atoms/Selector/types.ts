@@ -1,4 +1,4 @@
-import { MenuProps, Props } from "react-select";
+import { MenuProps, Props, SingleValueProps } from "react-select";
 
 export type SelectorProps = Props & {
   width?: string | number;
@@ -7,4 +7,12 @@ export type SelectorProps = Props & {
 
 export type MenuCustomProps = MenuProps & {
   isHorizontal?: boolean;
+};
+
+export type SingleCustomValueProps = SingleValueProps & {
+  data: {
+    value: string;
+    label: string;
+  };
+  isHighlighter?: boolean;
 };

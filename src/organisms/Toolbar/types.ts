@@ -27,3 +27,5 @@ export interface BaseSelectorProps {
   isHorizontal?: boolean;
   isHighlighter?: boolean;
   customSingleValue?: React.ReactElement;
+  isColorElement?: boolean;
+}

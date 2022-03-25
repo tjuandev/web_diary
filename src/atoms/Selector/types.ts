@@ -3,7 +3,8 @@ import { MenuProps, Props, SingleValueProps } from "react-select";
 export type SelectorProps = Props & {
   width?: string | number;
   isHorizontal?: boolean;
-  isHighlighter?: boolean;
+  customSingleValue?: React.ReactElement;
+  isColorElement?: boolean;
 };
 
 export type MenuCustomProps = MenuProps & {
@@ -15,5 +16,6 @@ export type SingleCustomValueProps = SingleValueProps & {
     value: string;
     label: string;
   };
-  isHighlighter?: boolean;
+  customSingleValue?: React.ReactElement;
+  isColorElement?: boolean;
 };

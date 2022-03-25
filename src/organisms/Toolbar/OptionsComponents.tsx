@@ -12,37 +12,16 @@ import {
 } from "utils/services/CustomEditor";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faImage } from "@fortawesome/free-solid-svg-icons";
+import { faHighlighter, faImage } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import { Editor } from "slate";
 
-type SelectorOptionsType = {
-  value: string;
-  label: string;
-};
-interface EditorInterface {
-  editor: Editor;
-}
-interface BaseButtonProps {
-  value: string | React.ReactElement;
-  isActive: boolean;
-  onMouseDown: React.MouseEventHandler;
-}
-
-interface BaseSelectorProps {
-  editor: Editor;
-  data: {
-    [x: string]: any;
-  };
-  selectorType?: "default" | "colorSelector";
-  toggleFunction: (editor: Editor, value: string) => void;
-  defaultValue: string;
-  isBlockElement?: boolean;
-  fragmentKey?: string;
-  width?: string;
-  isHorizontal?: boolean;
-  isHighlighter?: boolean;
-}
+import {
+  BaseButtonProps,
+  SelectorOptionsType,
+  BaseSelectorProps,
+  EditorInterface,
+} from "./types";
 
 const BaseButton = ({ value, isActive, onMouseDown }: BaseButtonProps) => {
   return (
@@ -220,7 +199,8 @@ export const BgSelector = ({ editor }: EditorInterface) => {
       fragmentKey="bgColor"
       isHorizontal={true}
       selectorType="colorSelector"
-      isHighlighter={true}
+      customSingleValue={<FontAwesomeIcon icon={faHighlighter} size="2x" />}
+      isColorElement
     />
   );
 };

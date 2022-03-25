@@ -43,20 +43,18 @@ export const Option = (props: OptionProps) => {
 };
 
 export const SingleValue = (props: SingleCustomValueProps) => {
-  const { data, children, isHighlighter } = props;
+  const { data, children, isColorElement, customSingleValue } = props;
 
   return (
     <>
       <components.SingleValue {...props}>
-        {isHighlighter ? (
-          <FontAwesomeIcon
-            icon={faHighlighter}
-            size="2x"
-            color={data.value === "transparent" ? "#c0c0c0" : data.value}
-          />
-        ) : (
-          children
-        )}
+        {customSingleValue
+          ? isColorElement
+            ? React.cloneElement(customSingleValue, {
+                color: data.value === "transparent" ? "#c0c0c0" : data.value,
+              })
+            : customSingleValue
+          : children}
       </components.SingleValue>
     </>
   );

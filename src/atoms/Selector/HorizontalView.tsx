@@ -11,7 +11,12 @@ import {
 import { SelectorProps, SingleCustomValueProps } from "./types";
 
 export const HorizontalSelector = (props: SelectorProps) => {
-  const { width = "10rem", isHorizontal = false, isHighlighter } = props;
+  const {
+    width = "10rem",
+    isHorizontal = false,
+    customSingleValue,
+    isColorElement,
+  } = props;
 
   return (
     <SelectorStyled
@@ -25,7 +30,8 @@ export const HorizontalSelector = (props: SelectorProps) => {
         Option: (props) => <ColorOption {...props} />,
         SingleValue: (props) => (
           <SingleValue
-            isHighlighter={isHighlighter}
+            customSingleValue={customSingleValue}
+            isColorElement={isColorElement}
             {...(props as SingleCustomValueProps)}
           />
         ),

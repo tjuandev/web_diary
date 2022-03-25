@@ -8,6 +8,9 @@ import {
   faListOl,
   faListUl,
   faTimesCircle,
+  faAlignLeft,
+  faAlignRight,
+  faAlignCenter,
 } from "@fortawesome/free-solid-svg-icons";
 import { RoundedButton } from "atoms";
 
@@ -42,7 +45,7 @@ const ColorsOptions = {
 };
 
 const BackgroundColorsOptions = {
-  "transparent": (
+  transparent: (
     <FontAwesomeIcon
       icon={faTimesCircle}
       color="#c0c0c0"
@@ -57,10 +60,16 @@ const BackgroundColorsOptions = {
   "#FF9BD7": <RoundedButton.Colored color="#FF9BD7" />,
 };
 
+const AlignButton = ({ icon }) => (
+  <RoundedButton.default>
+    <FontAwesomeIcon icon={icon} />
+  </RoundedButton.default>
+);
+
 const TextAlignOptions = {
-  left: "Left",
-  right: "Right",
-  center: "Center",
+  left: <AlignButton icon={faAlignLeft} />,
+  right: <AlignButton icon={faAlignRight} />,
+  center: <AlignButton icon={faAlignCenter} />,
 };
 
 const editorToolbar = {

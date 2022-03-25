@@ -123,7 +123,7 @@ const BaseSelector = (props: BaseSelectorProps) => {
   if (selectorType === "default") {
     return <Selector.default {...selectorProps} />;
   } else if (selectorType === "colorSelector") {
-    return <Selector.ColorSelector {...selectorProps} />;
+    return <Selector.HorizontalSelector {...selectorProps} />;
   }
 };
 
@@ -191,7 +191,6 @@ export const ColorSelector = ({ editor }: EditorInterface) => {
 
   return (
     <BaseSelector
-      width="7rem"
       editor={editor}
       data={editorToolbar.ColorsOptions}
       selectorType="colorSelector"

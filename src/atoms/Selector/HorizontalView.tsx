@@ -10,7 +10,7 @@ import {
 
 import { SelectorProps, SingleCustomValueProps } from "./types";
 
-export const ColorSelector = (props: SelectorProps) => {
+export const HorizontalSelector = (props: SelectorProps) => {
   const { width = "10rem", isHorizontal = false, isHighlighter } = props;
 
   return (

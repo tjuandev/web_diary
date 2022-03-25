@@ -1,5 +1,5 @@
 import { Selector } from "./View";
-import { ColorSelector } from "./ColorView";
+import { HorizontalSelector } from "./HorizontalView";
 
-export { ColorSelector };
+export { HorizontalSelector };
 export default Selector;

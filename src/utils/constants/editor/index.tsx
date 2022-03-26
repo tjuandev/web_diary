@@ -60,16 +60,16 @@ const BackgroundColorsOptions = {
   "#FF9BD7": <RoundedButton.Colored color="#FF9BD7" />,
 };
 
-const AlignButton = ({ icon }) => (
-  <RoundedButton.default>
+const AlignButton = ({ icon, ...props }) => (
+  <RoundedButton.default {...props}>
     <FontAwesomeIcon icon={icon} />
   </RoundedButton.default>
 );
 
 const TextAlignOptions = {
   left: <AlignButton icon={faAlignLeft} />,
-  right: <AlignButton icon={faAlignRight} />,
   center: <AlignButton icon={faAlignCenter} />,
+  right: <AlignButton icon={faAlignRight} />,
 };
 
 const editorToolbar = {

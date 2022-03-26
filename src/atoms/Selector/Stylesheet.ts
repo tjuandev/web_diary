@@ -32,6 +32,11 @@ export const SelectorStyled = styled(Select)<SelectorProps>`
     display: none;
   }
 
+  .roundedButton {
+    box-shadow: none;
+    background: transparent;
+  }
+
   position: relative;
 `;
 
@@ -90,9 +95,17 @@ export const ColorOptionWrapper = styled.div`
   .neo-selector__option--is-focused {
     background: transparent;
     cursor: pointer;
+
+    .roundedButton {
+      background: #e1e1e1;
+    }
   }
 
   .neo-selector__option--is-selected {
     background: transparent;
+
+    .roundedButton {
+      background: #d1d0d0;
+    }
   }
 `;

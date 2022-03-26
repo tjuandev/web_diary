@@ -3,8 +3,8 @@ import { SelectorStyled } from "./Stylesheet";
 import {
   DropdownIndicator,
   Menu,
-  ColorList,
-  ColorOption,
+  ButtonList,
+  ButtonOption,
   SingleValue,
 } from "./CustomComponents";
 
@@ -25,9 +25,9 @@ export const HorizontalSelector = (props: SelectorProps) => {
       isSearchable={false}
       components={{
         DropdownIndicator,
-        MenuList: ColorList,
+        MenuList: ButtonList,
         Menu: (props) => <Menu isHorizontal={isHorizontal} {...props} />,
-        Option: (props) => <ColorOption {...props} />,
+        Option: (props) => <ButtonOption {...props} />,
         SingleValue: (props) => (
           <SingleValue
             customSingleValue={customSingleValue}

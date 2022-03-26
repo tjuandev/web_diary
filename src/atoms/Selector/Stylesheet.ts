@@ -82,16 +82,15 @@ export const OptionItem = styled.div`
   }
 `;
 
-export const ColorListWrapper = styled(MenuListWrapper)`
+export const ButtonListWrapper = styled(MenuListWrapper)`
   border-radius: 5rem;
   padding: 0.5rem;
 `;
 
-export const ColorOptionWrapper = styled.div`
+export const ButtonOptionWrapper = styled.div`
   .neo-selector__option {
     padding: 0;
   }
-
   .neo-selector__option--is-focused {
     background: transparent;
     cursor: pointer;

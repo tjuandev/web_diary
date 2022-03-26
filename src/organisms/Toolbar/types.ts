@@ -18,7 +18,7 @@ export interface BaseSelectorProps {
   data: {
     [x: string]: any;
   };
-  selectorType?: "default" | "colorSelector";
+  selectorType?: "default" | "horizontalSelector";
   toggleFunction: (editor: Editor, value: string) => void;
   defaultValue: string;
   isBlockElement?: boolean;

@@ -101,7 +101,7 @@ const BaseSelector = (props: BaseSelectorProps) => {
 
   if (selectorType === "default") {
     return <Selector.default {...selectorProps} />;
-  } else if (selectorType === "colorSelector") {
+  } else if (selectorType === "horizontalSelector") {
     return <Selector.HorizontalSelector {...selectorProps} />;
   }
 };
@@ -113,7 +113,7 @@ export const SelectTypography = ({ editor }: EditorInterface) => {
       editor={editor}
       data={editorToolbar.TypographyOptions}
       toggleFunction={toggleBlock}
-      isBlockElement={true}
+      isBlockElement
       defaultValue="paragraph"
     />
   );
@@ -172,11 +172,11 @@ export const ColorSelector = ({ editor }: EditorInterface) => {
     <BaseSelector
       editor={editor}
       data={editorToolbar.ColorsOptions}
-      selectorType="colorSelector"
+      selectorType="horizontalSelector"
       toggleFunction={toggleFunction}
       fragmentKey="color"
       defaultValue="black"
-      isHorizontal={true}
+      isHorizontal
     />
   );
 };
@@ -197,8 +197,8 @@ export const BgSelector = ({ editor }: EditorInterface) => {
       toggleFunction={toggleFunction}
       defaultValue="transparent"
       fragmentKey="bgColor"
-      isHorizontal={true}
-      selectorType="colorSelector"
+      isHorizontal
+      selectorType="horizontalSelector"
       customSingleValue={<FontAwesomeIcon icon={faHighlighter} size="2x" />}
       isColorElement
     />
@@ -219,6 +219,8 @@ export const TextAlignmentSelector = ({ editor }: EditorInterface) => {
       toggleFunction={toggleFunction}
       defaultValue="left"
       fragmentKey="align"
+      selectorType="horizontalSelector"
+      isHorizontal
     />
   );
 };

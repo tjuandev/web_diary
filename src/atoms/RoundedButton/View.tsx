@@ -7,7 +7,7 @@ type RoundedButtonProps = {
 
 const RoundedButton = styled.button.attrs((props: RoundedButtonProps) => ({
   ...props,
-  className: props.active && "active",
+  className: `${props.active && "active"} roundedButton`,
 }))`
   display: flex;
   justify-content: center;

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Select from "react-select";
 
 import { SelectorProps, MenuCustomProps } from "./types";
@@ -51,7 +51,7 @@ export const SelectorStyled = styled(Select)<SelectorProps>`
 export const MenuWrapper = styled.menu<Pick<MenuCustomProps, "isHorizontal">>`
   .neo-selector__menu,
   .css-4ljt47-MenuList {
-    ${(props) => props.isHorizontal && `display: flex; gap: 0.5rem;`};
+    ${(props) => props.isHorizontal ? css`display: flex; gap: 0.5rem;` : ""};
 
     border: 0;
     box-shadow: none;

@@ -19,6 +19,8 @@ export const HorizontalSelector = (props: SelectorProps) => {
     isColorElement,
   } = props;
 
+  console.log("isHorizontal", isHorizontal);
+
   return (
     <SelectorStyled
       components={{

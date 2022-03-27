@@ -10,5 +10,6 @@ export const sharedProps: SharedProps = (width) => ({
   isSearchable: false,
   menuPlacement: "top",
   closeMenuOnSelect: false,
-  instanceId: uuid(),
+  instanceId: "teste",
+  id: "teste",
 });

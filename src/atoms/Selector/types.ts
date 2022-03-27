@@ -17,5 +17,6 @@ export type SingleCustomValueProps = SingleValueProps & {
     label: string;
   };
   customSingleValue?: React.ReactElement;
+  children?: React.ReactElement;
   isColorElement?: boolean;
 };

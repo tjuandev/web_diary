@@ -1,5 +1,7 @@
 import { SelectorProps } from "./types";
 
+import uuid from "react-uuid";
+
 type SharedProps = (width: number | string) => SelectorProps;
 
 export const sharedProps: SharedProps = (width) => ({
@@ -8,4 +10,5 @@ export const sharedProps: SharedProps = (width) => ({
   isSearchable: false,
   menuPlacement: "top",
   closeMenuOnSelect: false,
+  instanceId: uuid(),
 });

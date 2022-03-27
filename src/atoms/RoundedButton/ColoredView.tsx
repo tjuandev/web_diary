@@ -6,7 +6,7 @@ import { faCheck } from "@fortawesome/free-solid-svg-icons";
 type ColoredProps = {
   color: string;
   className?: string;
-  buttonDisabled?: boolean;
+  disable?: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 };
 
@@ -21,7 +21,7 @@ const Wrapper = styled.div.attrs((props) => ({
   position: relative;
 
   ${(props) =>
-    props.buttonDisabled
+    props.disable
       ? ""
       : css`
           :hover {

@@ -54,7 +54,7 @@ export const SingleValue = (props: SingleCustomValueProps) => {
     else if (isColorElement) {
       return React.cloneElement(childrenType, {
         color: transparentColor,
-        buttonDisabled: true,
+        disable: "true",
       });
     } else return children;
   };

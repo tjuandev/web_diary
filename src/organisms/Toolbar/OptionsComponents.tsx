@@ -177,6 +177,7 @@ export const ColorSelector = ({ editor }: EditorInterface) => {
       fragmentKey="color"
       defaultValue="black"
       isHorizontal
+      isColorElement
     />
   );
 };

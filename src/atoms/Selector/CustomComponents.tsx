@@ -1,4 +1,4 @@
-import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
+import { faCaretUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { ReactElement } from "react";
 
@@ -14,7 +14,7 @@ import {
 
 import { MenuCustomProps, SingleCustomValueProps } from "./types";
 
-export const DropdownIndicator = () => <FontAwesomeIcon icon={faCaretDown} />;
+export const DropdownIndicator = () => <FontAwesomeIcon icon={faCaretUp} />;
 
 export const Menu = (props: MenuCustomProps) => {
   const { isHorizontal = false } = props;

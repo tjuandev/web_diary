@@ -8,6 +8,8 @@ export const SelectorStyled = styled(Select)<SelectorProps>`
 
   .neo-selector__control,
   .neo-selector__control--menu-is-open {
+    cursor: pointer;
+
     height: 3rem;
     padding: 0 1rem;
 

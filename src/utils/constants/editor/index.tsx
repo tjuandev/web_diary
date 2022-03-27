@@ -7,7 +7,12 @@ import {
   faStrikethrough,
   faListOl,
   faListUl,
+  faTimesCircle,
+  faAlignLeft,
+  faAlignRight,
+  faAlignCenter,
 } from "@fortawesome/free-solid-svg-icons";
+import { RoundedButton } from "atoms";
 
 const MarkButtons = {
   bold: <FontAwesomeIcon icon={faBold} />,
@@ -23,35 +28,48 @@ const BlockButtons = {
 };
 
 const TypographyOptions = {
-  default: "Text",
+  paragraph: "Text",
   h1: "Heading 1",
   h2: "Heading 2",
   h3: "Heading 3",
 };
 
 const ColorsOptions = {
-  black: "#000",
-  green: "#00ff7a",
-  purple: "#7a00ff",
-  yellow: "#fffa00",
-  red: "#ff0006",
-  blue: "#0085ff",
+  black: <RoundedButton.Colored color="black" />,
+  "#FF7A00": <RoundedButton.Colored color="#FF7A00" />,
+  "#FF0000": <RoundedButton.Colored color="#FF0000" />,
+  "#1CC600": <RoundedButton.Colored color="#1CC600" />,
+  "#00B2FF": <RoundedButton.Colored color="#00B2FF" />,
+  "#8F00FF": <RoundedButton.Colored color="#8F00FF" />,
+  "#EE0490": <RoundedButton.Colored color="#EE0490" />,
 };
 
 const BackgroundColorsOptions = {
-  transparent: "Transparent",
-  lightGrey: "#7f7f7f",
-  lightGreen: "#ccffe4",
-  lightPurple: "#e4ccff",
-  lightYellow: "#fffecc",
-  lightRed: "#ffcccd",
-  lightBlue: "#cce6ff",
+  transparent: (
+    <FontAwesomeIcon
+      icon={faTimesCircle}
+      color="#c0c0c0"
+      style={{ fontSize: "2rem" }}
+    />
+  ),
+  "#FFA41B": <RoundedButton.Colored color="#FFA41B" />,
+  "#FF7676": <RoundedButton.Colored color="#FF7676" />,
+  "#A1FF8A": <RoundedButton.Colored color="#A1FF8A" />,
+  "#90DEFF": <RoundedButton.Colored color="#90DEFF" />,
+  "#D8A7FF": <RoundedButton.Colored color="#D8A7FF" />,
+  "#FF9BD7": <RoundedButton.Colored color="#FF9BD7" />,
 };
 
+const AlignButton = ({ icon, ...props }) => (
+  <RoundedButton.default {...props}>
+    <FontAwesomeIcon icon={icon} />
+  </RoundedButton.default>
+);
+
 const TextAlignOptions = {
-  left: "Left",
-  right: "Right",
-  center: "Center",
+  left: <AlignButton icon={faAlignLeft} />,
+  center: <AlignButton icon={faAlignCenter} />,
+  right: <AlignButton icon={faAlignRight} />,
 };
 
 const editorToolbar = {

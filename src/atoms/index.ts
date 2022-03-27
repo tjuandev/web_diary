@@ -1,3 +1,4 @@
-import RoundedButton from "./RoundedButton";
+import * as RoundedButton from "./RoundedButton";
+import * as Selector from "./Selector";
 
-export { RoundedButton };
+export { RoundedButton, Selector };

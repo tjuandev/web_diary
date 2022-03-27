@@ -1,4 +1,4 @@
-import { RoundedButton } from "atoms";
+import { RoundedButton, Selector } from "atoms";
 import { useSlateStatic } from "slate-react";
 import { editorToolbar } from "utils/constants";
 import {
@@ -12,41 +12,114 @@ import {
 } from "utils/services/CustomEditor";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faImage } from "@fortawesome/free-solid-svg-icons";
+import { faHighlighter, faImage } from "@fortawesome/free-solid-svg-icons";
+import { useEffect, useState } from "react";
+import { Editor } from "slate";
 
-const BaseButton = ({ value, isActive, onMouseDown }) => {
+import {
+  BaseButtonProps,
+  SelectorOptionsType,
+  BaseSelectorProps,
+  EditorInterface,
+} from "./types";
+
+const BaseButton = ({ value, isActive, onMouseDown }: BaseButtonProps) => {
   return (
-    <RoundedButton
-      key={value}
+    <RoundedButton.default
+      key={value as string}
       style={{ margin: "0.5rem" }}
       active={isActive}
       onMouseDown={onMouseDown}
     >
       {value}
-    </RoundedButton>
+    </RoundedButton.default>
   );
 };
 
-export const SelectTypography = ({ editor }) => {
+const getCurrentEditorSelection = (
+  editor: Editor,
+  isBlockElement?: boolean
+) => {
+  const currentSelection = isBlockElement
+    ? editor.getFragment()[0]
+    : editor.getFragment()[0]?.children[0];
+
+  if (currentSelection?.type === "list-item")
+    return currentSelection.children[0];
+
+  return currentSelection;
+};
+
+const BaseSelector = (props: BaseSelectorProps) => {
+  const {
+    editor,
+    data,
+    selectorType = "default",
+    toggleFunction,
+    defaultValue,
+    isBlockElement = false,
+    fragmentKey = "type",
+    width,
+    ...extraProps
+  } = props;
+
+  const options = Object.entries(data).map(([value, label]) => {
+    return {
+      value,
+      label,
+    };
+  });
+
+  const currentFragmentType = getCurrentEditorSelection(
+    editor,
+    isBlockElement
+  )?.[fragmentKey];
+
+  const [value, setValue] = useState(options[0]);
+
+  const currentValue = options.find(({ value }) => {
+    if (!currentFragmentType) return value === defaultValue;
+
+    return value === currentFragmentType;
+  });
+
+  useEffect(() => {
+    setValue(currentValue);
+  }, [currentFragmentType]);
+
+  const selectorProps = {
+    options: options,
+    onChange: (newValue: SelectorOptionsType) => {
+      toggleFunction(editor, newValue.value);
+      return setValue(newValue);
+    },
+    defaultValue: defaultValue,
+    value: value,
+    width: width,
+    ...extraProps,
+  };
+
+  if (selectorType === "default") {
+    return <Selector.default {...selectorProps} />;
+  } else if (selectorType === "horizontalSelector") {
+    return <Selector.HorizontalSelector {...selectorProps} />;
+  }
+};
+
+export const SelectTypography = ({ editor }: EditorInterface) => {
   return (
-    <select
-      onChange={(e) => {
-        return toggleBlock(editor, e.target.value);
-      }}
-      value={editor.getFragment()[0]?.type}
-    >
-      {Object.entries(editorToolbar.TypographyOptions).map(([value, label]) => {
-        return (
-          <option value={value} key={value}>
-            {label}
-          </option>
-        );
-      })}
-    </select>
+    <BaseSelector
+      width="10rem"
+      editor={editor}
+      data={editorToolbar.TypographyOptions}
+      toggleFunction={toggleBlock}
+      isBlockElement
+      defaultValue="paragraph"
+    />
   );
 };
 
-export const MarkButtons = ({ editor }) => {
+export const MarkButtons = ({ editor }: EditorInterface) => {
   const Buttons = Object.entries(editorToolbar.MarkButtons).map(
     ([format, value]) => {
       return (
@@ -66,7 +139,7 @@ export const MarkButtons = ({ editor }) => {
   return <>{Buttons}</>;
 };
 
-export const BlockButtons = ({ editor }) => {
+export const BlockButtons = ({ editor }: EditorInterface) => {
   const Buttons = Object.entries(editorToolbar.BlockButtons).map(
     ([format, value]) => {
       return (
@@ -86,91 +159,70 @@ export const BlockButtons = ({ editor }) => {
   return <>{Buttons}</>;
 };
 
-const getCurrentSelection = (editor) => {
-  const currentSelection = editor.getFragment()[0]?.children[0];
-
-  if (currentSelection?.type === "list-item")
-    return currentSelection.children[0];
-
-  return currentSelection;
-};
-
-export const ColorSelector = ({ editor }) => {
-  const getColorOfSelection = getCurrentSelection(editor)?.color || "#000";
+export const ColorSelector = ({ editor }: EditorInterface) => {
+  const toggleFunction = (_: Editor, value: string) => {
+    toggleSelectorLeaf(
+      editor,
+      { isColor: true, color: value },
+      { split: true, hanging: true }
+    );
+  };
 
   return (
-    <select
-      onChange={(e) => {
-        return toggleSelectorLeaf(
-          editor,
-          {
-            isColor: true,
-            color: e.target.value,
-          },
-          { split: true, hanging: true }
-        );
-      }}
-      value={getColorOfSelection}
-    >
-      {Object.entries(editorToolbar.ColorsOptions).map(([key, color]) => {
-        return (
-          <option value={color} key={key}>
-            {color}
-          </option>
-        );
-      })}
-    </select>
+    <BaseSelector
+      editor={editor}
+      data={editorToolbar.ColorsOptions}
+      selectorType="horizontalSelector"
+      toggleFunction={toggleFunction}
+      fragmentKey="color"
+      defaultValue="black"
+      isHorizontal
+      isColorElement
+    />
   );
 };
 
-export const BgSelector = ({ editor }) => {
-  const getBgColorOfSelection = getCurrentSelection(editor)?.bgColor || "";
+export const BgSelector = ({ editor }: EditorInterface) => {
+  const toggleFunction = (_: Editor, value: string) => {
+    toggleSelectorLeaf(
+      editor,
+      { isBg: true, bgColor: value },
+      { split: true, hanging: true }
+    );
+  };
 
   return (
-    <select
-      onChange={(e) => {
-        return toggleSelectorLeaf(
-          editor,
-          {
-            isBg: true,
-            bgColor: e.target.value,
-          },
-          { split: true, hanging: true }
-        );
-      }}
-      value={getBgColorOfSelection}
-    >
-      {Object.entries(editorToolbar.BackgroundColorsOptions).map(
-        ([key, color]) => {
-          return (
-            <option value={color} key={key}>
-              {color}
-            </option>
-          );
-        }
-      )}
-    </select>
+    <BaseSelector
+      editor={editor}
+      data={editorToolbar.BackgroundColorsOptions}
+      toggleFunction={toggleFunction}
+      defaultValue="transparent"
+      fragmentKey="bgColor"
+      isHorizontal
+      selectorType="horizontalSelector"
+      customSingleValue={<FontAwesomeIcon icon={faHighlighter} size="2x" />}
+      isColorElement
+    />
   );
 };
 
-export const TextAlignmentSelector = ({ editor }) => {
+export const TextAlignmentSelector = ({ editor }: EditorInterface) => {
+  const toggleFunction = (editor, value) => {
+    return toggleSelectorLeaf(editor, {
+      align: value,
+    });
+  };
+
   return (
-    <select
-      onChange={(e) => {
-        return toggleSelectorLeaf(editor, {
-          align: e.target.value,
-        });
-      }}
-      value={getCurrentSelection(editor)?.align || "left"}
-    >
-      {Object.entries(editorToolbar.TextAlignOptions).map(([value, label]) => {
-        return (
-          <option value={value} key={value}>
-            {label}
-          </option>
-        );
-      })}
-    </select>
+    <BaseSelector
+      editor={editor}
+      data={editorToolbar.TextAlignOptions}
+      toggleFunction={toggleFunction}
+      defaultValue="left"
+      fragmentKey="align"
+      selectorType="horizontalSelector"
+      isHorizontal
+    />
   );
 };
 
@@ -198,7 +250,7 @@ export const InsertImageButton = () => {
   );
 };
 
-const Options = ({ editor }) => {
+const Options = ({ editor }: EditorInterface) => {
   return (
     <>
       <SelectTypography editor={editor} />

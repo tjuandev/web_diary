@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
 type RoundedButtonProps = {
-  active: string;
+  active: boolean;
   [x: string]: any;
 };
 
 const RoundedButton = styled.button.attrs((props: RoundedButtonProps) => ({
   ...props,
-  className: props.active && "active",
+  className: `${props.active && "active"} roundedButton`,
 }))`
   display: flex;
   justify-content: center;
@@ -20,7 +20,7 @@ const RoundedButton = styled.button.attrs((props: RoundedButtonProps) => ({
   box-shadow: -2px -2px 5px #ffffff, 2px 2px 5px rgba(0, 0, 0, 0.15);
   border-radius: 50%;
 
-  font-size: large;
+  font-size: x-large;
 
   > svg {
     width: 35%;

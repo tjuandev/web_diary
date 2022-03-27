@@ -4,13 +4,9 @@ import { ReactEditor } from "slate-react";
 
 export const CustomEditor = BaseEditor & ReactEditor & HistoryEditor;
 
-type CustomText = {
-  type: string;
-  children: any[];
-};
-
 type GenericElement = {
   type: string;
+  children: any[];
 };
 
 type UrlElement = {
@@ -32,6 +28,6 @@ declare module "slate" {
   interface CustomTypes {
     Editor: CustomEditor;
     Element: CustomElements;
-    Text: CustomText;
+    Text: GenericElement;
   }
 }

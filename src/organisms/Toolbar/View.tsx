@@ -4,7 +4,7 @@ import { useSlate } from "slate-react";
 
 import Options from "./OptionsComponents";
 
-const View = () => {
+export const Toolbar = () => {
   const editor = useSlate();
 
   return (
@@ -13,5 +13,3 @@ const View = () => {
     </BarContainer>
   );
 };
-
-export default View;

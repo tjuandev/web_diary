@@ -25,7 +25,7 @@ const Wrapper = styled.div.attrs((props) => ({
       ? ""
       : css`
           :hover {
-            filter: brightness(0.5);
+            filter: brightness(0.8);
           }
         `}
 

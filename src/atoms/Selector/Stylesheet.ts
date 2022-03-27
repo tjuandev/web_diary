@@ -10,6 +10,8 @@ export const SelectorStyled = styled(Select)<SelectorProps>`
   .neo-selector__control--menu-is-open {
     cursor: pointer;
 
+    flex-wrap: unset;
+
     height: 3rem;
     padding: 0 1rem;
 
@@ -28,6 +30,10 @@ export const SelectorStyled = styled(Select)<SelectorProps>`
       box-shadow: inset -2px -2px 5px #ffffff,
         inset 1px 1px 5px rgba(0, 0, 0, 0.2);
     }
+  }
+
+  .neo-selector__value-container {
+    padding: 0 1rem 0 0;
   }
 
   .neo-selector__indicator-separator {

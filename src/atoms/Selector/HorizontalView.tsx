@@ -9,6 +9,7 @@ import {
 } from "./CustomComponents";
 
 import { SelectorProps, SingleCustomValueProps } from "./types";
+import { sharedProps } from "./sharedProps";
 
 export const HorizontalSelector = (props: SelectorProps) => {
   const {
@@ -20,9 +21,6 @@ export const HorizontalSelector = (props: SelectorProps) => {
 
   return (
     <SelectorStyled
-      classNamePrefix="neo-selector"
-      width={width}
-      isSearchable={false}
       components={{
         DropdownIndicator,
         MenuList: ButtonList,
@@ -36,6 +34,7 @@ export const HorizontalSelector = (props: SelectorProps) => {
           />
         ),
       }}
+      {...sharedProps(width)}
       {...props}
     />
   );

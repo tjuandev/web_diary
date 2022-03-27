@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
@@ -6,6 +6,7 @@ import { faCheck } from "@fortawesome/free-solid-svg-icons";
 type ColoredProps = {
   color: string;
   className?: string;
+  buttonDisabled?: boolean;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 };
 
@@ -19,9 +20,14 @@ const Wrapper = styled.div.attrs((props) => ({
 
   position: relative;
 
-  :hover {
-    filter: brightness(0.85);
-  }
+  ${(props) =>
+    props.buttonDisabled
+      ? ""
+      : css`
+          :hover {
+            filter: brightness(0.5);
+          }
+        `}
 
   .icon {
     display: none;

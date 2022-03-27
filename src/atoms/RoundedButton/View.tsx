@@ -20,7 +20,7 @@ const RoundedButton = styled.button.attrs((props: RoundedButtonProps) => ({
   box-shadow: -2px -2px 5px #ffffff, 2px 2px 5px rgba(0, 0, 0, 0.15);
   border-radius: 50%;
 
-  font-size: large;
+  font-size: x-large;
 
   > svg {
     width: 35%;

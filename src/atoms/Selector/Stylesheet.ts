@@ -45,6 +45,10 @@ export const SelectorStyled = styled(Select)<SelectorProps>`
     background: transparent;
   }
 
+  .roundedButton:hover {
+    box-shadow: none;
+  }
+
   position: relative;
 `;
 

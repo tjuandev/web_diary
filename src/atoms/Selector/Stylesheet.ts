@@ -48,15 +48,18 @@ export const SelectorStyled = styled(Select)<SelectorProps>`
   position: relative;
 `;
 
-export const MenuWrapper = styled.menu<Pick<MenuCustomProps, "isHorizontal">>`
-  .neo-selector__menu,
-  .css-4ljt47-MenuList {
-    ${(props) => props.isHorizontal && `display: flex; gap: 0.5rem;`};
-
+export const MenuWrapper = styled.menu`
+  .neo-selector__menu {
     border: 0;
     box-shadow: none;
     background: transparent;
     padding: 0;
+  }
+`;
+
+export const MenuHorizontalWrapper = styled(MenuWrapper)`
+  .neo-selector__menu {
+    display: flex;
   }
 `;
 

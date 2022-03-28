@@ -49,8 +49,7 @@ export const SelectorStyled = styled(Select)<SelectorProps>`
 `;
 
 export const MenuWrapper = styled.menu<Pick<MenuCustomProps, "isHorizontal">>`
-  .neo-selector__menu,
-  .css-4ljt47-MenuList {
+  .neo-selector__menu {
     ${(props) => props.isHorizontal ? css`display: flex; gap: 0.5rem;` : ""};
 
     border: 0;

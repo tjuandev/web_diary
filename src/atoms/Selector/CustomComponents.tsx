@@ -17,10 +17,8 @@ import { MenuCustomProps, SingleCustomValueProps } from "./types";
 export const DropdownIndicator = () => <FontAwesomeIcon icon={faCaretUp} />;
 
 export const Menu = (props: MenuCustomProps) => {
-  const { isHorizontal = false } = props;
-
   return (
-    <MenuWrapper isHorizontal={isHorizontal}>
+    <MenuWrapper>
       <components.Menu {...props}>{props.children}</components.Menu>
     </MenuWrapper>
   );

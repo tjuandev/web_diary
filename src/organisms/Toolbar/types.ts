@@ -24,7 +24,6 @@ export interface BaseSelectorProps {
   isBlockElement?: boolean;
   fragmentKey?: string;
   width?: string;
-  isHorizontal?: boolean;
   isHighlighter?: boolean;
   customSingleValue?: React.ReactElement;
   isColorElement?: boolean;

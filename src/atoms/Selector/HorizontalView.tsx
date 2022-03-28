@@ -14,12 +14,10 @@ import { sharedProps } from "./sharedProps";
 export const HorizontalSelector = (props: SelectorProps) => {
   const {
     width = "10rem",
-    isHorizontal = false,
+    isHorizontal,
     customSingleValue,
     isColorElement,
   } = props;
-
-  console.log("isHorizontal", isHorizontal);
 
   return (
     <SelectorStyled

@@ -1,4 +1,4 @@
-import { RoundedButton, Selector } from "atoms";
+import { RoundedButton, Selector, HorizontalSelector } from "atoms";
 import { useSlateStatic } from "slate-react";
 import { editorToolbar } from "utils/constants";
 import {
@@ -100,9 +100,9 @@ const BaseSelector = (props: BaseSelectorProps) => {
   };
 
   if (selectorType === "default") {
-    return <Selector.default {...selectorProps} />;
+    return <Selector {...selectorProps} />;
   } else if (selectorType === "horizontalSelector") {
-    return <Selector.HorizontalSelector {...selectorProps} />;
+    return <HorizontalSelector {...selectorProps} />;
   }
 };
 

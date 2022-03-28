@@ -1,6 +1,4 @@
-import dynamic from "next/dynamic";
-
-const Editor = dynamic(() => import("../templates/Editor"), { ssr: false });
+import { Editor } from "templates";
 
 const Diary = () => {
   return <Editor />;

@@ -58,8 +58,10 @@ export const MenuWrapper = styled.menu`
 `;
 
 export const MenuHorizontalWrapper = styled(MenuWrapper)`
-  .neo-selector__menu {
+  .neo-selector__menu,
+  .neo-selector__menu-list {
     display: flex;
+    gap: 0.5rem;
   }
 `;
 

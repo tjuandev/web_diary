@@ -74,6 +74,10 @@ export const MenuListWrapper = styled.div`
   border-radius: 1rem;
   box-shadow: -2px -2px 5px #ffffff, 2px 2px 5px rgba(0, 0, 0, 0.15);
 
+  .neo-selector__menu-list {
+    padding: 0;
+  }
+
   > div > div:first-child .neo-selector__option {
     border-radius: 1rem 1rem 0 0;
   }

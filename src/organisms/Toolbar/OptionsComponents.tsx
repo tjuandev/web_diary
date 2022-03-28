@@ -102,7 +102,7 @@ const BaseSelector = (props: BaseSelectorProps) => {
   if (selectorType === "default") {
     return <Selector {...selectorProps} />;
   } else if (selectorType === "horizontalSelector") {
-    return <HorizontalSelector {...selectorProps} />;
+    return <HorizontalSelector {...(selectorProps as any)} />;
   }
 };
 

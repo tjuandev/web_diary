@@ -10,6 +10,7 @@ import {
   OptionItem,
   ButtonListWrapper,
   ButtonOptionWrapper,
+  MenuHorizontalWrapper,
 } from "./Stylesheet";
 
 import { MenuCustomProps, SingleCustomValueProps } from "./types";
@@ -21,6 +22,14 @@ export const Menu = (props: MenuCustomProps) => {
     <MenuWrapper>
       <components.Menu {...props}>{props.children}</components.Menu>
     </MenuWrapper>
+  );
+};
+
+export const MenuHorizontal = (props: MenuCustomProps) => {
+  return (
+    <MenuHorizontalWrapper>
+      <components.Menu {...props}>{props.children}</components.Menu>
+    </MenuHorizontalWrapper>
   );
 };
 

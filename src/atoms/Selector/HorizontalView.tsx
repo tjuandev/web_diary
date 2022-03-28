@@ -23,6 +23,7 @@ export const HorizontalSelector = (props: SelectorProps) => {
 
   return (
     <SelectorStyled
+      menuIsOpen
       components={{
         DropdownIndicator,
         MenuList: ButtonList,

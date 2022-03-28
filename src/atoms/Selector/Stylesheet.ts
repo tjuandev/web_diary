@@ -45,14 +45,15 @@ export const SelectorStyled = styled(Select)<SelectorProps>`
     background: transparent;
   }
 
+  .roundedButton:hover {
+    box-shadow: none;
+  }
+
   position: relative;
 `;
 
-export const MenuWrapper = styled.menu<Pick<MenuCustomProps, "isHorizontal">>`
-  .neo-selector__menu,
-  .css-4ljt47-MenuList {
-    ${(props) => props.isHorizontal && `display: flex; gap: 0.5rem;`};
-
+export const MenuWrapper = styled.menu`
+  .neo-selector__menu {
     border: 0;
     box-shadow: none;
     background: transparent;
@@ -60,10 +61,22 @@ export const MenuWrapper = styled.menu<Pick<MenuCustomProps, "isHorizontal">>`
   }
 `;
 
+export const MenuHorizontalWrapper = styled(MenuWrapper)`
+  .neo-selector__menu,
+  .neo-selector__menu-list {
+    display: flex;
+    gap: 0.5rem;
+  }
+`;
+
 export const MenuListWrapper = styled.div`
   background: #f4f4f4;
   border-radius: 1rem;
   box-shadow: -2px -2px 5px #ffffff, 2px 2px 5px rgba(0, 0, 0, 0.15);
+
+  .neo-selector__menu-list {
+    padding: 0;
+  }
 
   > div > div:first-child .neo-selector__option {
     border-radius: 1rem 1rem 0 0;

@@ -176,7 +176,6 @@ export const ColorSelector = ({ editor }: EditorInterface) => {
       toggleFunction={toggleFunction}
       fragmentKey="color"
       defaultValue="black"
-      isHorizontal
       isColorElement
     />
   );
@@ -198,7 +197,6 @@ export const BgSelector = ({ editor }: EditorInterface) => {
       toggleFunction={toggleFunction}
       defaultValue="transparent"
       fragmentKey="bgColor"
-      isHorizontal
       selectorType="horizontalSelector"
       customSingleValue={<FontAwesomeIcon icon={faHighlighter} size="2x" />}
       isColorElement
@@ -221,7 +219,6 @@ export const TextAlignmentSelector = ({ editor }: EditorInterface) => {
       defaultValue="left"
       fragmentKey="align"
       selectorType="horizontalSelector"
-      isHorizontal
     />
   );
 };

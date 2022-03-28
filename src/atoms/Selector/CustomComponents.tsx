@@ -10,6 +10,7 @@ import {
   OptionItem,
   ButtonListWrapper,
   ButtonOptionWrapper,
+  MenuHorizontalWrapper,
 } from "./Stylesheet";
 
 import { MenuCustomProps, SingleCustomValueProps } from "./types";
@@ -17,12 +18,18 @@ import { MenuCustomProps, SingleCustomValueProps } from "./types";
 export const DropdownIndicator = () => <FontAwesomeIcon icon={faCaretUp} />;
 
 export const Menu = (props: MenuCustomProps) => {
-  const { isHorizontal = false } = props;
-
   return (
-    <MenuWrapper isHorizontal={isHorizontal}>
+    <MenuWrapper>
       <components.Menu {...props}>{props.children}</components.Menu>
     </MenuWrapper>
+  );
+};
+
+export const MenuHorizontal = (props: MenuCustomProps) => {
+  return (
+    <MenuHorizontalWrapper>
+      <components.Menu {...props}>{props.children}</components.Menu>
+    </MenuHorizontalWrapper>
   );
 };
 

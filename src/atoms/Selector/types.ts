@@ -2,7 +2,6 @@ import { MenuProps, Props, SingleValueProps } from "react-select";
 
 export type SelectorProps = Props & {
   width?: string | number;
-  isHorizontal?: boolean;
   customSingleValue?: React.ReactElement;
   isColorElement?: boolean;
 };

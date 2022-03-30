@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Select from "react-select";
 
-import { SelectorProps, MenuCustomProps } from "./types";
+import { SelectorProps } from "./types";
 
 export const SelectorStyled = styled(Select)<SelectorProps>`
   width: ${(props) => props.width};
@@ -38,6 +38,10 @@ export const SelectorStyled = styled(Select)<SelectorProps>`
 
   .neo-selector__indicator-separator {
     display: none;
+  }
+
+  .neo-selector__single-value {
+    overflow: initial;
   }
 
   .roundedButton {

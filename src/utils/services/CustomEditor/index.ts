@@ -21,6 +21,14 @@ export const toggleSelectorLeaf = (
   });
 };
 
+export const toggleAlignmentLeaf = (editor: Editor, properties) => {
+  return Transforms.setNodes(
+    editor,
+    { ...properties },
+    { match: (n) => Text.isText(n) }
+  );
+};
+
 const toggleLinkLeaf = (editor: Editor) => {
   const url = prompt("url:");
 

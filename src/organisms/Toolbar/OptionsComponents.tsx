@@ -6,6 +6,7 @@ import {
   isBlockActive,
   isImageUrl,
   isMarkActive,
+  toggleAlignmentLeaf,
   toggleBlock,
   toggleMark,
   toggleSelectorLeaf,
@@ -201,9 +202,7 @@ export const BgSelector = ({ editor }: EditorInterface) => {
 
 export const TextAlignmentSelector = ({ editor }: EditorInterface) => {
   const toggleFunction = (editor, value) => {
-    return toggleSelectorLeaf(editor, {
-      align: value,
-    });
+    return toggleAlignmentLeaf(editor, { align: { value } });
   };
 
   return (

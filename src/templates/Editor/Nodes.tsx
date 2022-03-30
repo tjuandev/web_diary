@@ -15,8 +15,12 @@ interface LeafProps {
   attributes: any;
   leaf: {
     format: string;
-    color: string;
-    bgColor: string;
+    color: {
+      value: string;
+    };
+    bgColor: {
+      value: string;
+    };
     link: boolean;
     url: string;
   };
@@ -43,8 +47,8 @@ export const Leaf = (props: LeafProps) => {
     fontWeight: leafFlag("bold"),
     fontStyle: leafFlag("italic"),
     textDecoration: `${leafFlag("line-through")} ${leafFlag("underline")}`,
-    color: leaf.color,
-    backgroundColor: leaf.bgColor,
+    color: leaf?.color?.value,
+    backgroundColor: leaf?.bgColor?.value,
   };
 
   if (leaf.link) {

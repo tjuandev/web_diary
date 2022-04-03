@@ -10,16 +10,15 @@ export const BarContainer = styled.nav`
   top: calc(90% - 4rem);
   left: 50%;
 
+  z-index: 2;
+
   transform: translateX(-50%);
   max-width: 100%;
-  
   @media (max-width: 980px) {
     top: 100vh;
     left: 0;
     transform: translate(0, -100%);
-    
     border-radius: 0;
-  
     overflow-x: scroll;
   }
 `;

@@ -247,10 +247,10 @@ const Options = ({ editor }: EditorInterface) => {
       <SelectTypography editor={editor} />
       <MarkButtons editor={editor} />
       <BlockButtons editor={editor} />
-      <InsertImageButton />
       <ColorSelector editor={editor} />
       <BgSelector editor={editor} />
       <TextAlignmentSelector editor={editor} />
+      <InsertImageButton />
     </>
   );
 };

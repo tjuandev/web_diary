@@ -1,4 +1,4 @@
-import { BarContainer } from "./Stylesheet";
+import { BarContainer, OptionsContainer } from "./Stylesheet";
 
 import { useSlate } from "slate-react";
 
@@ -9,7 +9,9 @@ export const Toolbar = () => {
 
   return (
     <BarContainer>
-      <Options editor={editor} />
+      <OptionsContainer>
+        <Options editor={editor} />
+      </OptionsContainer>
     </BarContainer>
   );
 };

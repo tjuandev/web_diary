@@ -6,6 +6,7 @@ import {
   isBlockActive,
   isImageUrl,
   isMarkActive,
+  toggleAlignmentLeaf,
   toggleBlock,
   toggleMark,
   toggleSelectorLeaf,
@@ -27,7 +28,6 @@ const BaseButton = ({ value, isActive, onMouseDown }: BaseButtonProps) => {
   return (
     <RoundedButton.default
       key={value as string}
-      style={{ margin: "0.5rem" }}
       active={isActive}
       onMouseDown={onMouseDown}
     >
@@ -38,11 +38,14 @@ const BaseButton = ({ value, isActive, onMouseDown }: BaseButtonProps) => {
 
 const getCurrentEditorSelection = (
   editor: Editor,
+  fragmentKey: string,
   isBlockElement?: boolean
 ) => {
+  const fragment = editor.getFragment()[0];
+
   const currentSelection = isBlockElement
-    ? editor.getFragment()[0]
-    : editor.getFragment()[0]?.children[0];
+    ? fragment?.[fragmentKey]
+    : fragment?.children[0]?.[fragmentKey]?.value;
 
   if (currentSelection?.type === "list-item")
     return currentSelection.children[0];
@@ -72,8 +75,9 @@ const BaseSelector = (props: BaseSelectorProps) => {
 
   const currentFragmentType = getCurrentEditorSelection(
     editor,
+    fragmentKey,
     isBlockElement
-  )?.[fragmentKey];
+  );
 
   const [value, setValue] = useState(options[0]);
 
@@ -161,11 +165,7 @@ export const BlockButtons = ({ editor }: EditorInterface) => {
 
 export const ColorSelector = ({ editor }: EditorInterface) => {
   const toggleFunction = (_: Editor, value: string) => {
-    toggleSelectorLeaf(
-      editor,
-      { isColor: true, color: value },
-      { split: true, hanging: true }
-    );
+    toggleSelectorLeaf(editor, "color", { isActive: true, value });
   };
 
   return (
@@ -183,11 +183,7 @@ export const ColorSelector = ({ editor }: EditorInterface) => {
 
 export const BgSelector = ({ editor }: EditorInterface) => {
   const toggleFunction = (_: Editor, value: string) => {
-    toggleSelectorLeaf(
-      editor,
-      { isBg: true, bgColor: value },
-      { split: true, hanging: true }
-    );
+    toggleSelectorLeaf(editor, "bgColor", { isActive: true, value });
   };
 
   return (
@@ -206,9 +202,7 @@ export const BgSelector = ({ editor }: EditorInterface) => {
 
 export const TextAlignmentSelector = ({ editor }: EditorInterface) => {
   const toggleFunction = (editor, value) => {
-    return toggleSelectorLeaf(editor, {
-      align: value,
-    });
+    return toggleAlignmentLeaf(editor, { align: { value } });
   };
 
   return (
@@ -253,10 +247,10 @@ const Options = ({ editor }: EditorInterface) => {
       <SelectTypography editor={editor} />
       <MarkButtons editor={editor} />
       <BlockButtons editor={editor} />
-      <InsertImageButton />
       <ColorSelector editor={editor} />
       <BgSelector editor={editor} />
       <TextAlignmentSelector editor={editor} />
+      <InsertImageButton />
     </>
   );
 };

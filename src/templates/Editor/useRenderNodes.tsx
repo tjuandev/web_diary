@@ -9,7 +9,7 @@ import {
   ListItem,
   NumberedList,
   BulletedList,
-  Image
+  Image,
 } from "./Nodes";
 
 const useRenderNodes = () => {
@@ -20,7 +20,7 @@ const useRenderNodes = () => {
   const renderElement = useCallback((props) => {
     const { children } = props;
 
-    const align = children[0]?.props?.text?.align;
+    const align = children[0]?.props?.text?.align?.value;
 
     const style = { textAlign: align, listStylePosition: "inside" };
     props.attributes = { ...props.attributes, style };

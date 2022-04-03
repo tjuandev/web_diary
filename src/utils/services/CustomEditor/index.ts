@@ -1,10 +1,8 @@
 import { Editor, Element, Text, Transforms } from "slate";
 
-import { SelectorElement } from "utils/types/editor";
-
-type NodeOptions = {
-  hanging: boolean;
-  split: boolean;
+type LeafProperties = {
+  isActive: true;
+  value?: string;
 };
 
 export const isMarkActive = (editor: Editor, format: string) => {
@@ -14,13 +12,20 @@ export const isMarkActive = (editor: Editor, format: string) => {
 
 export const toggleSelectorLeaf = (
   editor: Editor,
-  properties: SelectorElement,
-  options?: NodeOptions
+  format: string,
+  properties: LeafProperties
 ) => {
+  return Editor.addMark(editor, format, {
+    isActive: true,
+    ...properties,
+  });
+};
+
+export const toggleAlignmentLeaf = (editor: Editor, properties) => {
   return Transforms.setNodes(
     editor,
     { ...properties },
-    { match: (n) => Text.isText(n), ...options }
+    { match: (n) => Text.isText(n) }
   );
 };
 

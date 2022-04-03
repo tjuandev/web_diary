@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { KeyboardEventHandler, useRef, useState } from "react";
 
 import { createEditor, Descendant, Transforms } from "slate";
 import { withHistory } from "slate-history";
@@ -29,6 +29,17 @@ export const Editor = () => {
 
   const editor = editorRef.current;
 
+  const resetHeadingOnEnter: KeyboardEventHandler<HTMLDivElement> = (event) => {
+    if (event.key === "Enter" && !event.shiftKey) {
+      const isList = isInListTypes(editor.getFragment()[0].type);
+
+      setTimeout(() => {
+        if (isList) return;
+        Transforms.setNodes(editor, { type: "paragraph" });
+      }, RESET_FRAGMENT_TIMEOUT);
+    }
+  };
+
   return (
     <Slate editor={editor} value={value} onChange={(value) => setValue(value)}>
       <Toolbar />
@@ -37,16 +48,7 @@ export const Editor = () => {
         renderElement={renderElement}
         renderLeaf={renderLeaf}
         onBlur={(e) => e.preventDefault()}
-        onKeyDown={(event) => {
-          if (event.key === "Enter" && !event.shiftKey) {
-            const isList = isInListTypes(editor.getFragment()[0].type);
-
-            setTimeout(() => {
-              if (isList) return;
-              Transforms.setNodes(editor, { type: "paragraph" });
-            }, RESET_FRAGMENT_TIMEOUT);
-          }
-        }}
+        onKeyDown={resetHeadingOnEnter}
       />
     </Slate>
   );

@@ -1,13 +1,8 @@
 import styled from "styled-components";
 
 export const BarContainer = styled.nav`
-  display: flex;
-  gap: 1rem;
-
   background: #f4f4f4;
   box-shadow: -4px -4px 4px #f8f8f8, 4px 4px 8px #e4e4e4;
-
-  padding: 0.8rem 1.5rem;
 
   border-radius: 50px;
 
@@ -16,4 +11,26 @@ export const BarContainer = styled.nav`
   left: 50%;
 
   transform: translateX(-50%);
+  max-width: 100%;
+  
+  @media (max-width: 980px) {
+    top: 100vh;
+    left: 0;
+    transform: translate(0, -100%);
+    
+    border-radius: 0;
+  
+    overflow-x: scroll;
+  }
+`;
+
+export const OptionsContainer = styled.div`
+  display: flex;
+  gap: 1rem;
+
+  padding: 1rem;
+
+  @media (max-width: 980px) {
+    width: fit-content;
+  }
 `;

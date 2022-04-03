@@ -4,7 +4,7 @@ import { createEditor, Descendant, Transforms } from "slate";
 import { withHistory } from "slate-history";
 import { Slate, Editable, withReact, ReactEditor } from "slate-react";
 
-import { isInListTypes } from "utils/services/CustomEditor";
+import { isInListTypes } from "utils/lib/CustomEditor";
 
 import withImages from "./withImages";
 

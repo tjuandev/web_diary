@@ -1,4 +1,4 @@
-import { insertImage, isImageUrl } from "utils/services/CustomEditor";
+import { insertImage, isImageUrl } from "utils/lib/CustomEditor";
 
 const withImages = (editor) => {
   const { insertData, isVoid } = editor;

@@ -10,7 +10,7 @@ import {
   toggleBlock,
   toggleMark,
   toggleSelectorLeaf,
-} from "utils/services/CustomEditor";
+} from "utils/lib/CustomEditor";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHighlighter, faImage } from "@fortawesome/free-solid-svg-icons";

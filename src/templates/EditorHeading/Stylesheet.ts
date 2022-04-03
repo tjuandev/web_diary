@@ -8,7 +8,7 @@ export const Container = styled.header`
     color: #f4f4f4;
     font-weight: 500;
 
-    font-size: 1.25vw;
+    font-size: 1.5rem;
   }
 
   display: flex;

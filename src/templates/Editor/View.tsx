@@ -11,6 +11,8 @@ import withImages from "./withImages";
 import { Toolbar } from "organisms";
 import useRenderNodes from "./useRenderNodes";
 
+import { Container } from "./Stylesheet";
+
 const RESET_FRAGMENT_TIMEOUT = 1;
 
 export const Editor = () => {
@@ -41,15 +43,21 @@ export const Editor = () => {
   };
 
   return (
-    <Slate editor={editor} value={value} onChange={(value) => setValue(value)}>
-      <Toolbar />
-      <Editable
-        placeholder="Digite alguma coisa..."
-        renderElement={renderElement}
-        renderLeaf={renderLeaf}
-        onBlur={(e) => e.preventDefault()}
-        onKeyDown={resetHeadingOnEnter}
-      />
-    </Slate>
+    <Container>
+      <Slate
+        editor={editor}
+        value={value}
+        onChange={(value) => setValue(value)}
+      >
+        <Toolbar />
+        <Editable
+          placeholder="Digite alguma coisa..."
+          renderElement={renderElement}
+          renderLeaf={renderLeaf}
+          onBlur={(e) => e.preventDefault()}
+          onKeyDown={resetHeadingOnEnter}
+        />
+      </Slate>
+    </Container>
   );
 };

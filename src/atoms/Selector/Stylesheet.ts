@@ -117,6 +117,10 @@ export const ButtonListWrapper = styled(MenuListWrapper)`
 `;
 
 export const ButtonOptionWrapper = styled.div`
+  .roundedButton {
+    box-shadow: none;
+  }
+
   .neo-selector__option {
     padding: 0;
   }

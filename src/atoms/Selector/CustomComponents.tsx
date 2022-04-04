@@ -53,14 +53,13 @@ export const SingleValue = (props: SingleCustomValueProps) => {
   const { data, children, isColorElement, customSingleValue } = props;
 
   const childrenType = customSingleValue ? customSingleValue : children;
-  const transparentColor =
-    data.value === "transparent" ? "#c0c0c0" : data.value;
+  const color = data.value === "transparent" ? "#c0c0c0" : data.value;
 
   const Children = () => {
     if (customSingleValue && !isColorElement) return customSingleValue;
     else if (isColorElement) {
       return React.cloneElement(childrenType, {
-        color: transparentColor,
+        color,
         disable: "true",
       });
     } else return children;

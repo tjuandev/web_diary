@@ -12,7 +12,7 @@ export const SelectorStyled = styled(Select)<SelectorProps>`
 
     flex-wrap: unset;
 
-    height: 3rem;
+    height: 2.5rem;
     padding: 0 1rem;
 
     border: 0;
@@ -42,6 +42,10 @@ export const SelectorStyled = styled(Select)<SelectorProps>`
 
   .neo-selector__single-value {
     overflow: initial;
+
+    > svg {
+      font-size: 1.5rem;
+    }
   }
 
   .roundedButton {

@@ -53,6 +53,10 @@ const GlobalStyles = createGlobalStyle`
     background: none;
     outline: none;
   }
+
+  .neo-selector__menu-portal {
+    z-index: 3 !important;
+  }
 `;
 
 export default GlobalStyles;

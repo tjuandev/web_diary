@@ -25,7 +25,7 @@ export const BarContainer = styled.nav`
 
 export const OptionsContainer = styled.div`
   display: flex;
-  gap: 1rem;
+  gap: 0.75rem;
 
   padding: 1rem;
 

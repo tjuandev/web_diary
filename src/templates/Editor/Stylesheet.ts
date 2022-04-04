@@ -12,7 +12,7 @@ export const Container = styled.div`
 
   > div,
   nav {
-    width: 53.5vw;
+    width: 45vw;
   }
 
   @media (max-width: 980px) {

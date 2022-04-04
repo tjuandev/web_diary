@@ -1,16 +1,25 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled.main`
   display: flex;
   justify-content: center;
 
+  width: 100%;
+
   > div {
-    height: 70vh;
-    overflow: auto;
-    margin-top: 1.5rem;
+    background: #f4f4f4;
+    height: 100ex;
+    width: 46.5vw;
   }
 
-  > div,
+  > div > div {
+    padding: 0.25vw 0.75vw;
+
+    height: 72.5vh;
+    overflow-y: visible;
+    overflow-x: hidden;
+  }
+
   nav {
     width: 45vw;
   }

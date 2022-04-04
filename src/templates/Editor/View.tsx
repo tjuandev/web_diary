@@ -44,20 +44,22 @@ export const Editor = () => {
 
   return (
     <Container>
-      <Slate
-        editor={editor}
-        value={value}
-        onChange={(value) => setValue(value)}
-      >
-        <Toolbar />
-        <Editable
-          placeholder="Digite alguma coisa..."
-          renderElement={renderElement}
-          renderLeaf={renderLeaf}
-          onBlur={(e) => e.preventDefault()}
-          onKeyDown={resetHeadingOnEnter}
-        />
-      </Slate>
+      <div>
+        <Slate
+          editor={editor}
+          value={value}
+          onChange={(value) => setValue(value)}
+        >
+          <Toolbar />
+          <Editable
+            placeholder="Digite alguma coisa..."
+            renderElement={renderElement}
+            renderLeaf={renderLeaf}
+            onBlur={(e) => e.preventDefault()}
+            onKeyDown={resetHeadingOnEnter}
+          />
+        </Slate>
+      </div>
     </Container>
   );
 };

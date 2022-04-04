@@ -51,3 +51,44 @@ export const Container = styled.main`
     }
   }
 `;
+
+type ImageProps = {
+  isFocused: boolean;
+};
+
+export const ImageContainer = styled.div<ImageProps>`
+  position: relative;
+  width: fit-content;
+
+  .roundedButton {
+    box-shadow: none;
+
+    &,
+    > svg {
+      transition: all 0.25s ease;
+    }
+
+    :hover {
+      background: crimson;
+
+      > svg {
+        color: #f4f4f4;
+      }
+    }
+  }
+
+  .image-content > img {
+    display: block;
+    max-width: 100%;
+    max-height: 20em;
+    resize: both;
+  }
+
+  .image-content > button {
+    display: ${(props) => (props.isFocused ? "block" : "none")};
+
+    position: absolute;
+    top: 0.5em;
+    right: 0.5em;
+  }
+`;

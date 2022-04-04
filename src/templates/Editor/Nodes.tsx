@@ -1,3 +1,6 @@
+import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { RoundedButton } from "atoms";
 import React, { ReactNode } from "react";
 import { Element, Transforms } from "slate";
 
@@ -9,6 +12,7 @@ import {
 } from "slate-react";
 
 import { removePartOfString } from "utils/lib/String";
+import { ImageContainer } from "./Stylesheet";
 
 interface LeafProps {
   children: ReactNode;
@@ -134,42 +138,31 @@ const hideImageDragNDrop = () => {
   return isFirefox;
 };
 
-export const Image = ({ attributes, children, element, align }: ImageProps) => {
+export const Image = ({ attributes, children, element }: ImageProps) => {
   const editor: any = useSlateStatic();
 
   const path = ReactEditor.findPath(editor, element);
 
   const selected = useSelected();
   const focused = useFocused();
+
+  console.log("selected", selected, focused);
+
   return (
-    <div style={{ display: "flex", justifyContent: align }} {...attributes}>
+    <ImageContainer {...attributes} isFocused={selected && focused}>
       {children}
-      <div contentEditable={false} style={{ position: "relative" }}>
+      <div contentEditable={false} className="image-content">
         <img
           src={element.url}
-          style={{
-            display: "block",
-            maxWidth: "100%",
-            maxHeight: "20em",
-            boxShadow: `${selected && focused ? "0 0 0 3px" : "none"}`,
-            resize: "both",
-          }}
           alt="no recognized source"
           draggable={!hideImageDragNDrop()}
         />
-        <button
-          onClick={() => Transforms.removeNodes(editor, { at: path })}
-          style={{
-            display: `${selected && focused ? "inline" : "none"}`,
-            position: "absolute",
-            top: " 0.5em",
-            left: "0.5em",
-            backgroundColor: "white",
-          }}
-        >
-          delete
+        <button onClick={() => Transforms.removeNodes(editor, { at: path })}>
+          <RoundedButton.default>
+            <FontAwesomeIcon icon={faTrashAlt} />
+          </RoundedButton.default>
         </button>
       </div>
-    </div>
+    </ImageContainer>
   );
 };

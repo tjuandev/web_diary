@@ -7,13 +7,19 @@ export const BarContainer = styled.nav`
   border-radius: 50px;
 
   position: fixed;
-  top: calc(90% - 4rem);
+  top: 90%;
   left: 50%;
 
   z-index: 2;
 
   transform: translateX(-50%);
+
   max-width: 100%;
+
+  @media (max-width: 1280px) {
+    top: 85%;
+  }
+
   @media (max-width: 980px) {
     top: 100vh;
     left: 0;

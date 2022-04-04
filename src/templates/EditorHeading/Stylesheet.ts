@@ -14,10 +14,6 @@ export const Container = styled.header`
   display: flex;
   justify-content: center;
 
-  > div {
-    width: 53.5vw;
-  }
-
   width: 100%;
   padding: 1.5rem;
 `;

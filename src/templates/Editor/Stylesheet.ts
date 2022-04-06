@@ -5,10 +5,11 @@ export const Container = styled.main`
   justify-content: center;
 
   width: 100%;
+  height: 100%;
 
   > div {
     background: #f4f4f4;
-    height: 100vh;
+    height: 100%;
     width: 46.5vw;
   }
 

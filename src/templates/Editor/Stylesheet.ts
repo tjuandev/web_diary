@@ -59,11 +59,16 @@ type ImageProps = {
 
 export const ImageContainer = styled.div<ImageProps>`
   position: relative;
+  cursor: grab;
   width: fit-content;
+
+  border: ${(props) => props.isFocused && "1px solid cyan"};
+  margin: 0.5rem 0;
 
   .roundedButton {
     box-shadow: none;
 
+    background: #f1f1f1;
     &,
     > svg {
       transition: all 0.25s ease;
@@ -71,7 +76,6 @@ export const ImageContainer = styled.div<ImageProps>`
 
     :hover {
       background: crimson;
-
       > svg {
         color: #f4f4f4;
       }

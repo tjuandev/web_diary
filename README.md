@@ -1,1 +1,1 @@
-<img src="https://ibb.co/wWKLtw0" alt="web_diary_logo"/>
+<img src="https://i.ibb.co/MVRhdG2/Logo-Idea.png" alt="web_diary_logo"/>

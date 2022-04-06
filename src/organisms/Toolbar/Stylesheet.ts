@@ -4,6 +4,9 @@ export const BarContainer = styled.nav`
   background: #f4f4f4;
   box-shadow: -4px -4px 4px #f8f8f8, 4px 4px 8px #e4e4e4;
 
+  display: flex;
+  justify-content: center;
+
   border-radius: 50px;
 
   position: fixed;
@@ -15,6 +18,10 @@ export const BarContainer = styled.nav`
   transform: translateX(-50%);
 
   max-width: 100%;
+
+  @media (min-width: 2200px) {
+    max-width: 25%;
+  }
 
   @media (max-width: 1280px) {
     top: 85%;

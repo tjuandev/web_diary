@@ -1,7 +1,9 @@
+import dynamic from "next/dynamic";
 import styled from "styled-components";
-import Select from "react-select";
 
 import { SelectorProps } from "./types";
+
+const Select = dynamic(() => import("react-select"), { ssr: false });
 
 export const SelectorStyled = styled(Select)<SelectorProps>`
   width: ${(props) => props.width};

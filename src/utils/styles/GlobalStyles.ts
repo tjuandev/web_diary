@@ -28,6 +28,10 @@ const GlobalStyles = createGlobalStyle`
     overflow: hidden;
   }
 
+  #__next {
+    height: 100%;
+  }
+
   button {
     cursor: pointer;
   }

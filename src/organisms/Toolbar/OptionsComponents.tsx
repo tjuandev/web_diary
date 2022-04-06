@@ -10,7 +10,7 @@ import {
   toggleBlock,
   toggleMark,
   toggleSelectorLeaf,
-} from "utils/services/CustomEditor";
+} from "utils/lib/CustomEditor";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHighlighter, faImage } from "@fortawesome/free-solid-svg-icons";
@@ -113,7 +113,7 @@ const BaseSelector = (props: BaseSelectorProps) => {
 export const SelectTypography = ({ editor }: EditorInterface) => {
   return (
     <BaseSelector
-      width="10rem"
+      width="9rem"
       editor={editor}
       data={editorToolbar.TypographyOptions}
       toggleFunction={toggleBlock}
@@ -170,6 +170,7 @@ export const ColorSelector = ({ editor }: EditorInterface) => {
 
   return (
     <BaseSelector
+      width="5rem"
       editor={editor}
       data={editorToolbar.ColorsOptions}
       selectorType="horizontalSelector"
@@ -188,13 +189,14 @@ export const BgSelector = ({ editor }: EditorInterface) => {
 
   return (
     <BaseSelector
+      width="5rem"
       editor={editor}
       data={editorToolbar.BackgroundColorsOptions}
       toggleFunction={toggleFunction}
       defaultValue="transparent"
       fragmentKey="bgColor"
       selectorType="horizontalSelector"
-      customSingleValue={<FontAwesomeIcon icon={faHighlighter} size="2x" />}
+      customSingleValue={<FontAwesomeIcon icon={faHighlighter} />}
       isColorElement
     />
   );
@@ -207,6 +209,7 @@ export const TextAlignmentSelector = ({ editor }: EditorInterface) => {
 
   return (
     <BaseSelector
+      width="5rem"
       editor={editor}
       data={editorToolbar.TextAlignOptions}
       toggleFunction={toggleFunction}
@@ -246,10 +249,10 @@ const Options = ({ editor }: EditorInterface) => {
     <>
       <SelectTypography editor={editor} />
       <MarkButtons editor={editor} />
-      <BlockButtons editor={editor} />
       <ColorSelector editor={editor} />
       <BgSelector editor={editor} />
       <TextAlignmentSelector editor={editor} />
+      <BlockButtons editor={editor} />
       <InsertImageButton />
     </>
   );

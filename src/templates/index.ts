@@ -1,2 +1,4 @@
 import Editor from "./Editor";
-export { Editor };
+import EditorHeading from "./EditorHeading";
+
+export { Editor, EditorHeading };

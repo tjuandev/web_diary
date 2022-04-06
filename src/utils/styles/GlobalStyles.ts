@@ -20,9 +20,16 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    background-color: #f4f4f4;
+    background-color: #F1F1F1;
     min-width: 100vw;
     min-height: 100vh;
+    height: 1px;
+
+    overflow: hidden;
+  }
+
+  #__next {
+    height: 100%;
   }
 
   button {
@@ -52,6 +59,10 @@ const GlobalStyles = createGlobalStyle`
     border: none;
     background: none;
     outline: none;
+  }
+
+  .neo-selector__menu-portal {
+    z-index: 3 !important;
   }
 `;
 

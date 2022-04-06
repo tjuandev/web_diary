@@ -49,7 +49,7 @@ const BackgroundColorsOptions = {
     <FontAwesomeIcon
       icon={faTimesCircle}
       color="#c0c0c0"
-      style={{ fontSize: "2rem" }}
+      style={{ fontSize: "1.5rem" }}
     />
   ),
   "#FFA41B": <RoundedButton.Colored color="#FFA41B" />,

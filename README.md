@@ -33,7 +33,7 @@
 
 O WebDiary é um rich text editor ainda em desenvolvimento feito com SlateJS que busca trazer uma experiência diferenciada, apresentando uma interface muito bonita e intuitiva. Contando com uma boa variedade de opções para edição de texto, além de incluir a funcionalidade de adicionar imagens.
 
-<img src="screenshots/screen_cat.pgn" width="100%" alt="Screenshot do projeto" border="0">
+<img src="./screenshots/screen_cat.pgn" width="100%" alt="Screenshot do projeto" border="0">
 
 
 ### Por quê eu o fiz? 

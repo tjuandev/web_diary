@@ -31,7 +31,7 @@
 
 <h2 id="sobre-o-projeto">Sobre o projeto</h2>
 
-O WebDiary é um rich text editor ainda em desenvolvimento feito com SlateJS que busca trazer uma experiência diferenciada, apresentando uma interface muito bonita e intuitiva. Contando com uma boa variedade de opções para edição de texto, além de incluir a funcionalidade de adicionar imagens. Gostou? [Vem dar uma olhada nele](https://web-diary.vercel.app/)
+O WebDiary é um rich text editor ainda em desenvolvimento feito com SlateJS que busca trazer uma experiência diferenciada, apresentando uma interface muito bonita e intuitiva. Contando com uma boa variedade de opções para edição de texto, além de incluir a funcionalidade de adicionar imagens. Gostou? [Vem dar uma olhada nele](https://web-diary.vercel.app/){:target="_blank" rel="noopener"}
 
 <img src="./screenshots/screen_cat.png" width="100%" alt="Screenshot do projeto" border="0">
 

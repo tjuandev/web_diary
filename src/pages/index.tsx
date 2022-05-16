@@ -1,9 +1,15 @@
 import { Editor, EditorHeading } from "templates";
 
+const todayDateFormatted = new Date().toLocaleDateString("pt-BR", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+});
+
 const Diary = () => {
   return (
     <>
-      <EditorHeading title="23, February, 2004" />
+      <EditorHeading title={todayDateFormatted} />
       <Editor />
     </>
   );

@@ -18,7 +18,7 @@
         <ul>
             <li><a href="#tecnologias-usadas">Tecnologias usadas</a></li>
         </ul>
-      <li><a href="#como-funciona-o-método">Work in progress e escalabilidade. 🚧</a></li>
+      <li><a href="#work-in-progress">Work in progress e escalabilidade. 🚧</a></li>
       </ul>
     </li>
     <li><a href="#contribuições">Contribuições</a></li>
@@ -50,7 +50,7 @@ Bem, minhas motivações foram curiosidade e tédio. Curiosidade, pois sempre ti
     <li>React Select</li>
 </ul>
 
-### Work in progress e escalabilidade
+<h3 id="work-in-progress"> Work in progress e escalabilidade </h3>
 
 Enfim, como nem tudo são flores, houve diversas dificuldades ao longo do projeto, a lib que usei do SlateJS infelizmente ainda se encontra em BETA, não tem muita clareza em sua documentação e peca imensamente na performance e compatibilidade, basicamente apenas consegui fazer o website funcionar no Desktop, nas versões mobile ele é simplesmente cheia de bugs, muito por conta da arquitetura da lib. Portanto, eu deixo esse em aberto para caso o Thiago do futuro tenha interesse em voltar, esperar a lib melhorar ou até mesmo vir com uma nova lib, afinal esse projeto tá muito bom em termos de escalabilidade.
 

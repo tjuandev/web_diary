@@ -14,7 +14,7 @@
       <a href="#sobre-o-projeto">Sobre o projeto</a>
       <ul>
       <li><a href="#por-que-fiz">Por quê eu o fiz?</li>
-        <li><a href="#tecnologias-usadas">O que aprendi?</a></li>
+        <li><a href="#o-que-aprendi">O que aprendi?</a></li>
         <ul>
             <li><a href="#tecnologias-usadas">Tecnologias usadas</a></li>
         </ul>
@@ -39,7 +39,7 @@ O WebDiary é um rich text editor ainda em desenvolvimento feito com SlateJS que
 
 Bem, minhas motivações foram curiosidade e tédio. Curiosidade, pois sempre tive vontade de saber o "Under the Hood" da maioria dos editores de texto, esse foi um dos motivos de ter escolhido o SlateJS inclusive, queria algo robusto e facilitador que fosse mais próximo de uma aplicação mais pura, bem tive várias desilusões, porém explico isso na sessão de <a href="#como-funciona-o-método">Work in progress e escalabilidade. 🚧</a>. Tédio, pelo motivo de eu sempre encontrar softwares com muita funcionalidade que realmente é útil no dia-a-dia, mas que peca na parte visual, e gosto de reimaginar do meu jeito.
 
-<h3>O que aprendi / Tecnologias usadas?</h3>
+<h3 id="o-que-aprendi">O que aprendi / Tecnologias usadas?</h3>
 
 <ul>
     <li>Organização e Escabilidade de um projeto</li>

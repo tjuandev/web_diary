@@ -59,3 +59,7 @@ Enfim, como nem tudo são flores, houve diversas dificuldades ao longo do projet
 Sinta-se livre para contribuir no projeto, afinal o código tá aberto :), caso haja alguma dúvida, basta ir na sessão abaixo e escolher algum meio para falar comigo.
 
 <h3 id="contato">Contato</h3>
+
+[![Twitter Badge](https://img.shields.io/badge/-@tjuandev-00C2FF?style=flat-square&labelColor=0090BC&logo=twitter&logoColor=white&link=https://twitter.com/tjuandev)](https://twitter.com/tjuandev)
+[![Instagram Badge](https://img.shields.io/badge/-@tjuan.dev-00C2FF?style=flat-square&labelColor=0090BC&logo=instagram&logoColor=white&link=https://www.instagram.com/tjuan.dev/)](https://www.instagram.com/tjuan.dev/) 
+[![LinkedIn Badge](https://img.shields.io/badge/-ThiagoJuan-00C2FF?style=flat-square&labelColor=0090BC&logo=linkedin&logoColor=white&link=https://www.linkedin.com/in/thiago-juan/)](https://www.linkedin.com/in/thiago-juan/) 

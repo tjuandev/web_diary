@@ -25,27 +25,7 @@ export const Container = styled.main`
     width: 45vw;
   }
 
-  @media (max-width: 1280px) {
-    > div {
-      width: 70vw;
-    }
-
-    nav {
-      width: 68vw;
-    }
-  }
-
-  @media (max-width: 1180px) {
-    > div {
-      width: 80vw;
-    }
-
-    nav {
-      width: 75vw;
-    }
-  }
-
-  @media (max-width: 980px) {
+  @media (max-width: 1915px) {
     > div,
     nav {
       width: 100%;

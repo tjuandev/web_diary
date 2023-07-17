@@ -17,17 +17,9 @@ export const BarContainer = styled.nav`
 
   transform: translateX(-50%);
 
-  max-width: 100%;
+  max-width: fit-content;
 
-  @media (min-width: 2200px) {
-    max-width: 25%;
-  }
-
-  @media (max-width: 1280px) {
-    top: 85%;
-  }
-
-  @media (max-width: 980px) {
+  @media (max-width: 820px) {
     top: 100vh;
     left: 0;
     transform: translate(0, -100%);
